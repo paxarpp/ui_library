@@ -15,8 +15,6 @@ const Wrapper = styled.a`
   padding: 6px;
   background-color: #ffc23c;
   border-radius: 8px;
-  grid-column: 1 / 3;
-  grid-row: 1 / 2;
   font-size: 16px;
   transition: box-shadow 0.2s ease;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
