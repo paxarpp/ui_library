@@ -1,2 +1,2 @@
 export { default as Button } from './Button';
-export { default as ButtonEllipse } from './ButtonEllipse';
+export { default as ButtonMain } from './ButtonMain';
