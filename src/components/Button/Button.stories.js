@@ -5,4 +5,14 @@ import { Button, ButtonMain } from './index';
 
 storiesOf('Button', module)
   .add('with button', () => <Button onClick={action('clicked')}>текст</Button>)
-  .add('with link ellipse style', () => <ButtonMain onClick={action('clicked')}>войти</ButtonMain>);
+  .add('with button main', () => <ButtonMain onClick={action('clicked')}>войти</ButtonMain>)
+  .add('with button main large', () => (
+    <ButtonMain onClick={action('clicked')} large={true}>
+      войти
+    </ButtonMain>
+  ))
+  .add('with button main small', () => (
+    <ButtonMain onClick={action('clicked')} small={true}>
+      войти
+    </ButtonMain>
+  ));
