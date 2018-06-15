@@ -5,19 +5,20 @@ import buttonState from '../../../HOC/buttonState';
 
 const enhance = buttonState();
 
-const ButtonMain = ({ children, click, ...props }) => (
-  <Main onClick={click} {...props}>
+const ButtonMain = ({ children, click, disable, ...props }) => (
+  <Main onClick={disable ? null : click} {...props} disable={disable}>
     {children}
   </Main>
 );
 
 ButtonMain.propTypes = {
-  click: PropTypes.func,
+  click: PropTypes.func || PropTypes.bool,
   children: PropTypes.string,
   large: PropTypes.bool,
   second: PropTypes.bool,
   danger: PropTypes.bool,
-  small: PropTypes.bool
+  small: PropTypes.bool,
+  disable: PropTypes.bool
 };
 
 const large = `
@@ -53,16 +54,21 @@ const Main = styled.button`
   background-color: #26a69a;
   background-color: ${props => props.danger && '#ff5454'};
   background-color: ${props => props.second && '#aaa'};
+  background-color: ${props => props.disable && '#e5e5e5'};
   text-align: center;
   letter-spacing: 0.5px;
   transition: background-color 0.3s ease-out;
-  cursor: pointer;
+  cursor: ${props => !props.disable && 'pointer'};
   outline: none;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  ${props =>
+    !props.disable &&
+    'box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)'};
   :hover {
-    background-color: ${props =>
+    ${props => !props.disable && 'background-color:'} ${props =>
       props.isClick ? '#aaa' : (props.danger && 'red') || (props.second && '#aab') || '#2bbbad'};
-    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+    ${props =>
+      !props.disable &&
+      'box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2)'};
   }
 `;
 

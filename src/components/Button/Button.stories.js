@@ -1,21 +1,26 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { Button, ButtonMain, ButtonFloat } from './index';
+import { ButtonMain, ButtonFloat } from './index';
 
 storiesOf('Button', module)
-  .add('with button', () => <Button onClick={action('clicked')}>текст</Button>)
-  .add('with button main', () => <ButtonMain handlerClick={action('clicked')}>войти</ButtonMain>)
-  .add('with button main large', () => (
-    <ButtonMain handlerClick={action('clicked')} large={true} second={true}>
+  .add('button main', () => <ButtonMain handlerClick={action('clicked')}>войти</ButtonMain>)
+  .add('button main disable', () => (
+    <ButtonMain handlerClick={action('clicked')} disable>
       войти
     </ButtonMain>
   ))
-  .add('with button main small', () => (
-    <ButtonMain handlerClick={action('clicked')} small={true} danger={true}>
+  .add('button second large', () => (
+    <ButtonMain handlerClick={action('clicked')} large second>
       войти
     </ButtonMain>
   ))
-  .add('with ButtonFloat', () => <ButtonFloat handlerClick={action('clicked')} />)
-  .add('with ButtonFloat large', () => <ButtonFloat handlerClick={action('clicked')} large={true} second={true} />)
-  .add('with ButtonFloat small', () => <ButtonFloat handlerClick={action('clicked')} small={true} danger={true} />);
+  .add('button danger small', () => (
+    <ButtonMain handlerClick={action('clicked')} small danger>
+      войти
+    </ButtonMain>
+  ))
+  .add('ButtonFloat', () => <ButtonFloat handlerClick={action('clicked')} />)
+  .add('ButtonFloat second large', () => <ButtonFloat handlerClick={action('clicked')} large second />)
+  .add('ButtonFloat second disable', () => <ButtonFloat handlerClick={action('clicked')} large disable />)
+  .add('ButtonFloat danger small', () => <ButtonFloat handlerClick={action('clicked')} small danger />);
