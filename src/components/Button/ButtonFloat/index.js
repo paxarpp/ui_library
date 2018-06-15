@@ -106,11 +106,11 @@ const Main = styled.button`
       !props.disable &&
       'box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2)'};
   }
-  :before {
+  ${props => !props.children && ':before'} {
     content: ' ';
     position: absolute;
   }
-  :after {
+  ${props => !props.children && ':after'} {
     content: ' ';
     position: absolute;
   }
