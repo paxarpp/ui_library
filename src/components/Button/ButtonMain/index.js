@@ -28,10 +28,10 @@ export default class ButtonMain extends Component {
     onClick();
   };
   render() {
-    const { children, small, large } = this.props;
+    const { children, small, large, second, danger } = this.props;
     const { isClick } = this.state;
     return (
-      <Main onClick={this.click} isClick={isClick} small={small} large={large}>
+      <Main onClick={this.click} isClick={isClick} small={small} large={large} second={second} danger={danger}>
         {children}
       </Main>
     );
@@ -76,12 +76,15 @@ const Main = styled.button`
   text-decoration: none;
   color: #fff;
   background-color: #26a69a;
+  background-color: ${props => props.danger && '#ff5454'};
+  background-color: ${props => props.second && '#aaa'};
   text-align: center;
   letter-spacing: 0.5px;
-  transition: background-color 0.2s ease-out;
+  transition: background-color 0.3s ease-out;
   cursor: pointer;
   outline: none;
   :hover {
-    background-color: ${props => (props.isClick ? '#aaa' : '#2bbbad')};
+    background-color: ${props =>
+      props.isClick ? '#aaa' : (props.danger && 'red') || (props.second && '#aab') || '#2bbbad'};
   }
 `;
