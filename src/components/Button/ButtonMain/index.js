@@ -42,6 +42,8 @@ ButtonMain.propTypes = {
   onClick: PropTypes.func,
   children: PropTypes.string,
   large: PropTypes.bool,
+  second: PropTypes.bool,
+  danger: PropTypes.bool,
   small: PropTypes.bool
 };
 
