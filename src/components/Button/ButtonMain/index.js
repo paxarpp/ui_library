@@ -24,14 +24,14 @@ export default class ButtonMain extends Component {
     this.setState({
       isClick: true
     });
-    const { onClick } = this.props;
-    onClick();
+    const { handlerClick } = this.props;
+    handlerClick();
   };
   render() {
-    const { children, small, large, second, danger } = this.props;
+    const { children } = this.props;
     const { isClick } = this.state;
     return (
-      <Main onClick={this.click} isClick={isClick} small={small} large={large} second={second} danger={danger}>
+      <Main onClick={this.click} isClick={isClick} {...this.props}>
         {children}
       </Main>
     );
@@ -39,7 +39,7 @@ export default class ButtonMain extends Component {
 }
 
 ButtonMain.propTypes = {
-  onClick: PropTypes.func,
+  handlerClick: PropTypes.func,
   children: PropTypes.string,
   large: PropTypes.bool,
   second: PropTypes.bool,
