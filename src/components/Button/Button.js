@@ -12,7 +12,7 @@ Button.propTypes = {
 const Wrapper = styled.a`
   cursor: pointer;
   text-align: center;
-  padding: 6px;
+  padding: 6px 10px;
   background-color: #ffc23c;
   border-radius: 8px;
   font-size: 16px;
@@ -20,11 +20,6 @@ const Wrapper = styled.a`
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
   :hover {
     box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.3);
-  }
-  @media screen and (max-width: 720px) {
-    margin-bottom: 0;
-    font-weight: 500;
-    padding: 5px;
   }
 `;
 
