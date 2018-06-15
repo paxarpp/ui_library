@@ -1,45 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import buttonState from '../../../HOC/buttonState';
 
-export default class ButtonMain extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isClick: false
-    };
-  }
-  componentDidMount() {
-    addEventListener('transitionend', this.set);
-  }
-  set = () => {
-    this.setState({
-      isClick: false
-    });
-  };
-  componentWillUnmount() {
-    removeEventListener('transitionend', this.set);
-  }
-  click = () => {
-    this.setState({
-      isClick: true
-    });
-    const { handlerClick } = this.props;
-    handlerClick();
-  };
-  render() {
-    const { children } = this.props;
-    const { isClick } = this.state;
-    return (
-      <Main onClick={this.click} isClick={isClick} {...this.props}>
-        {children}
-      </Main>
-    );
-  }
-}
+const enhance = buttonState();
+
+const ButtonMain = ({ children, click, ...props }) => (
+  <Main onClick={click} {...props}>
+    {children}
+  </Main>
+);
 
 ButtonMain.propTypes = {
-  handlerClick: PropTypes.func,
+  click: PropTypes.func,
   children: PropTypes.string,
   large: PropTypes.bool,
   second: PropTypes.bool,
@@ -90,3 +63,5 @@ const Main = styled.button`
       props.isClick ? '#aaa' : (props.danger && 'red') || (props.second && '#aab') || '#2bbbad'};
   }
 `;
+
+export default enhance(ButtonMain);
