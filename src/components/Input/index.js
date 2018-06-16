@@ -63,6 +63,7 @@ const LabelWrap = styled.label`
   top: ${props => (props.value ? '0' : '1rem')};
   font-size: ${props => (props.value ? '0.7rem' : '1rem')};
   left: 0;
+  color: #9e9e9e;
   transition: all 0.3s;
 `;
 const Wrapper = styled.div`
