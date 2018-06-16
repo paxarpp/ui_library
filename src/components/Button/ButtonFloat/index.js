@@ -25,17 +25,17 @@ const large = `
   height: 56px;
   width: 56px;
   :before {
-    top: -13px;
-    left: 8px;
-    width: 40px;
-    height: 40px;
+    top: 6px;
+    left: 18px;
+    width: 20px;
+    height: 20px;
     border-bottom: 3px solid #fff;
   }
   :after {
-    top: 8px;
-    left: 26px;
-    width: 40px;
-    height: 40px;
+    top: 17px;
+    left: 27px;
+    width: 20px;
+    height: 20px;
     border-left: 3px solid #fff;
   }
 `;
@@ -44,17 +44,17 @@ const small = `
   height: 32px;
   width: 32px;
   :before {
-    top: -7px;
-    left: 5px;
-    width: 22px;
-    height: 22px;
+    top: -5px;
+    left: 6px;
+    width: 20px;
+    height: 20px;
     border-bottom: 2px solid #fff;
   }
   :after {
-    top: 5px;
+    top: 6px;
     left: 15px;
-    height: 22px;
-    width: 22px;
+    height: 20px;
+    width: 20px;
     border-left: 2px solid #fff;
   }
 `;
@@ -62,17 +62,17 @@ const norm = `
   height: 40px;
   width: 40px;
   :before {
-    top: -9px;
-    left: 6px;
-    width: 28px;
-    height: 28px;
+    top: -1px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
     border-bottom: 2px solid #fff;
   }
   :after {
-    top: 6px;
+    top: 10px;
     left: 19px;
-    width: 28px;
-    height: 28px;
+    width: 20px;
+    height: 20px;
     border-left: 2px solid #fff;
   }
 `;
