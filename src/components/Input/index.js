@@ -1,23 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Input = ({ ...props }) => {
-  return <Wrapper {...props} />;
+const Input = ({ placeholder, ...props }) => {
+  return (
+    <Wrapper>
+      <InpWrap {...props} />
+      <LabelWrap>{placeholder}</LabelWrap>
+    </Wrapper>
+  );
 };
-const Wrapper = styled.input`
-  ::-webkit-input-placeholder {
-    color: #d1d1d1;
-  }
-  ::-moz-placeholder {
-    color: #d1d1d1;
-  }
-  :-ms-input-placeholder {
-    color: #d1d1d1;
-  }
-  ::placeholder {
-    color: #d1d1d1;
-  }
-
+const InpWrap = styled.input`
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #9e9e9e;
@@ -31,11 +23,27 @@ const Wrapper = styled.input`
   box-shadow: none;
   box-sizing: content-box;
   transition: box-shadow 0.3s, border 0.3s;
-
   :disabled {
     color: rgba(0, 0, 0, 0.42);
     border-bottom: 1px dotted rgba(0, 0, 0, 0.42);
   }
+  :focus + label {
+    top: 0;
+    font-size: 0.7rem;
+    color: #26a69a;
+  }
+  :focus {
+    border-bottom: 2px solid #26a69a;
+  }
+`;
+const LabelWrap = styled.label`
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  transition: all 0.3s;
+`;
+const Wrapper = styled.div`
+  position: relative;
 `;
 
 export default Input;
