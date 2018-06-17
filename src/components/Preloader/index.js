@@ -1,0 +1,164 @@
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
+import PropTypes from 'prop-types';
+
+const Preloader = ({ ...props }) => (
+  <Wrapper {...props}>
+    <SpinnerLayer>
+      <Circle_clipper_left>
+        <CircleL />
+      </Circle_clipper_left>
+      <GapPatch>
+        <Circle />
+      </GapPatch>
+      <Circle_clipper_right>
+        <CircleR />
+      </Circle_clipper_right>
+    </SpinnerLayer>
+  </Wrapper>
+);
+Preloader.propTypes = {
+  color: PropTypes.string
+};
+const left_spin = keyframes`
+  from {
+    transform: rotate(130deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+  to {
+    transform: rotate(130deg);
+  }
+`;
+const right_spin = keyframes`
+from {
+  transform: rotate(-130deg);
+}
+50% {
+  transform: rotate(5deg);
+}
+to {
+  transform: rotate(-130deg);
+}
+`;
+const fill_unfill_rotate = keyframes`
+  12.5% {
+    transform: rotate(135deg);
+  }
+  25% {
+    transform: rotate(270deg);
+  }
+  37.5% {
+    transform: rotate(405deg);
+  }
+  50% {
+    transform: rotate(540deg);
+  }
+  62.5% {
+    transform: rotate(675deg);
+  }
+  75% {
+    transform: rotate(810deg);
+  }
+  87.5% {
+    transform: rotate(945deg);
+  }
+  to {
+    transform: rotate(1080deg);
+  }
+`;
+const small = `
+  width: 36px;
+  height: 36px;
+`;
+const big = `
+  width: 64px;
+  height: 64px;
+`;
+const rotateWrap = keyframes`
+  to { transform: rotate(360deg); }
+`;
+const Wrapper = styled.div`
+  display: inline-block;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  ${props => props.small && small};
+  ${props => props.big && big};
+  animation: ${rotateWrap} 1333ms linear infinite;
+`;
+const SpinnerLayer = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-color: #26a69a;
+  opacity: 1;
+  animation: ${fill_unfill_rotate} 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+`;
+const GapPatch = styled.div`
+  position: absolute;
+  top: 0;
+  left: 45%;
+  width: 10%;
+  height: 100%;
+  overflow: hidden;
+  border-color: inherit;
+`;
+const Circle = styled.div`
+  width: 1000%;
+  left: -450%;
+`;
+const Circle_clipper_left = styled.div`
+  display: inline-block;
+  position: relative;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  border-color: inherit;
+`;
+const Circle_clipper_right = styled.div`
+  display: inline-block;
+  position: relative;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  border-color: inherit;
+`;
+const CircleL = styled.div`
+  width: 200%;
+  height: 100%;
+  border-width: 3px;
+  border-style: solid;
+  border-color: inherit;
+  border-bottom-color: transparent !important;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-right-color: transparent !important;
+  transform: rotate(129deg);
+
+  animation: ${left_spin} 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+`;
+const CircleR = styled.div`
+  width: 200%;
+  height: 100%;
+  border-width: 3px;
+  border-style: solid;
+  border-color: inherit;
+  border-bottom-color: transparent !important;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: -100%;
+  border-left-color: transparent !important;
+  transform: rotate(-129deg);
+
+  animation: ${right_spin} 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+`;
+export default Preloader;
