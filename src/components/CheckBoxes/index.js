@@ -40,7 +40,7 @@ const beforeSpan1 = `
   }
 `;
 const beforeSpan2 = `
-  :before{
+  :before {
     top: -4px;
     left: -5px;
     width: 12px;
@@ -58,7 +58,94 @@ const beforeSpan3 = `
   :before {
     border-right: 2px solid rgba(0, 0, 0, 0.42);
     border-bottom: 2px solid rgba(0, 0, 0, 0.42);
-}
+  }
+`;
+const spanAfter = `
+  :after {
+    border-radius: 2px;
+    content: '';
+    left: 0;
+    position: absolute;
+    transition: border 0.25s, background-color 0.25s, width 0.2s 0.1s, height 0.2s 0.1s, top 0.2s 0.1s, left 0.2s 0.1s;
+    z-index: 1;
+  }
+`;
+const spanBefore = `
+  :before {
+    content: '';
+    left: 0;
+    position: absolute;
+    transition: border 0.25s, background-color 0.25s, width 0.2s 0.1s, height 0.2s 0.1s, top 0.2s 0.1s, left 0.2s 0.1s;
+    z-index: 1;
+  }
+`;
+const spanBeforeNotCheck = `
+  :before {
+    width: 0;
+    height: 0;
+    border: 3px solid transparent;
+    left: 6px;
+    top: 10px;
+    transform: rotateZ(37deg);
+    transform-origin: 100% 100%;
+  }
+`;
+const spanAfterNotCheck = `
+  :after {
+    height: 20px;
+    width: 20px;
+    background-color: transparent;
+    border: 2px solid #5a5a5a;
+    top: 0px;
+    z-index: 0;
+  }
+`;
+const spanBeforeCheck = `
+  :before {
+    top: 0;
+    left: 1px;
+    width: 8px;
+    height: 13px;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotateZ(37deg);
+    transform-origin: 100% 100%;
+  }
+`;
+const spanAfterCheck = `
+  :after {
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #26a69a;
+    background-color: #26a69a;
+    z-index: 0;
+  }
+`;
+const spanBeforeDisableNotCheck = `
+  :before {
+    background-color: transparent;
+    border: 2px solid transparent;
+  }
+`;
+const spanAfterDisableNotCheck = `
+  :after {
+    border-color: transparent;
+    background-color: #949494;
+  }
+`;
+const spanBeforeDisableCheck = `
+  :before {
+    background-color: transparent;
+  }
+`;
+const spanAfterDisableCheck = `
+  :after {
+    background-color: #949494;
+    border-color: #949494;
+  }
 `;
 const Span = styled.span`
   position: relative;
@@ -94,9 +181,19 @@ const Span = styled.span`
     backface-visibility: hidden;
     transform-origin: 100% 100%;
   }
-  ${props => props.disabled && beforeSpan1};
+  ${props => props.disabled && !props.checked && beforeSpan1};
   ${props => props.checked && beforeSpan2};
   ${props => props.checked && props.disabled && beforeSpan3};
+  ${props => props.filled && spanAfter};
+  ${props => props.filled && spanBefore};
+  ${props => props.filled && !props.checked && spanBeforeNotCheck};
+  ${props => props.filled && !props.checked && spanAfterNotCheck};
+  ${props => props.filled && props.checked && spanBeforeCheck};
+  ${props => props.filled && props.checked && spanAfterCheck};
+  ${props => props.filled && props.disabled && !props.checked && spanBeforeDisableNotCheck};
+  ${props => props.filled && props.disabled && !props.checked && spanAfterDisableNotCheck};
+  ${props => props.filled && props.disabled && props.checked && spanBeforeDisableCheck};
+  ${props => props.filled && props.disabled && props.checked && spanAfterDisableCheck};
 `;
 const Input = styled.input`
   box-sizing: border-box;
@@ -106,84 +203,3 @@ const Input = styled.input`
   pointer-events: none;
 `;
 export default CheckBoxes;
-// .filled-in + span:after {
-//   border-radius: 2px;
-// }
-
-// .filled-in + span:before,
-// .filled-in + span:after {
-//   content: '';
-//   left: 0;
-//   position: absolute;
-//   /* .1s delay is for check animation */
-//   transition: border 0.25s, background-color 0.25s, width 0.2s 0.1s, height 0.2s 0.1s, top 0.2s 0.1s, left 0.2s 0.1s;
-//   z-index: 1;
-// }
-
-// .filled-in:not(:checked) + span:before {
-//   width: 0;
-//   height: 0;
-//   border: 3px solid transparent;
-//   left: 6px;
-//   top: 10px;
-//   transform: rotateZ(37deg);
-//   transform-origin: 100% 100%;
-// }
-
-// .filled-in:not(:checked) + span:after {
-//   height: 20px;
-//   width: 20px;
-//   background-color: transparent;
-//   border: 2px solid #5a5a5a;
-//   top: 0px;
-//   z-index: 0;
-// }
-
-// .filled-in:checked + span:before {
-//   top: 0;
-//   left: 1px;
-//   width: 8px;
-//   height: 13px;
-//   border-top: 2px solid transparent;
-//   border-left: 2px solid transparent;
-//   border-right: 2px solid #fff;
-//   border-bottom: 2px solid #fff;
-//   -webkit-transform: rotateZ(37deg);
-//   transform: rotateZ(37deg);
-//   -webkit-transform-origin: 100% 100%;
-//   transform-origin: 100% 100%;
-// }
-
-// .filled-in:checked + span:after {
-//   top: 0;
-//   width: 20px;
-//   height: 20px;
-//   border: 2px solid #26a69a;
-//   background-color: #26a69a;
-//   z-index: 0;
-// }
-
-// .filled-in.tabbed:focus + span:after {
-//   border-radius: 2px;
-//   border-color: #5a5a5a;
-//   background-color: rgba(0, 0, 0, 0.1);
-// }
-
-// .filled-in:disabled:not(:checked) + span:before {
-//   background-color: transparent;
-//   border: 2px solid transparent;
-// }
-
-// .filled-in:disabled:not(:checked) + span:after {
-//   border-color: transparent;
-//   background-color: #949494;
-// }
-
-// .filled-in:disabled:checked + span:before {
-//   background-color: transparent;
-// }
-
-// .filled-in:disabled:checked + span:after {
-//   background-color: #949494;
-//   border-color: #949494;
-// }
