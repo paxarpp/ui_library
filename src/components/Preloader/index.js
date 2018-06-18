@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const Preloader = ({ ...props }) => (
   <Wrapper {...props}>
-    <SpinnerLayer>
+    <SpinnerLayer {...props}>
       <Left>
         <CircleL />
       </Left>
@@ -18,7 +18,10 @@ const Preloader = ({ ...props }) => (
   </Wrapper>
 );
 Preloader.propTypes = {
-  color: PropTypes.string
+  blue: PropTypes.bool,
+  red: PropTypes.bool,
+  small: PropTypes.bool,
+  big: PropTypes.bool
 };
 const left_spin = keyframes`
   from { transform: rotate(130deg); }
@@ -66,6 +69,8 @@ const SpinnerLayer = styled.div`
   width: 100%;
   height: 100%;
   border-color: #26a69a;
+  border-color: ${props => props.red && 'red'};
+  border-color: ${props => props.blue && 'blue'};
   opacity: 1;
   animation: ${fill_unfill_rotate} 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
   box-sizing: inherit;

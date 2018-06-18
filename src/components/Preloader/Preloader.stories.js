@@ -3,6 +3,6 @@ import { storiesOf } from '@storybook/react';
 import Preloader from './index';
 
 storiesOf('Preloader', module)
-  .add('Preloader big', () => <Preloader big />)
+  .add('Preloader big blue', () => <Preloader big blue />)
   .add('Preloader ', () => <Preloader />)
-  .add('Preloader small', () => <Preloader small />);
+  .add('Preloader small red', () => <Preloader small red />);
