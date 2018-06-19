@@ -2,36 +2,37 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const RadioButton = ({ children }) => (
+const RadioButton = ({ children, ...props }) => (
   <form action="#">
     <p>
       <Label>
-        <Input name="group1" type="radio" />
+        <Input {...props} type="radio" />
         <Span>{children}</Span>
       </Label>
     </p>
     <p>
       <Label>
-        <Input name="group1" type="radio" />
+        <Input {...props} type="radio" />
         <Span>Yellow</Span>
       </Label>
     </p>
     <p>
       <Label>
-        <Input gap name="group1" type="radio" />
+        <Input gap {...props} type="radio" />
         <Span>Green</Span>
       </Label>
     </p>
     <p>
       <Label>
-        <Input name="group1" type="radio" disabled />
+        <Input {...props} type="radio" disabled />
         <Span>Brown</Span>
       </Label>
     </p>
   </form>
 );
 RadioButton.propTypes = {
-  children: PropTypes.string
+  children: PropTypes.string,
+  name: PropTypes.string.isRequired
 };
 const Label = styled.label`
   font-size: 0.8rem;
