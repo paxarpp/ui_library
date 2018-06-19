@@ -60,7 +60,7 @@ const beforeSpan3 = `
     border-bottom: 2px solid rgba(0, 0, 0, 0.42);
   }
 `;
-const spanAfter = `
+const spanAftBef = `
   :after {
     border-radius: 2px;
     content: '';
@@ -69,8 +69,6 @@ const spanAfter = `
     transition: border 0.25s, background-color 0.25s, width 0.2s 0.1s, height 0.2s 0.1s, top 0.2s 0.1s, left 0.2s 0.1s;
     z-index: 1;
   }
-`;
-const spanBefore = `
   :before {
     content: '';
     left: 0;
@@ -79,7 +77,7 @@ const spanBefore = `
     z-index: 1;
   }
 `;
-const spanBeforeNotCheck = `
+const spanAftBefNotCheck = `
   :before {
     width: 0;
     height: 0;
@@ -89,8 +87,6 @@ const spanBeforeNotCheck = `
     transform: rotateZ(37deg);
     transform-origin: 100% 100%;
   }
-`;
-const spanAfterNotCheck = `
   :after {
     height: 20px;
     width: 20px;
@@ -100,7 +96,7 @@ const spanAfterNotCheck = `
     z-index: 0;
   }
 `;
-const spanBeforeCheck = `
+const spanAftBefCheck = `
   :before {
     top: 0;
     left: 1px;
@@ -113,8 +109,6 @@ const spanBeforeCheck = `
     transform: rotateZ(37deg);
     transform-origin: 100% 100%;
   }
-`;
-const spanAfterCheck = `
   :after {
     top: 0;
     width: 20px;
@@ -124,24 +118,20 @@ const spanAfterCheck = `
     z-index: 0;
   }
 `;
-const spanBeforeDisableNotCheck = `
+const spanAftBefDisableNotCheck = `
   :before {
     background-color: transparent;
     border: 2px solid transparent;
   }
-`;
-const spanAfterDisableNotCheck = `
   :after {
     border-color: transparent;
     background-color: #949494;
   }
 `;
-const spanBeforeDisableCheck = `
+const spanAftBefDisableCheck = `
   :before {
     background-color: transparent;
   }
-`;
-const spanAfterDisableCheck = `
   :after {
     background-color: #949494;
     border-color: #949494;
@@ -184,16 +174,11 @@ const Span = styled.span`
   ${props => props.disabled && !props.checked && beforeSpan1};
   ${props => props.checked && beforeSpan2};
   ${props => props.checked && props.disabled && beforeSpan3};
-  ${props => props.filled && spanAfter};
-  ${props => props.filled && spanBefore};
-  ${props => props.filled && !props.checked && spanBeforeNotCheck};
-  ${props => props.filled && !props.checked && spanAfterNotCheck};
-  ${props => props.filled && props.checked && spanBeforeCheck};
-  ${props => props.filled && props.checked && spanAfterCheck};
-  ${props => props.filled && props.disabled && !props.checked && spanBeforeDisableNotCheck};
-  ${props => props.filled && props.disabled && !props.checked && spanAfterDisableNotCheck};
-  ${props => props.filled && props.disabled && props.checked && spanBeforeDisableCheck};
-  ${props => props.filled && props.disabled && props.checked && spanAfterDisableCheck};
+  ${props => props.filled && spanAftBef};
+  ${props => props.filled && !props.checked && spanAftBefNotCheck};
+  ${props => props.filled && props.checked && spanAftBefCheck};
+  ${props => props.filled && props.disabled && !props.checked && spanAftBefDisableNotCheck};
+  ${props => props.filled && props.disabled && props.checked && spanAftBefDisableCheck};
 `;
 const Input = styled.input`
   box-sizing: border-box;
