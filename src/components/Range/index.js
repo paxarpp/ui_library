@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 
 class Range extends Component {
@@ -10,31 +10,20 @@ class Range extends Component {
       coordX: 0
     };
   }
-  inputField = e => {
-    this.setState({
-      value: e.target.value
-    });
-  };
   coordX = e => {
     this.setState({
-      coordX: e.pageX - 30
+      coordX: e.pageX - 30,
+      value: e.target.value
     });
   };
   render() {
     const { value, coordX } = this.state;
     return (
       <RangeField>
-        <Input
-          coordX={coordX}
-          type="range"
-          {...this.props}
-          onMouseMove={this.coordX}
-          onChange={this.inputField}
-          defaultValue={this.state.value}
-        />
-        <span>
-          <span>{value}</span>
-        </span>
+        <Input coordX={coordX} type="range" {...this.props} onMouseMove={this.coordX} defaultValue={this.state.value} />
+        <SpanWrap>
+          <SpanCount>{value}</SpanCount>
+        </SpanWrap>
       </RangeField>
     );
   }
@@ -43,8 +32,23 @@ Range.propTypes = {
   min: PropTypes.number,
   max: PropTypes.number
 };
+const showThumb = keyframes`
+  from {
+    transform-origin: bottom;
+    transform: rotate(-45deg) scale(0.1)
+  }
+  to {
+    transform: rotate(-45deg) scale(1)
+  }
+`;
 const RangeField = styled.p`
   position: relative;
+`;
+const SpanWrap = styled.span`
+  display: block;
+`;
+const SpanCount = styled.span`
+  display: none;
 `;
 const Input = styled.input`
   user-select: none;
@@ -63,13 +67,14 @@ const Input = styled.input`
   &:hover + span {
     display: block;
     position: absolute;
-    top: -20px;
+    top: -30px;
     left: ${props => props.coordX}px;
     border: none;
     background-color: #26a69a;
     transform-origin: 50% 50%;
     transform: rotate(-45deg);
     border-radius: 50% 50% 50% 0;
+    animation: ${showThumb} 0.3s linear;
   }
   &:hover + span > span {
     display: block;
