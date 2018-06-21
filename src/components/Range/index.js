@@ -32,9 +32,9 @@ class Range extends Component {
           onChange={this.inputField}
           defaultValue={this.state.value}
         />
-        <Thumb>
+        <span>
           <span>{value}</span>
-        </Thumb>
+        </span>
       </RangeField>
     );
   }
@@ -56,22 +56,22 @@ const Input = styled.input`
   width: 100%;
   margin: 15px 0;
   padding: 0;
-  :focus {
+  -webkit-appearance: none;
+  &:focus {
     outline: none;
   }
-  :hover + span {
+  &:hover + span {
     display: block;
     position: absolute;
     top: -20px;
     left: ${props => props.coordX}px;
     border: none;
     background-color: #26a69a;
-    margin-left: 7px;
     transform-origin: 50% 50%;
     transform: rotate(-45deg);
     border-radius: 50% 50% 50% 0;
   }
-  :hover + span > span {
+  &:hover + span > span {
     display: block;
     width: 30px;
     text-align: center;
@@ -146,9 +146,6 @@ const Input = styled.input`
     transition: box-shadow 0.3s;
     transition: box-shadow 0.3s, -webkit-box-shadow 0.3s;
   }
-`;
-const Thumb = styled.span`
-  cursor: pointer;
 `;
 
 export default Range;
