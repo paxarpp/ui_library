@@ -1,32 +1,48 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { ButtonMain, ButtonFloat } from './index';
+import { Primary, Float, Flat } from './index';
 
 storiesOf('Button', module)
-  .add('button main', () => <ButtonMain handlerClick={action('clicked')}>войти</ButtonMain>)
-  .add('button main disable', () => (
-    <ButtonMain handlerClick={action('clicked')} disable>
-      войти
-    </ButtonMain>
+  .add('button Flat', () => <Flat handlerClick={action('clicked')}>Agree</Flat>)
+  .add('button Flat disable', () => (
+    <Flat handlerClick={action('clicked')} disable>
+      Agree
+    </Flat>
   ))
-  .add('button second large', () => (
-    <ButtonMain handlerClick={action('clicked')} large second>
-      войти
-    </ButtonMain>
+  .add('button Flat danger large', () => (
+    <Flat handlerClick={action('clicked')} large danger>
+      Disagree
+    </Flat>
   ))
-  .add('button danger small', () => (
-    <ButtonMain handlerClick={action('clicked')} small danger>
-      войти
-    </ButtonMain>
+  .add('button Flat second small', () => (
+    <Flat handlerClick={action('clicked')} small second>
+      Agree
+    </Flat>
   ))
-  .add('ButtonFloat', () => <ButtonFloat handlerClick={action('clicked')} />)
-  .add('ButtonFloat second large', () => <ButtonFloat handlerClick={action('clicked')} large second />)
-  .add('ButtonFloat second disable', () => <ButtonFloat handlerClick={action('clicked')} large disable />)
-  .add('ButtonFloat danger small pulse', () => <ButtonFloat handlerClick={action('clicked')} small danger pulse />)
-  .add('ButtonFloat danger small', () => <ButtonFloat handlerClick={action('clicked')} small danger />)
-  .add('ButtonFloat danger small with children', () => (
-    <ButtonFloat handlerClick={action('clicked')} small danger>
+  .add('button Primary', () => <Primary handlerClick={action('clicked')}>войти</Primary>)
+  .add('button Primary disable', () => (
+    <Primary handlerClick={action('clicked')} disable>
+      войти
+    </Primary>
+  ))
+  .add('button Primary second large', () => (
+    <Primary handlerClick={action('clicked')} large second>
+      войти
+    </Primary>
+  ))
+  .add('button Primary danger small', () => (
+    <Primary handlerClick={action('clicked')} small danger>
+      войти
+    </Primary>
+  ))
+  .add('Float', () => <Float handlerClick={action('clicked')} />)
+  .add('Float second large', () => <Float handlerClick={action('clicked')} large second />)
+  .add('Float second disable', () => <Float handlerClick={action('clicked')} large disable />)
+  .add('Float danger small pulse', () => <Float handlerClick={action('clicked')} small danger pulse />)
+  .add('Float danger small', () => <Float handlerClick={action('clicked')} small danger />)
+  .add('Float danger small with children', () => (
+    <Float handlerClick={action('clicked')} small danger>
       DEL
-    </ButtonFloat>
+    </Float>
   ));
