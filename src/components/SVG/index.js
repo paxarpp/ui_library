@@ -1,0 +1,17 @@
+export { default as Burn } from './Burn';
+export { default as LeftArrow } from './LeftArrow';
+export { default as RightArrow } from './RightArrow';
+export { default as ManCycling } from './ManCycling';
+export { default as MountainRange } from './MountainRange';
+export { default as Photo } from './Photo';
+export { default as Routes } from './Routes';
+export { default as Walk } from './Walk';
+export { default as Clear } from './Clear';
+export { default as TransferWithin } from './TransferWithin';
+export { default as Add } from './Add';
+export { default as ThumbDown } from './ThumbDown';
+export { default as ThumbUp } from './ThumbUp';
+export { default as Done } from './Done';
+export { default as Favorite } from './Favorite';
+export { default as Menu } from './Menu';
+export { default as Star } from './Star';

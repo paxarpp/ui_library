@@ -1,79 +1,100 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import buttonState from '../HOC/buttonState';
 
 const enhance = buttonState();
 
-const ButtonFloat = ({ children, click, disable, ...props }) => (
-  <Main onClick={disable ? null : click} {...props} disable={disable}>
-    {children}
-  </Main>
+const Add = ({ color = '#fff', size = 24 }) => (
+  <svg
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
+    x="0px"
+    y="0px"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill={color}
+  >
+    <g id="Bounding_Boxes">
+      <g id="ui_x5F_spec_x5F_header_copy_3" display="none" />
+      <path fill="none" d="M0,0h24v24H0V0z" />
+    </g>
+    <g id="Sharp">
+      <g id="ui_x5F_spec_x5F_header_copy_4" display="none" />
+      <path d="M19,13h-6v6h-2v-6H5v-2h6V5h2v6h6V13z" />
+    </g>
+  </svg>
 );
 
+const ButtonFloat = ({ children, click, disable, ...props }) => (
+  <Main onClick={disable ? null : click} {...props} disable={disable}>
+    {children ? children : <Add />}
+  </Main>
+);
+Add.propTypes = {
+  color: PropTypes.string,
+  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+};
 ButtonFloat.propTypes = {
   click: PropTypes.func,
   children: PropTypes.string,
   large: PropTypes.bool,
   second: PropTypes.bool,
   danger: PropTypes.bool,
+  pulse: PropTypes.bool,
   small: PropTypes.bool,
   disable: PropTypes.bool
 };
-
+const pulseAnimation = keyframes`
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+`;
 const large = `
   height: 56px;
   width: 56px;
-  :before {
-    top: 6px;
-    left: 18px;
-    width: 20px;
-    height: 20px;
-    border-bottom: 3px solid #fff;
-  }
-  :after {
-    top: 17px;
-    left: 27px;
-    width: 20px;
-    height: 20px;
-    border-left: 3px solid #fff;
-  }
 `;
-
 const small = `
   height: 32px;
   width: 32px;
-  :before {
-    top: -5px;
-    left: 6px;
-    width: 20px;
-    height: 20px;
-    border-bottom: 2px solid #fff;
-  }
-  :after {
-    top: 6px;
-    left: 15px;
-    height: 20px;
-    width: 20px;
-    border-left: 2px solid #fff;
-  }
 `;
 const norm = `
   height: 40px;
   width: 40px;
-  :before {
-    top: -1px;
-    left: 10px;
-    width: 20px;
-    height: 20px;
-    border-bottom: 2px solid #fff;
-  }
-  :after {
-    top: 10px;
-    left: 19px;
-    width: 20px;
-    height: 20px;
-    border-left: 2px solid #fff;
+`;
+const pulseStyle = `
+  overflow: visible;
+  position: relative;
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: inherit;
+    border-radius: inherit;
+    -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+    transition: opacity 0.3s, -webkit-transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s, -webkit-transform 0.3s;
+    animation: ${pulseAnimation} 1s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+    z-index: -1;
   }
 `;
 const Main = styled.button`
@@ -114,6 +135,7 @@ const Main = styled.button`
     content: ' ';
     position: absolute;
   }
+  ${props => props.pulse && pulseStyle};
 `;
 
 export default enhance(ButtonFloat);
