@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import Modal from './index';
 
 const modal = {
@@ -8,4 +9,4 @@ const modal = {
 }
 
 storiesOf('Modal', module)
-  .add('Modal ', () => <Modal isOpen modal={modal} />);
+  .add('Modal ', () => <Modal handlerClick={action('clicked')} isOpen modal={modal} />);

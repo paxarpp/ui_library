@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
-import buttonState from '../HOC/buttonState';
+import buttonState from '../HOC';
 
 const enhance = buttonState();
 
