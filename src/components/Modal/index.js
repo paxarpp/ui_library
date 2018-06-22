@@ -14,7 +14,7 @@ const Modal = ({ isOpen, handlerClick, ...props }) => (
       <Flat handlerClick={handlerClick} danger>
         Disagree
       </Flat>
-      <Flat>Agree</Flat>
+      <Flat handlerClick={handlerClick}>Agree</Flat>
     </ModalFooter>
   </WrapperModal>
 );
