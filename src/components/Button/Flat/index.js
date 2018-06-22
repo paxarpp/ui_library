@@ -72,11 +72,8 @@ const Main = styled.a`
     -webkit-box-shadow: none;
     box-shadow: none;
   }
-  :hover {
-    ${props => !props.disable && 'background-color:'} ${props =>
-      props.isClick ? '#aaa' : (props.danger && 'red') || (props.second && '#aab') || '#2bbbad'};
-    box-shadow: none;
-  }
+  ${props => !props.disable && 'background-color:'} ${props =>
+    !props.isClick ? 'transparent' : (props.danger && 'red') || (props.second && '#aab') || '#2bbbad'};
   ${props => props.disable && disabledBtn};
 `;
 
