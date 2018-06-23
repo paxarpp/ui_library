@@ -6,7 +6,7 @@ const ImageCard = ({ bgColor = 'white', textColor = 'black', header, url, childr
   <Wrap bgColor={bgColor}>
     <CardImg>
       <img src={url} />
-      <Title color={textColor}>{header}</Title>
+      <Title>{header}</Title>
     </CardImg>
     <Content color={textColor}>
       <p>{children}</p>
@@ -47,16 +47,15 @@ const Content = styled.div`
   }
 `;
 const Title = styled.span`
-  color: ${props => props.color};
+  color: #fff;
   font-size: 24px;
   font-weight: 300;
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   max-width: 100%;
+  padding: 24px;
   display: block;
-  line-height: 32px;
-  margin-bottom: 8px;
 `;
 const CardAction = styled.div`
   background-color: inherit;
