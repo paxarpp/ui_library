@@ -1,18 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import buttonState from '../HOC';
+import styled, { keyframes } from 'styled-components';
 
-const enhance = buttonState();
-
-const ButtonMain = ({ children, click, disable, ...props }) => (
-  <Main onClick={disable ? null : click} {...props} disable={disable}>
+const ButtonMain = ({ children, handlerClick, disable, ...props }) => (
+  <Main onClick={disable ? null : handlerClick} {...props} disable={disable}>
     {children}
   </Main>
 );
 
 ButtonMain.propTypes = {
-  click: PropTypes.func || PropTypes.bool,
+  handlerClick: PropTypes.func || PropTypes.bool,
   children: PropTypes.string,
   large: PropTypes.bool,
   second: PropTypes.bool,
@@ -20,7 +17,57 @@ ButtonMain.propTypes = {
   small: PropTypes.bool,
   disable: PropTypes.bool
 };
-
+const ripple = keyframes`
+  0% {
+    background-color: #2bbbad;
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 1;
+  }
+  100% {
+    background-color: #2bbbad;
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+`;
+const rippleRed = keyframes`
+  0% {
+    background-color: red;
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 1;
+  }
+  100% {
+    background-color: red;
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+`;
+const rippleSec = keyframes`
+  0% {
+    background-color: #aab;
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 1;
+  }
+  100% {
+    background-color: #aab;
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+`;
 const large = `
   height: 54px;
   line-height: 54px;
@@ -48,7 +95,9 @@ const disabledBtn = `
   color: #9F9F9F !important;
   cursor: default;
 `;
-const Main = styled.a`
+const Main = styled.button`
+  position: relative;
+  overflow: hidden;
   border: none;
   border-radius: 2px;
   display: inline-block;
@@ -57,24 +106,30 @@ const Main = styled.a`
   ${props => props.small && small};
   text-transform: uppercase;
   vertical-align: middle;
-  text-decoration: none;
   -webkit-tap-highlight-color: transparent;
   color: #343434;
   background-color: transparent;
   text-align: center;
   letter-spacing: 0.5px;
-  -webkit-transition: background-color 0.2s;
-  transition: background-color 0.2s;
   cursor: ${props => !props.disable && 'pointer'};
   outline: none;
-  :focus {
-    background-color: rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
-  ${props => !props.disable && 'background-color:'} ${props =>
-    !props.isClick ? 'transparent' : (props.danger && 'red') || (props.second && '#aab') || '#2bbbad'};
   ${props => props.disable && disabledBtn};
+  :after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+  }
+  :focus:not(:active)::after {
+    animation: ${props => (!props.disable && props.danger ? rippleRed : props.second ? rippleSec : ripple)} 1s ease-out;
+  }
 `;
 
-export default enhance(ButtonMain);
+export default ButtonMain;
