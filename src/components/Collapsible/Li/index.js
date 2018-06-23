@@ -60,7 +60,7 @@ const CollapsibleHeader = styled.div`
 `;
 const openStylePopoup = `
   -webkit-transition: margin 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  transition: margin 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: margin 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.3s linear, height 0.3s linear;
   height: 100%;
   padding: 2rem;
 `;
