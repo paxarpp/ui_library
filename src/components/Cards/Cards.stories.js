@@ -1,12 +1,13 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Card, BasicCard } from './index';
+import { Card, BasicCard, ImageCard } from './index';
 
 const text =
   'Я очень простая карточка. Я хорошо разбираюсь в небольших фрагментах информации. Мне удобно, потому что для эффективной работы требуется небольшая разметка. Я подобен тому, что называется панелью в других рамках.';
 const text2 =
   'Я очень простая карточка. Я хорошо разбираюсь в небольших фрагментах информации. Мне удобно, потому что для эффективной работы требуется небольшая разметка.';
 const header = 'Card Title';
+const url = 'https://materializecss.com/images/sample-1.jpg';
 
 storiesOf('Cards', module)
   .add('Card ', () => <Card>{text}</Card>)
@@ -19,4 +20,9 @@ storiesOf('Cards', module)
     <BasicCard bgColor={'grey'} textColor={'white'} header={header}>
       {text2}
     </BasicCard>
+  ))
+  .add('ImageCard bgColor=#FFF textColor=#000', () => (
+    <ImageCard bgColor={'#FFF'} textColor={'#000'} header={header} url={url}>
+      {text2}
+    </ImageCard>
   ));

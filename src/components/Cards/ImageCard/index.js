@@ -2,22 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const BasicCard = ({ bgColor = 'white', textColor = 'black', header, children }) => (
+const ImageCard = ({ bgColor = 'white', textColor = 'black', header, url, children }) => (
   <Wrap bgColor={bgColor}>
-    <Content color={textColor}>
+    <CardImg>
+      <img src={url} />
       <Title color={textColor}>{header}</Title>
+    </CardImg>
+    <Content color={textColor}>
       <p>{children}</p>
     </Content>
     <CardAction>
-      <a href="#">This is a link</a>
       <a href="#">This is a link</a>
     </CardAction>
   </Wrap>
 );
 
-BasicCard.propTypes = {
+ImageCard.propTypes = {
   children: PropTypes.any,
   header: PropTypes.string,
+  url: PropTypes.string,
   bgColor: PropTypes.string,
   textColor: PropTypes.string
 };
@@ -43,6 +46,18 @@ const Content = styled.div`
     margin: 0;
   }
 `;
+const Title = styled.span`
+  color: ${props => props.color};
+  font-size: 24px;
+  font-weight: 300;
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  display: block;
+  line-height: 32px;
+  margin-bottom: 8px;
+`;
 const CardAction = styled.div`
   background-color: inherit;
   border-top: 1px solid rgba(160, 160, 160, 0.2);
@@ -57,15 +72,21 @@ const CardAction = styled.div`
     -webkit-transition: color 0.3s ease;
     transition: color 0.3s ease;
     text-transform: uppercase;
+  }
 `;
-const Title = styled.span`
-  color: ${props => props.color};
-  font-size: 24px;
-  font-weight: 300;
-  max-width: 100%;
-  display: block;
-  line-height: 32px;
-  margin-bottom: 8px;
+const CardImg = styled.div`
+  overflow: hidden;
+  position: relative;
+  img {
+    display: block;
+    border-radius: 2px 2px 0 0;
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+  }
 `;
 
-export default BasicCard;
+export default ImageCard;
