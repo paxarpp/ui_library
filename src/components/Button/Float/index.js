@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
-import buttonState from '../HOC';
-
-const enhance = buttonState();
 
 const Add = ({ color = '#fff', size = 24 }) => (
   <svg
@@ -28,8 +25,8 @@ const Add = ({ color = '#fff', size = 24 }) => (
   </svg>
 );
 
-const ButtonFloat = ({ children, click, disable, ...props }) => (
-  <Main onClick={disable ? null : click} {...props} disable={disable}>
+const ButtonFloat = ({ children, handlerClick, disable, ...props }) => (
+  <Main onClick={disable ? null : handlerClick} {...props} disable={disable}>
     {children ? children : <Add />}
   </Main>
 );
@@ -38,7 +35,7 @@ Add.propTypes = {
   size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 ButtonFloat.propTypes = {
-  click: PropTypes.func,
+  handlerClick: PropTypes.func,
   children: PropTypes.string,
   large: PropTypes.bool,
   second: PropTypes.bool,
@@ -63,6 +60,21 @@ const pulseAnimation = keyframes`
     -webkit-transform: scale(1.5);
             transform: scale(1.5);
   }
+`;
+const ripple = keyframes`
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
 `;
 const large = `
   height: 56px;
@@ -98,6 +110,8 @@ const pulseStyle = `
   }
 `;
 const Main = styled.button`
+  position: relative;
+  overflow: hidden;
   display: inline-block;
   color: #fff;
   position: relative;
@@ -122,7 +136,7 @@ const Main = styled.button`
     'box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)'};
   :hover {
     ${props => !props.disable && 'background-color:'} ${props =>
-      props.isClick ? '#aaa' : (props.danger && 'red') || (props.second && '#aab') || '#2bbbad'};
+      (props.danger && 'red') || (props.second && '#aab') || '#2bbbad'};
     ${props =>
       !props.disable &&
       'box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2)'};
@@ -136,6 +150,22 @@ const Main = styled.button`
     position: absolute;
   }
   ${props => props.pulse && pulseStyle};
+  :after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+  }
+  :focus:not(:active)::after {
+    animation: ${props => !props.disable && ripple} 1s ease-out;
+  }
 `;
 
-export default enhance(ButtonFloat);
+export default ButtonFloat;
