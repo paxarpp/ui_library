@@ -1,8 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Preloader2, Preloader7 } from './index';
+import { Preloader1, Preloader2, Preloader7 } from './index';
 
 storiesOf('Preloader', module)
+  .add('Preloader1 color=black size=24px', () => <Preloader1 size={'24px'} color={'black'} />)
+  .add('Preloader1 ', () => <Preloader1 />)
   .add('Preloader2 color=blue size=64px', () => <Preloader2 size={'64px'} color={'blue'} />)
   .add('Preloader2 ', () => <Preloader2 />)
   .add('Preloader2 color=red size=32px', () => <Preloader2 size={'32px'} color={'red'} />)
