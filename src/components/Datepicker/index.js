@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 import { Flat } from '../Button';
 import Icon from '../Icon';
+import DatepickerTable from './DatepickerTable';
 
 class DatePicker extends Component {
   constructor(props) {
@@ -29,48 +30,9 @@ class DatePicker extends Component {
                 <Icon name="RightArrow" />
               </DatepickerControls>
               <DatepickerTableWrappeer>
-                <DatepickerTable>
-                  <thead>
-                    <tr>
-                      <td>Пнд</td>
-                      <td>Втр</td>
-                      <td>Ср</td>
-                      <td>Чтв</td>
-                      <td>Птн</td>
-                      <td>Сбт</td>
-                      <td>Вскр</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>t</td>
-                      <td>t</td>
-                      <td>t</td>
-                      <td>t</td>
-                      <td>t</td>
-                      <td>t</td>
-                      <td>t</td>
-                    </tr>
-                    <tr>
-                      <td>t</td>
-                      <td>t</td>
-                      <td>t</td>
-                      <td>t</td>
-                      <td>t</td>
-                      <td>t</td>
-                      <td>t</td>
-                    </tr>
-                    <tr>
-                      <td>t</td>
-                      <td>t</td>
-                      <td>t</td>
-                      <td>t</td>
-                      <td>t</td>
-                      <td>t</td>
-                      <td>t</td>
-                    </tr>
-                  </tbody>
-                </DatepickerTable>
+
+                <DatepickerTable />
+
               </DatepickerTableWrappeer>
               <DatepickerFooter>
                 <Flat small danger>
@@ -195,21 +157,7 @@ const DatepickerControls = styled.div`
   width: 280px;
   margin: 0 auto;
 `;
-const DatepickerTable = styled.table`
-  width: 280px;
-  font-size: 1rem;
-  margin: 0 auto;
-  & > thead {
-    border-bottom: none;
-  }
-  th {
-    padding: 10px 5px;
-    text-align: center;
-  }
-  tr {
-    border: none;
-  }
-`;
+
 export default DatePicker;
 // .datepicker-controls .selects-container {
 //   display: -webkit-box;
