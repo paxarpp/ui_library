@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Icon from './index';
 
-storiesOf('SVG', module)
+storiesOf('Icon', module)
   .add('icon default', () => <Icon />)
   .add('icon Create color="green" Clicked', () => <Icon name="Create" onClick={action('clicked')} color={'green'} />)
   .add('icon Burn color="red" size="36"', () => <Icon name="Burn" color={'red'} size={36} />)
