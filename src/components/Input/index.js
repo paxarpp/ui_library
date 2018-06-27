@@ -19,7 +19,7 @@ class Input extends Component {
     const { value } = this.state;
     return (
       <Wrapper>
-        <InpWrap {...props} onChange={this.inputField} />
+        <InpWrap {...props} onChange={this.inputField} value={value} />
         <LabelWrap value={value}>{placeholder}</LabelWrap>
       </Wrapper>
     );
