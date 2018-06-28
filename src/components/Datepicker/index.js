@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import { Flat } from '../Button';
-import Icon from '../Icon';
 import DatepickerTable from './DatepickerTable';
+import DatepickerControls from './DatepickerControls';
 
 class DatePicker extends Component {
   constructor(props) {
@@ -16,15 +16,15 @@ class DatePicker extends Component {
   decrimentMonth = () => {
     const { year, month } = this.state;
     this.setState({
-      month: month === 1 ? 12 : month - 1,
-      year: month === 1 ? year - 1 : year
+      month: month === 0 ? 11 : month - 1,
+      year: month === 0 ? year - 1 : year
     });
   };
   incrementMonth = () => {
     const { year, month } = this.state;
     this.setState({
-      month: month === 12 ? 1 : month + 1,
-      year: month === 12 ? year + 1 : year
+      month: month === 11 ? 1 : month + 1,
+      year: month === 11 ? year + 1 : year
     });
   };
   render() {
@@ -34,16 +34,13 @@ class DatePicker extends Component {
         <ModalContent>
           <DatepickerDateDisplay>
             <SpanY>{year}</SpanY>
-            <SpanD>{month}</SpanD>
+            <SpanD>
+              {month + 1} {new Date().getDate()}{' '}
+            </SpanD>
           </DatepickerDateDisplay>
           <DatepickerCalendarContainer>
             <DatepickerCalendar>
-              <DatepickerControls>
-                <Icon name="LeftArrow" onClick={this.decrimentMonth} />
-                <SelectMonth />
-                <SelectYear />
-                <Icon name="RightArrow" onClick={this.incrementMonth} />
-              </DatepickerControls>
+              <DatepickerControls decrimentMonth={this.decrimentMonth} incrementMonth={this.incrementMonth} />
               <DatepickerTableWrappeer>
                 <DatepickerTable year={year} month={month} />
               </DatepickerTableWrappeer>
@@ -154,59 +151,9 @@ const DatepickerCalendarContainer = styled.div`
   flex: 2.5 auto;
 `;
 const DatepickerCalendar = styled.div``;
-const SelectMonth = styled.div``;
-const SelectYear = styled.div``;
 const DatepickerTableWrappeer = styled.div``;
 
-const DatepickerControls = styled.div`
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  width: 280px;
-  margin: 0 auto;
-`;
-
 export default DatePicker;
-// .datepicker-controls .selects-container {
-//   display: -webkit-box;
-//   display: -webkit-flex;
-//   display: -ms-flexbox;
-//   display: flex;
-// }
-
-// .datepicker-controls .select-wrapper input {
-//   border-bottom: none;
-//   text-align: center;
-//   margin: 0;
-// }
-
-// .datepicker-controls .select-wrapper input:focus {
-//   border-bottom: none;
-// }
-
-// .datepicker-controls .select-wrapper .caret {
-//   display: none;
-// }
-
-// .datepicker-controls .select-year input {
-//   width: 50px;
-// }
-
-// .datepicker-controls .select-month input {
-//   width: 70px;
-// }
-
-// .month-prev, .month-next {
-//   margin-top: 4px;
-//   cursor: pointer;
-//   background-color: transparent;
-//   border: none;
-// }
 
 // /* Calendar */
 
