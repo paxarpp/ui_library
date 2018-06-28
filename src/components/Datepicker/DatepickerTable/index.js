@@ -8,11 +8,11 @@ const getMaxDayinMonth = (year, month) => {
   return 33 - new Date(new Date(year, month).getFullYear(), new Date(year, month).getMonth(), 33).getDate();
 };
 
-const prepareArrayDay = (year, month) => {
+const prepareArrayDay = (year, month, handlerClick) => {
   const dayBegin = new Date(year, month, 1).getDay();
   const arr = [...Array(getMaxDayinMonth(year, month))].map((el, indx) => (
     <td key={indx}>
-      <Float>{indx + 1}</Float>
+      <Float handlerClick={handlerClick}>{indx + 1}</Float>
     </td>
   ));
   const arrTemp = [...Array(dayBegin - 1)].fill(<td />).concat(arr);
@@ -23,8 +23,8 @@ const prepareArrayDay = (year, month) => {
   return result;
 };
 
-const DatepickerTable = ({ year = new Date().getFullYear(), month = new Date().getMonth() }) => {
-  const result = prepareArrayDay(year, month);
+const DatepickerTable = ({ year = new Date().getFullYear(), month = new Date().getMonth(), handlerClick }) => {
+  const result = prepareArrayDay(year, month, handlerClick);
   return (
     <Table>
       <thead>
@@ -43,6 +43,7 @@ const DatepickerTable = ({ year = new Date().getFullYear(), month = new Date().g
   );
 };
 DatepickerTable.propTypes = {
+  handlerClick: PropTypes.func,
   year: PropTypes.number,
   month: PropTypes.number
 };

@@ -9,11 +9,13 @@ class DatePicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: ''
+      year: new Date().getFullYear(),
+      month: new Date().getMonth()
     };
   }
 
   render() {
+    const { year, month } = this.state;
     return (
       <DatepickerModal>
         <ModalContent>
@@ -30,9 +32,7 @@ class DatePicker extends Component {
                 <Icon name="RightArrow" />
               </DatepickerControls>
               <DatepickerTableWrappeer>
-
-                <DatepickerTable />
-
+                <DatepickerTable year={year} month={month} />
               </DatepickerTableWrappeer>
               <DatepickerFooter>
                 <Flat small danger>
