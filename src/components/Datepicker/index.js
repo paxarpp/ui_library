@@ -13,25 +13,36 @@ class DatePicker extends Component {
       month: new Date().getMonth()
     };
   }
-
+  decrimentMonth = () => {
+    const { year, month } = this.state;
+    this.setState({
+      month: month === 1 ? 12 : month - 1,
+      year: month === 1 ? year - 1 : year
+    });
+  };
+  incrementMonth = () => {
+    const { year, month } = this.state;
+    this.setState({
+      month: month === 12 ? 1 : month + 1,
+      year: month === 12 ? year + 1 : year
+    });
+  };
   render() {
     const { year, month } = this.state;
-    console.log( year, month);
-    
     return (
       <DatepickerModal>
         <ModalContent>
           <DatepickerDateDisplay>
-            <SpanY>2019</SpanY>
-            <SpanD>среда июнь 27</SpanD>
+            <SpanY>{year}</SpanY>
+            <SpanD>{month}</SpanD>
           </DatepickerDateDisplay>
           <DatepickerCalendarContainer>
             <DatepickerCalendar>
               <DatepickerControls>
-                <Icon name="LeftArrow" onClick={() => this.setState({ month: this.state.month - 1 })} />
+                <Icon name="LeftArrow" onClick={this.decrimentMonth} />
                 <SelectMonth />
                 <SelectYear />
-                <Icon name="RightArrow" onClick={() => this.setState({ month: this.state.month + 1 })} />
+                <Icon name="RightArrow" onClick={this.incrementMonth} />
               </DatepickerControls>
               <DatepickerTableWrappeer>
                 <DatepickerTable year={year} month={month} />
