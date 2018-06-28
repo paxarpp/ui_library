@@ -4,22 +4,24 @@ import PropTypes from 'prop-types';
 
 import Icon from '../../Icon';
 
-const DatepickerControls = ({ decrimentMonth, incrementMonth }) => (
-  <WrapDatepickerControls>
+const SelectMonth = ({ month }) => <Div>{month + 1}</Div>;
+const SelectYear = ({ year }) => <Div>{year}</Div>;
+
+const DatepickerControls = ({ year, month, decrimentMonth, incrementMonth }) => (
+  <Wrap>
     <Icon name="LeftArrow" onClick={decrimentMonth} />
-    <SelectMonth />
-    <SelectYear />
+    <SelectMonth month={month} />
+    <SelectYear year={year} />
     <Icon name="RightArrow" onClick={incrementMonth} />
-  </WrapDatepickerControls>
+  </Wrap>
 );
 DatepickerControls.propTypes = {
   decrimentMonth: PropTypes.func.isRequired,
   incrementMonth: PropTypes.func.isRequired
 };
-const SelectMonth = styled.div``;
-const SelectYear = styled.div``;
+const Div = styled.div``;
 
-const WrapDatepickerControls = styled.div`
+const Wrap = styled.div`
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;

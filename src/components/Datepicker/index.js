@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import { Flat } from '../Button';
 import DatepickerTable from './DatepickerTable';
 import DatepickerControls from './DatepickerControls';
+import DatepickerDateDisplay from './DatepickerDateDisplay';
+import DatepickerFooter from './DatepickerFooter';
 
 class DatePicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
       year: new Date().getFullYear(),
-      month: new Date().getMonth()
+      month: new Date().getMonth(),
+      setupDate: `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}`
     };
   }
   decrimentMonth = () => {
@@ -27,29 +29,29 @@ class DatePicker extends Component {
       year: month === 11 ? year + 1 : year
     });
   };
+  dateChoise = e => () => {
+    this.setState(prev => ({
+      ...prev,
+      setupDate: `${prev.year}-${prev.month}-${e}`
+    }));
+  };
   render() {
-    const { year, month } = this.state;
+    const { year, month, setupDate } = this.state;
     return (
       <DatepickerModal>
         <ModalContent>
-          <DatepickerDateDisplay>
-            <SpanY>{year}</SpanY>
-            <SpanD>
-              {month + 1} {new Date().getDate()}{' '}
-            </SpanD>
-          </DatepickerDateDisplay>
+          <DatepickerDateDisplay setupDate={setupDate} />
           <DatepickerCalendarContainer>
             <DatepickerCalendar>
-              <DatepickerControls decrimentMonth={this.decrimentMonth} incrementMonth={this.incrementMonth} />
+              <DatepickerControls
+                {...this.state}
+                decrimentMonth={this.decrimentMonth}
+                incrementMonth={this.incrementMonth}
+              />
               <DatepickerTableWrappeer>
-                <DatepickerTable year={year} month={month} />
+                <DatepickerTable year={year} month={month} handlerClick={this.dateChoise} />
               </DatepickerTableWrappeer>
-              <DatepickerFooter>
-                <Flat small danger>
-                  Cancel
-                </Flat>
-                <Flat small>Ok</Flat>
-              </DatepickerFooter>
+              <DatepickerFooter />
             </DatepickerCalendar>
           </DatepickerCalendarContainer>
         </ModalContent>
@@ -57,19 +59,6 @@ class DatePicker extends Component {
     );
   }
 }
-const DatepickerFooter = styled.div`
-  width: 280px;
-  margin: 0 auto;
-  padding-bottom: 5px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-`;
 
 const DatepickerModal = styled.div`
   position: fixed;
@@ -115,34 +104,6 @@ const ModalContent = styled.div`
   -ms-flex-direction: column;
   flex-direction: column;
   padding: 0;
-`;
-const DatepickerDateDisplay = styled.div`
-  -webkit-box-flex: 1;
-  -webkit-flex: 1 auto;
-  -ms-flex: 1 auto;
-  flex: 1 auto;
-  background-color: #26a69a;
-  color: #fff;
-  padding: 20px 22px;
-  font-weight: 500;
-  @media only screen and (min-width: 601px) {
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 1 270px;
-    -ms-flex: 0 1 270px;
-    flex: 0 1 270px;
-  }
-`;
-const SpanY = styled.span`
-  display: block;
-  font-size: 1.5rem;
-  line-height: 25px;
-  color: rgba(255, 255, 255, 0.7);
-`;
-const SpanD = styled.span`
-  display: block;
-  font-size: 2.8rem;
-  line-height: 47px;
-  font-weight: 500;
 `;
 const DatepickerCalendarContainer = styled.div`
   -webkit-box-flex: 2.5;

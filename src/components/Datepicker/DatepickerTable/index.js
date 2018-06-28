@@ -13,7 +13,7 @@ const prepareArrayDay = (year, month, handlerClick) => {
   const dayBegin = day === 0 ? 7 : day;
   const arr = [...Array(getMaxDayinMonth(year, month))].map((el, indx) => (
     <td key={indx}>
-      <Float handlerClick={handlerClick}>{indx + 1}</Float>
+      <Float handlerClick={handlerClick(indx + 1)}>{indx + 1}</Float>
     </td>
   ));
   const arrTemp = [...Array(dayBegin - 1)].fill(<td />).concat(arr);
