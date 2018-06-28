@@ -16,6 +16,8 @@ class DatePicker extends Component {
 
   render() {
     const { year, month } = this.state;
+    console.log( year, month);
+    
     return (
       <DatepickerModal>
         <ModalContent>
@@ -26,10 +28,10 @@ class DatePicker extends Component {
           <DatepickerCalendarContainer>
             <DatepickerCalendar>
               <DatepickerControls>
-                <Icon name="LeftArrow" />
+                <Icon name="LeftArrow" onClick={() => this.setState({ month: this.state.month - 1 })} />
                 <SelectMonth />
                 <SelectYear />
-                <Icon name="RightArrow" />
+                <Icon name="RightArrow" onClick={() => this.setState({ month: this.state.month + 1 })} />
               </DatepickerControls>
               <DatepickerTableWrappeer>
                 <DatepickerTable year={year} month={month} />

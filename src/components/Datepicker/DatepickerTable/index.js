@@ -9,7 +9,8 @@ const getMaxDayinMonth = (year, month) => {
 };
 
 const prepareArrayDay = (year, month, handlerClick) => {
-  const dayBegin = new Date(year, month, 1).getDay();
+  const day = new Date(year, month, 1).getDay();
+  const dayBegin = day === 0 ? 7 : day;
   const arr = [...Array(getMaxDayinMonth(year, month))].map((el, indx) => (
     <td key={indx}>
       <Float handlerClick={handlerClick}>{indx + 1}</Float>
