@@ -51,6 +51,7 @@ class DatePicker extends Component {
                 decrimentMonth={this.decrimentMonth}
                 incrementMonth={this.incrementMonth}
                 handlerMonth={month => this.setState({ month })}
+                handlerYear={year => this.setState({ year })}
               />
               <DatepickerTableWrappeer>
                 <DatepickerTable year={year} month={month} handlerClick={this.dateChoise} setupDate={setupDate} />

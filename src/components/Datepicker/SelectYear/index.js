@@ -2,34 +2,31 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { names } from '../names';
-
-class SelectMonth extends Component {
+class SelectYear extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isOpen: false
     };
   }
-  openSelectMonth = indx => () => {
+  openSelectYear = select => () => {
     this.setState({
       isOpen: false
     });
-    this.props.handlerMonth(indx);
+    this.props.handlerYear(select);
   };
   render() {
-    const { month } = this.props;
+    const { year } = this.props;
     const { isOpen } = this.state;
-    const name = names.month[month];
     return (
       <Wrapper>
-        <Div onClick={() => this.setState({ isOpen: !isOpen })}>{name}</Div>
+        <Div onClick={() => this.setState({ isOpen: !isOpen })}>{year}</Div>
         {isOpen && (
           <Selected>
             <Ul>
-              {[...Array(12)].map((el, indx) => (
-                <Li key={indx} onClick={this.openSelectMonth(indx)}>
-                  {names.month[indx]}
+              {[...Array(21)].map((el, indx) => (
+                <Li key={indx} onClick={this.openSelectYear(year - 10 + indx)}>
+                  {year - 10 + indx}
                 </Li>
               ))}
             </Ul>
@@ -40,9 +37,9 @@ class SelectMonth extends Component {
   }
 }
 
-SelectMonth.propTypes = {
-  month: PropTypes.number.isRequired,
-  handlerMonth: PropTypes.func.isRequired
+SelectYear.propTypes = {
+  year: PropTypes.number.isRequired,
+  handlerYear: PropTypes.func.isRequired
 };
 const Div = styled.div`
   margin-top: 4px;
@@ -54,8 +51,9 @@ const Wrapper = styled.div`
   position: relative;
 `;
 const Selected = styled.div`
+  overflow-y: auto;
   position: absolute;
-  top: 10px;
+  top: -50px;
   left: 10px;
   background-color: white;
   z-index: 999;
@@ -76,4 +74,4 @@ const Li = styled.li`
     background-color: #69b2ab;
   }
 `;
-export default SelectMonth;
+export default SelectYear;
