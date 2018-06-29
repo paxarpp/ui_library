@@ -3,12 +3,16 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { names } from '../names';
+const dayOfWeek = setupDate => {
+  const date = new Date(setupDate.year, setupDate.month, setupDate.day).getDay();
+  return names.day[date === 0 ? 6 : date - 1];
+};
 
 const DatepickerDateDisplay = ({ setupDate }) => (
   <Wraper>
     <SpanY>{setupDate.year}</SpanY>
     <SpanD>
-      {names.month[setupDate.month]} {setupDate.day}
+      {dayOfWeek(setupDate)}, {names.month[setupDate.month]} {setupDate.day}
     </SpanD>
   </Wraper>
 );
