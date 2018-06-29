@@ -50,6 +50,7 @@ class DatePicker extends Component {
                 {...this.state}
                 decrimentMonth={this.decrimentMonth}
                 incrementMonth={this.incrementMonth}
+                handlerMonth={month => this.setState({ month })}
               />
               <DatepickerTableWrappeer>
                 <DatepickerTable year={year} month={month} handlerClick={this.dateChoise} setupDate={setupDate} />
@@ -71,7 +72,6 @@ const DatepickerModal = styled.div`
   padding: 0;
   width: 55%;
   margin: auto;
-  overflow-y: auto;
   border-radius: 2px;
   will-change: top, opacity;
   max-width: 325px;
