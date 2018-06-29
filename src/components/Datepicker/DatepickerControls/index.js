@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import Icon from '../../Icon';
+import { names } from '../names';
 
-const SelectMonth = ({ month }) => <Div>{month + 1}</Div>;
+const SelectMonth = ({ month }) => <Div>{names.month[month]}</Div>;
 const SelectYear = ({ year }) => <Div>{year}</Div>;
 
 const DatepickerControls = ({ year, month, decrimentMonth, incrementMonth }) => (

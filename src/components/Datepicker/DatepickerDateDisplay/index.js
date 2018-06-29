@@ -2,14 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+import { names } from '../names';
+
 const DatepickerDateDisplay = ({ setupDate }) => {
   const date = setupDate.split('-');
-  date[1] = +date[1] + 1;
   return (
     <Wraper>
       <SpanY>{date[0]}</SpanY>
       <SpanD>
-        {date[1]} {date[2]}
+        {names.month[date[1]]} {date[2]}
       </SpanD>
     </Wraper>
   );

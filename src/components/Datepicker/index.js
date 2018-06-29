@@ -25,15 +25,14 @@ class DatePicker extends Component {
   incrementMonth = () => {
     const { year, month } = this.state;
     this.setState({
-      month: month === 11 ? 1 : month + 1,
+      month: month === 11 ? 0 : month + 1,
       year: month === 11 ? year + 1 : year
     });
   };
   dateChoise = e => () => {
-    this.setState(prev => ({
-      ...prev,
-      setupDate: `${prev.year}-${prev.month}-${e}`
-    }));
+    this.setState({
+      setupDate: `${this.state.year}-${this.state.month}-${e}`
+    });
   };
   render() {
     const { year, month, setupDate } = this.state;
@@ -72,7 +71,7 @@ const DatepickerModal = styled.div`
   border-radius: 2px;
   will-change: top, opacity;
   max-width: 325px;
-  min-width: 300px;
+  min-width: 310px;
   max-height: none;
   z-index: 1003;
   display: block;
@@ -88,6 +87,7 @@ const DatepickerModal = styled.div`
   }
   @media only screen and (min-width: 601px) {
     max-width: 625px;
+    min-width: 500px;
   }
 `;
 const ModalContent = styled.div`
