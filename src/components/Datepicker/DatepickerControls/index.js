@@ -17,6 +17,8 @@ const DatepickerControls = ({ year, month, decrimentMonth, incrementMonth }) => 
   </Wrap>
 );
 DatepickerControls.propTypes = {
+  month: PropTypes.number.isRequired,
+  year: PropTypes.number.isRequired,
   decrimentMonth: PropTypes.func.isRequired,
   incrementMonth: PropTypes.func.isRequired
 };

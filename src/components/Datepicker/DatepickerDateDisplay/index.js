@@ -4,19 +4,17 @@ import PropTypes from 'prop-types';
 
 import { names } from '../names';
 
-const DatepickerDateDisplay = ({ setupDate }) => {
-  const date = setupDate.split('-');
-  return (
-    <Wraper>
-      <SpanY>{date[0]}</SpanY>
-      <SpanD>
-        {names.month[date[1]]} {date[2]}
-      </SpanD>
-    </Wraper>
-  );
-};
+const DatepickerDateDisplay = ({ setupDate }) => (
+  <Wraper>
+    <SpanY>{setupDate.year}</SpanY>
+    <SpanD>
+      {names.month[setupDate.month]} {setupDate.day}
+    </SpanD>
+  </Wraper>
+);
+
 DatepickerDateDisplay.propTypes = {
-  setupDate: PropTypes.string.isRequired
+  setupDate: PropTypes.shape({ year: PropTypes.number, month: PropTypes.number, day: PropTypes.number })
 };
 const Wraper = styled.div`
   -webkit-box-flex: 1;

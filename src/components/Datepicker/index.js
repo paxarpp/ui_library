@@ -12,7 +12,11 @@ class DatePicker extends Component {
     this.state = {
       year: new Date().getFullYear(),
       month: new Date().getMonth(),
-      setupDate: `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}`
+      setupDate: {
+        year: new Date().getFullYear(),
+        month: new Date().getMonth(),
+        day: new Date().getDate()
+      }
     };
   }
   decrimentMonth = () => {
@@ -31,7 +35,7 @@ class DatePicker extends Component {
   };
   dateChoise = e => () => {
     this.setState({
-      setupDate: `${this.state.year}-${this.state.month}-${e}`
+      setupDate: { year: this.state.year, month: this.state.month, day: e }
     });
   };
   render() {
