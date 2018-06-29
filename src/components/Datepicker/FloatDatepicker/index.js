@@ -9,7 +9,7 @@ const ButtonFloat = ({ children, handlerClick, active, ...props }) => (
 );
 ButtonFloat.propTypes = {
   handlerClick: PropTypes.func,
-  children: PropTypes.string,
+  children: PropTypes.any,
   active: PropTypes.bool
 };
 const Main = styled.button`

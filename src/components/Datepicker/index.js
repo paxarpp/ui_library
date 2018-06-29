@@ -34,11 +34,6 @@ class DatePicker extends Component {
       year: month === 11 ? year + 1 : year
     });
   };
-  dateChoise = e => () => {
-    this.setState({
-      setupDate: { year: this.state.year, month: this.state.month, day: e }
-    });
-  };
   render() {
     const { year, month, setupDate } = this.state;
     return (
@@ -55,7 +50,14 @@ class DatePicker extends Component {
                 handlerYear={year => this.setState({ year })}
               />
               <DatepickerTableWrappeer>
-                <DatepickerTable year={year} month={month} handlerClick={this.dateChoise} setupDate={setupDate} />
+                <DatepickerTable
+                  year={year}
+                  month={month}
+                  handlerClick={day => () => {
+                    this.setState({ setupDate: { year, month, day } });
+                  }}
+                  setupDate={setupDate}
+                />
               </DatepickerTableWrappeer>
               <DatepickerFooter
                 hadlerClose={this.props.hadlerClose}
@@ -99,7 +101,7 @@ const DatepickerModal = styled.div`
   }
   @media only screen and (min-width: 601px) {
     max-width: 625px;
-    min-width: 515px;
+    width: 100%;
   }
 `;
 const ModalContent = styled.div`
@@ -127,102 +129,3 @@ const DatepickerCalendar = styled.div``;
 const DatepickerTableWrappeer = styled.div``;
 
 export default DatePicker;
-
-// /* Calendar */
-
-// .datepicker-table {
-//   width: 280px;
-//   font-size: 1rem;
-//   margin: 0 auto;
-// }
-
-// .datepicker-table thead {
-//   border-bottom: none;
-// }
-
-// .datepicker-table th {
-//   padding: 10px 5px;
-//   text-align: center;
-// }
-
-// .datepicker-table tr {
-//   border: none;
-// }
-
-// .datepicker-table abbr {
-//   text-decoration: none;
-//   color: #999;
-// }
-
-// .datepicker-table td {
-//   border-radius: 50%;
-//   padding: 0;
-// }
-
-// .datepicker-table td.is-today {
-//   color: #26a69a;
-// }
-
-// .datepicker-table td.is-selected {
-//   background-color: #26a69a;
-//   color: #fff;
-// }
-
-// .datepicker-table td.is-outside-current-month, .datepicker-table td.is-disabled {
-//   color: rgba(0, 0, 0, 0.3);
-//   pointer-events: none;
-// }
-
-// .datepicker-day-button {
-//   background-color: transparent;
-//   border: none;
-//   line-height: 38px;
-//   display: block;
-//   width: 100%;
-//   border-radius: 50%;
-//   padding: 0 5px;
-//   cursor: pointer;
-//   color: inherit;
-// }
-
-// .datepicker-day-button:focus {
-//   background-color: rgba(43, 161, 150, 0.25);
-// }
-
-// .datepicker-cancel,
-// .datepicker-clear,
-// .datepicker-today,
-// .datepicker-done {
-//   color: #26a69a;
-//   padding: 0 1rem;
-// }
-
-// .datepicker-clear {
-//   color: #F44336;
-// }
-
-// /* Media Queries */
-// @media only screen and (min-width: 601px) {
-
-//   .datepicker-container.modal-content {
-//     -webkit-box-orient: horizontal;
-//     -webkit-box-direction: normal;
-//     -webkit-flex-direction: row;
-//         -ms-flex-direction: row;
-//             flex-direction: row;
-//   }
-//   .datepicker-date-display {
-//     -webkit-box-flex: 0;
-//     -webkit-flex: 0 1 270px;
-//         -ms-flex: 0 1 270px;
-//             flex: 0 1 270px;
-//   }
-//   .datepicker-controls,
-//   .datepicker-table,
-//   .datepicker-footer {
-//     width: 320px;
-//   }
-//   .datepicker-day-button {
-//     line-height: 44px;
-//   }
-// }

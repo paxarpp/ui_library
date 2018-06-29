@@ -21,7 +21,7 @@ const prepareArrayDay = (year, month, setupDate, handlerClick) => {
       </Float>
     </td>
   ));
-  const arrTemp = [...Array(dayBegin - 1)].fill(<td />).concat(arr);
+  const arrTemp = [...Array(dayBegin - 1)].map((el, indx) => <td key={`empty${indx}`} />).concat(arr);
   const result = [];
   for (let i = 0; i < arrTemp.length; i += 7) {
     result.push(arrTemp.slice(i, i + 7));
@@ -44,13 +44,17 @@ const DatepickerTable = ({ year, month, handlerClick, setupDate }) => {
           <th>Вс</th>
         </tr>
       </thead>
-      <tbody>{result.map((el, indx) => <tr key={indx}>{[...el]}</tr>)}</tbody>
+      <tbody>{result.map((el, indx) => <tr key={`tr${indx}`}>{[...el]}</tr>)}</tbody>
     </Table>
   );
 };
 DatepickerTable.propTypes = {
   handlerClick: PropTypes.func,
-  setupDate: PropTypes.number,
+  setupDate: PropTypes.shape({
+    year: PropTypes.number.isRequired,
+    month: PropTypes.number.isRequired,
+    day: PropTypes.number.isRequired
+  }),
   year: PropTypes.number.isRequired,
   month: PropTypes.number.isRequired
 };
