@@ -52,7 +52,7 @@ class DatePicker extends Component {
                 incrementMonth={this.incrementMonth}
               />
               <DatepickerTableWrappeer>
-                <DatepickerTable year={year} month={month} handlerClick={this.dateChoise} />
+                <DatepickerTable year={year} month={month} handlerClick={this.dateChoise} setupDate={setupDate} />
               </DatepickerTableWrappeer>
               <DatepickerFooter />
             </DatepickerCalendar>
