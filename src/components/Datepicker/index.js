@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import DatepickerTable from './DatepickerTable';
 import DatepickerControls from './DatepickerControls';
@@ -56,7 +57,10 @@ class DatePicker extends Component {
               <DatepickerTableWrappeer>
                 <DatepickerTable year={year} month={month} handlerClick={this.dateChoise} setupDate={setupDate} />
               </DatepickerTableWrappeer>
-              <DatepickerFooter />
+              <DatepickerFooter
+                hadlerClose={this.props.hadlerClose}
+                hanlerComplite={this.props.hanlerComplite(this.state.setupDate)}
+              />
             </DatepickerCalendar>
           </DatepickerCalendarContainer>
         </ModalContent>
@@ -64,7 +68,10 @@ class DatePicker extends Component {
     );
   }
 }
-
+DatePicker.propTypes = {
+  hadlerClose: PropTypes.func.isRequired,
+  hanlerComplite: PropTypes.func.isRequired
+};
 const DatepickerModal = styled.div`
   position: fixed;
   left: 0;
