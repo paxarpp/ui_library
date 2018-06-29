@@ -99,7 +99,7 @@ const DatepickerModal = styled.div`
   }
   @media only screen and (min-width: 601px) {
     max-width: 625px;
-    min-width: 500px;
+    min-width: 515px;
   }
 `;
 const ModalContent = styled.div`
