@@ -7,20 +7,36 @@ class Range extends Component {
     super(props);
     this.state = {
       value: (this.props.min + this.props.max) / 2,
-      coordX: 0
+      coordX: 0,
+      target: false
     };
+  }
+  componentDidMount() {
+    this.setState({
+      coordX: this.input.clientWidth / 2 - 30
+    });
   }
   coordX = e => {
     this.setState({
-      coordX: e.pageX - 30,
+      currentX: this.state.coordX > e.pageX - 50 && this.state.coordX < e.pageX - 10 ? true : false,
+      coordX: this.state.coordX > e.pageX - 50 && this.state.coordX < e.pageX - 10 ? e.pageX - 30 : this.state.coordX,
       value: e.target.value
     });
   };
   render() {
-    const { value, coordX } = this.state;
+    const { value, coordX, currentX } = this.state;
     return (
       <RangeField>
-        <Input coordX={coordX} type="range" {...this.props} onMouseMove={this.coordX} defaultValue={this.state.value} />
+        <Input
+          innerRef={comp => (this.input = comp)}
+          coordX={coordX}
+          type="range"
+          {...this.props}
+          onMouseMove={this.coordX}
+          onClick={e => this.setState({ coordX: e.pageX - 30 })}
+          defaultValue={this.state.value}
+          currentX={currentX}
+        />
         <SpanWrap>
           <SpanCount>{value}</SpanCount>
         </SpanWrap>
@@ -77,7 +93,7 @@ const Input = styled.input`
     animation: ${showThumb} 0.3s linear;
   }
   &:hover + span > span {
-    display: block;
+    display: ${props => props.currentX && 'block'};
     width: 30px;
     text-align: center;
     color: #26a69a;
@@ -98,9 +114,6 @@ const Input = styled.input`
     width: 14px;
     border-radius: 50%;
     background: #26a69a;
-    transition: -webkit-box-shadow 0.3s;
-    transition: box-shadow 0.3s;
-    transition: box-shadow 0.3s, -webkit-box-shadow 0.3s;
     background-color: #26a69a;
     transform-origin: 50% 50%;
     margin: -5px 0 0 0;
@@ -119,9 +132,6 @@ const Input = styled.input`
     width: 14px;
     border-radius: 50%;
     background: #26a69a;
-    transition: -webkit-box-shadow 0.3s;
-    transition: box-shadow 0.3s;
-    transition: box-shadow 0.3s, -webkit-box-shadow 0.3s;
     margin-top: -5px;
   }
   &::-moz-focusring {
@@ -147,9 +157,6 @@ const Input = styled.input`
     width: 14px;
     border-radius: 50%;
     background: #26a69a;
-    transition: -webkit-box-shadow 0.3s;
-    transition: box-shadow 0.3s;
-    transition: box-shadow 0.3s, -webkit-box-shadow 0.3s;
   }
 `;
 
