@@ -17,9 +17,10 @@ class Range extends Component {
     });
   }
   coordX = e => {
+    const newLocal = this.state.coordX > e.pageX - 50 && this.state.coordX < e.pageX - 10;
     this.setState({
-      currentX: this.state.coordX > e.pageX - 50 && this.state.coordX < e.pageX - 10 ? true : false,
-      coordX: this.state.coordX > e.pageX - 50 && this.state.coordX < e.pageX - 10 ? e.pageX - 30 : this.state.coordX,
+      currentX: newLocal,
+      coordX: newLocal ? e.pageX - 30 : this.state.coordX,
       value: e.target.value
     });
   };
@@ -33,8 +34,8 @@ class Range extends Component {
           type="range"
           {...this.props}
           onMouseMove={this.coordX}
-          onClick={e => this.setState({ coordX: e.pageX - 30 })}
-          defaultValue={this.state.value}
+          onClick={e => this.setState({ coordX: e.pageX - 30, currentX: true, value: e.target.value })}
+          defaultValue={value}
           currentX={currentX}
         />
         <SpanWrap>
