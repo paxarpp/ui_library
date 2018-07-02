@@ -121,6 +121,7 @@ const Main = styled.button`
   background-color: ${props => props.danger && '#ff5454'};
   background-color: ${props => props.second && '#aaa'};
   background-color: ${props => props.disable && '#e5e5e5'};
+  background-color: ${props => props.color};
   border-radius: 50%;
   transition: background-color 0.3s;
   cursor: ${props => !props.disable && 'pointer'};
