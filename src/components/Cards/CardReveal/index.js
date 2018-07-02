@@ -62,6 +62,8 @@ const Wrapper = styled.div`
 const CardTitle = styled.span`
   font-size: 24px;
   font-weight: 300;
+  display: flex;
+  justify-content: space-between;
   cursor: ${props => props.activator && 'pointer'};
 `;
 const CardImage = styled.div`
@@ -82,7 +84,6 @@ const CardContent = styled.div`
   padding: 24px;
   border-radius: 0 0 2px 2px;
   ${CardTitle} {
-    display: block;
     line-height: 32px;
     margin-bottom: 8px;
   }
