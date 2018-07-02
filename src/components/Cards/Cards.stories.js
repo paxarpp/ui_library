@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Card, BasicCard, ImageCard } from './index';
+import { Card, BasicCard, ImageCard, CardReveal } from './index';
 
 const text =
   'Я очень простая карточка. Я хорошо разбираюсь в небольших фрагментах информации. Мне удобно, потому что для эффективной работы требуется небольшая разметка. Я подобен тому, что называется панелью в других рамках.';
@@ -25,4 +25,9 @@ storiesOf('Cards', module)
     <ImageCard bgColor={'#FFF'} textColor={'#000'} header={header} url={url}>
       {text2}
     </ImageCard>
+  ))
+  .add('CardReveal bgColor=#FFF textColor=#000', () => (
+    <CardReveal bgColor={'#FFF'} textColor={'#000'} header={header} url={url}>
+      {text2}
+    </CardReveal>
   ));
