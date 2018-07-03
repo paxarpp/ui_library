@@ -32,7 +32,9 @@ const RadioButton = ({ children, ...props }) => (
 );
 RadioButton.propTypes = {
   children: PropTypes.string,
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  gap: PropTypes.bool,
+  disabled: PropTypes.bool
 };
 const Label = styled.label`
   font-size: 0.8rem;

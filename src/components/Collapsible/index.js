@@ -31,6 +31,7 @@ class Collapsible extends Component {
   }
 }
 Collapsible.propTypes = {
+  popout: PropTypes.bool,
   data: PropTypes.arrayOf(
     PropTypes.shape({
       header: PropTypes.string,

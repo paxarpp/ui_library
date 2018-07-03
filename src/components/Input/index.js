@@ -9,17 +9,12 @@ class Input extends Component {
       value: ''
     };
   }
-  inputField = e => {
-    this.setState({
-      value: e.target.value
-    });
-  };
   render() {
     const { placeholder, ...props } = this.props;
     const { value } = this.state;
     return (
       <Wrapper>
-        <InpWrap {...props} onChange={this.inputField} value={value} />
+        <InpWrap {...props} onChange={e => this.setState({ value: e.target.value })} value={value} />
         <LabelWrap value={value}>{placeholder}</LabelWrap>
       </Wrapper>
     );

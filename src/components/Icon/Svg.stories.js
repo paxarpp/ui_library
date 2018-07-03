@@ -2,9 +2,16 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Icon from './index';
+import { withInfo } from '@storybook/addon-info';
 
 storiesOf('Icon', module)
-  .add('icon default', () => <Icon />)
+  .add(
+    'icon default',
+    withInfo({
+      header: false,
+      inline: true
+    })(() => <Icon />)
+  )
   .add('icon Create color="green" Clicked', () => <Icon name="Create" onClick={action('clicked')} color={'green'} />)
   .add('icon Burn color="red" size="36"', () => <Icon name="Burn" color={'red'} size={36} />)
   .add('icon Error color="red" size="36"', () => <Icon name="Error" color={'red'} size={36} />)

@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Table from './index';
+import { withInfo } from '@storybook/addon-info';
 
 const MockData = [
   {
@@ -21,8 +22,38 @@ const MockData = [
 ];
 
 storiesOf('Table', module)
-  .add('Table ', () => <Table data={MockData} />)
-  .add('Table striped', () => <Table data={MockData} striped />)
-  .add('Table highlight', () => <Table data={MockData} highlight />)
-  .add('Table centered', () => <Table data={MockData} centered />)
-  .add('Table striped highlight', () => <Table data={MockData} striped highlight />);
+  .add(
+    'Table ',
+    withInfo({
+      header: false,
+      inline: true
+    })(() => <Table data={MockData} />)
+  )
+  .add(
+    'Table striped',
+    withInfo({
+      header: false,
+      inline: true
+    })(() => <Table data={MockData} striped />)
+  )
+  .add(
+    'Table highlight',
+    withInfo({
+      header: false,
+      inline: true
+    })(() => <Table data={MockData} highlight />)
+  )
+  .add(
+    'Table centered',
+    withInfo({
+      header: false,
+      inline: true
+    })(() => <Table data={MockData} centered />)
+  )
+  .add(
+    'Table striped highlight',
+    withInfo({
+      header: false,
+      inline: true
+    })(() => <Table data={MockData} striped highlight />)
+  );
