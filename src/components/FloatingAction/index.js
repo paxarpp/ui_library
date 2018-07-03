@@ -16,19 +16,17 @@ class FloatingAction extends Component {
     const { children, name, color, ...props } = this.props;
     const { open } = this.state;
     return (
-      <Wrap className="fixed-action-btn">
+      <Wrap {...props} open={open}>
         <Float large color={color} {...props} handlerClick={() => this.setState({ open: !open })}>
           <Icon name={name} />
         </Float>
-        {open && (
-          <WrapAction>
-            {children.map((el, indx) => (
-              <Float key={indx} color={el.props.clr} small>
-                {el}
-              </Float>
-            ))}
-          </WrapAction>
-        )}
+        <WrapAction {...props} open={open}>
+          {children.map((el, indx) => (
+            <WrapFloat key={indx} color={el.props.clr} small handlerClick={el.props.act}>
+              {el}
+            </WrapFloat>
+          ))}
+        </WrapAction>
       </Wrap>
     );
   }
@@ -48,17 +46,31 @@ const isFixed = props =>
     margin-bottom: 0;
   `;
 const Wrap = styled.div`
-  position: relativ;
+  position: relative;
+  overflow: ${props => (props.fixed ? (props.open ? 'none' : 'hidden') : 'hidden')};
+  padding: 2px 0;
   ${isFixed};
   z-index: 997;
 `;
+const wrapIsFixed = props =>
+  props.fixed &&
+  css`
+    flex-flow: row-reverse;
+    top: 30px;
+    left: 0;
+    transform: translateX(-101%);
+  `;
 const WrapAction = styled.div`
-  width: 30%;
   position: absolute;
   display: flex;
-  justify-content: space-evenly;
-  top: 30px;
-  left: 75px;
+  top: 15px;
+  left: 0;
+  transform: translateX(${props => (props.open ? '50px' : '-100%')});
+  transition: transform 0.2s linear;
+  ${wrapIsFixed};
+`;
+const WrapFloat = styled(Float)`
+  margin: 0 0 0 15px;
 `;
 
 export default FloatingAction;
