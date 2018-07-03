@@ -16,18 +16,20 @@ class FloatingAction extends Component {
     const { children, name, color, ...props } = this.props;
     const { open } = this.state;
     return (
-      <Wrap {...props}>
-        <Float large color={color} {...props} handlerClick={() => this.setState({ open: !open })}>
+      <Wrapper {...props}>
+        <MainFloat large color={color} {...props} handlerClick={() => this.setState({ open: !open })}>
           <Icon name={name} />
-        </Float>
-        <WrapAction {...props} open={open}>
-          {children.map((el, indx) => (
-            <WrapFloat key={indx} color={el.props.clr} small handlerClick={el.props.act}>
-              {el}
-            </WrapFloat>
-          ))}
-        </WrapAction>
-      </Wrap>
+        </MainFloat>
+        <Wrap {...props}>
+          <WrapAction {...props} open={open}>
+            {children.map((el, indx) => (
+              <WrapFloat key={indx} color={el.props.clr} small handlerClick={el.props.act}>
+                {el}
+              </WrapFloat>
+            ))}
+          </WrapAction>
+        </Wrap>
+      </Wrapper>
     );
   }
 }
@@ -40,9 +42,10 @@ const isFixed = props =>
   props.fixed &&
   css`
     position: fixed;
-    right: 23px;
-    left: 23px;
+    right: 30px;
+    left: 30px;
     bottom: 23px;
+    margin-left: 0;
     padding-top: 15px;
     margin-bottom: 0;
     text-align: end;
@@ -51,6 +54,17 @@ const Wrap = styled.div`
   position: relative;
   overflow: hidden;
   padding: 2px 0;
+  position: absolute;
+  overflow: hidden;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`;
+const Wrapper = styled.div`
+  position: relative;
+  margin-left: 5px;
   ${isFixed};
   z-index: 997;
 `;
@@ -89,6 +103,10 @@ const WrapAction = styled.div`
 `;
 const WrapFloat = styled(Float)`
   margin: 0 0 0 15px;
+`;
+const MainFloat = styled(Float)`
+  left: ${props => (props.fixed ? '10px' : '-10px')};
+  z-index: 9;
 `;
 
 export default FloatingAction;
