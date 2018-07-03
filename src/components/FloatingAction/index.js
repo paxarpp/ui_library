@@ -16,7 +16,7 @@ class FloatingAction extends Component {
     const { children, name, color, ...props } = this.props;
     const { open } = this.state;
     return (
-      <Wrap {...props} open={open}>
+      <Wrap {...props}>
         <Float large color={color} {...props} handlerClick={() => this.setState({ open: !open })}>
           <Icon name={name} />
         </Float>
@@ -41,13 +41,15 @@ const isFixed = props =>
   css`
     position: fixed;
     right: 23px;
+    left: 23px;
     bottom: 23px;
     padding-top: 15px;
     margin-bottom: 0;
+    text-align: end;
   `;
 const Wrap = styled.div`
   position: relative;
-  overflow: ${props => (props.fixed ? (props.open ? 'none' : 'hidden') : 'hidden')};
+  overflow: hidden;
   padding: 2px 0;
   ${isFixed};
   z-index: 997;
@@ -57,15 +59,31 @@ const wrapIsFixed = props =>
   css`
     flex-flow: row-reverse;
     top: 30px;
-    left: 0;
-    transform: translateX(-101%);
+    right: 0;
+    padding-right: 60px;
   `;
+const openNotFix = props =>
+  props.fixed
+    ? css`
+        transform: translateX(0);
+      `
+    : css`
+        transform: translateX(50px);
+      `;
+const openFix = props =>
+  props.fixed
+    ? css`
+        transform: translateX(100%);
+      `
+    : css`
+        transform: translateX(-100%);
+      `;
 const WrapAction = styled.div`
   position: absolute;
   display: flex;
   top: 15px;
   left: 0;
-  transform: translateX(${props => (props.open ? '50px' : '-100%')});
+  ${props => (props.open ? openNotFix : openFix)};
   transition: transform 0.2s linear;
   ${wrapIsFixed};
 `;
