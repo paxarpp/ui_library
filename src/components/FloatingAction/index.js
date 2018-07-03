@@ -13,11 +13,17 @@ class FloatingAction extends Component {
   }
 
   render() {
-    const { children, name, color, ...props } = this.props;
+    const { children, name, color, toggle, ...props } = this.props;
     const { open } = this.state;
     return (
-      <Wrapper {...props}>
-        <MainFloat large color={color} {...props} handlerClick={() => this.setState({ open: !open })}>
+      <Wrapper {...props} onMouseLeave={!toggle && (() => this.setState({ open: false }))}>
+        <MainFloat
+          large
+          color={color}
+          {...props}
+          onMouseEnter={!toggle && (() => this.setState({ open: true }))}
+          handlerClick={toggle && (() => this.setState({ open: !open }))}
+        >
           <Icon name={name} />
         </MainFloat>
         <Wrap {...props}>
@@ -35,6 +41,7 @@ class FloatingAction extends Component {
 }
 FloatingAction.propTypes = {
   children: PropTypes.any,
+  toggle: PropTypes.bool,
   name: PropTypes.string,
   color: PropTypes.string
 };
