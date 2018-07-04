@@ -53,6 +53,17 @@ storiesOf('Cards', module)
     ))
   )
   .add(
+    'ImageCard row',
+    withInfo({
+      header: false,
+      inline: true
+    })(() => (
+      <ImageCard horizontal header={'Horizontal card'} url={url}>
+        {text2}
+      </ImageCard>
+    ))
+  )
+  .add(
     'CardReveal bgColor=#FFF textColor=#000',
     withInfo({
       header: false,

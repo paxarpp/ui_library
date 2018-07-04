@@ -1,30 +1,38 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
-const ImageCard = ({ bgColor = 'white', textColor = 'black', header, url, children }) => (
-  <Wrap bgColor={bgColor}>
+const ImageCard = ({ bgColor = 'white', textColor = 'black', horizontal, header, url, children }) => (
+  <Wrap bgColor={bgColor} horizontal={horizontal}>
     <CardImg>
       <img src={url} />
       <Title>{header}</Title>
     </CardImg>
-    <Content color={textColor}>
-      <p>{children}</p>
-    </Content>
-    <CardAction>
-      <a href="#">This is a link</a>
-    </CardAction>
+    <FlexDiv horizontal={horizontal}>
+      <Content color={textColor} horizontal={horizontal}>
+        <p>{children}</p>
+      </Content>
+      <CardAction>
+        <a href="#">This is a link</a>
+      </CardAction>
+    </FlexDiv>
   </Wrap>
 );
 
 ImageCard.propTypes = {
+  horizontal: PropTypes.bool,
   children: PropTypes.any,
   header: PropTypes.string,
   url: PropTypes.string,
   bgColor: PropTypes.string,
   textColor: PropTypes.string
 };
-
+const isHorizontal = props =>
+  props.horizontal &&
+  css`
+    display: flex;
+    flex-flow: row nowrap;
+  `;
 const Wrap = styled.div`
   background-color: ${props => props.bgColor};
   position: relative;
@@ -37,11 +45,14 @@ const Wrap = styled.div`
   transition: box-shadow 0.25s;
   transition: box-shadow 0.25s, -webkit-box-shadow 0.25s;
   border-radius: 2px;
+  ${isHorizontal};
 `;
 const Content = styled.div`
   color: ${props => props.color};
   padding: 24px;
   border-radius: 0 0 2px 2px;
+  flex: 1 auto;
+  overflow-y: auto;
   p {
     margin: 0;
   }
@@ -87,5 +98,12 @@ const CardImg = styled.div`
     width: 100%;
   }
 `;
-
+const FlexDiv = styled.div`
+  ${props =>
+    props.horizontal &&
+    css`
+      display: flex;
+      flex-flow: column;
+    `};
+`;
 export default ImageCard;
