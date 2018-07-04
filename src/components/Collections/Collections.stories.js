@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Collections from './index';
 import { withInfo } from '@storybook/addon-info';
+import { action } from '@storybook/addon-actions';
 import Icon from '../Icon';
 
 const MockData = [
@@ -10,9 +11,12 @@ const MockData = [
   'Lorem ipsum dolor sit amet'
 ];
 const MockData2 = [
-  ['Lorem ipsum dolor', <Icon key={'1'} name="Create" />],
-  ['Sit ametLorem ametLorem ipsum dolor sit amet', <Icon key={'3'} name="Done" color="green" />],
-  ['Ipsum dolor sit amet', <Icon key={'2'} name="Create" />]
+  ['Lorem ipsum dolor', <Icon key={'1'} name="Create" onClick={action('clicked')} />],
+  [
+    'Sit ametLorem ametLorem ipsum dolor sit amet',
+    <Icon key={'3'} name="Done" color="green" onClick={action('clicked')} />
+  ],
+  ['Ipsum dolor sit amet', <Icon key={'2'} name="Create" onClick={action('clicked')} />]
 ];
 
 storiesOf('Collections', module)
@@ -35,7 +39,7 @@ storiesOf('Collections', module)
     withInfo({
       header: false,
       inline: true
-    })(() => <Collections data={MockData} active />)
+    })(() => <Collections data={MockData} active handlerClick={action('clicked')} />)
   )
   .add(
     'Collections + icon ',

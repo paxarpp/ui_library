@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const Collections = ({ data, active, header, color = 'inherit' }) => (
+const Collections = ({ data, active, header, color = 'inherit', handlerClick }) => (
   <Wrap color={color}>
     {header ? (
       <Li>
@@ -18,7 +18,7 @@ const Collections = ({ data, active, header, color = 'inherit' }) => (
     {active &&
       data.map((elem, indx) => (
         <LiA active={active} key={indx}>
-          <Link href="#!" color={color}>
+          <Link href="#!" color={color} onClick={handlerClick}>
             {elem}
           </Link>
         </LiA>
@@ -26,6 +26,7 @@ const Collections = ({ data, active, header, color = 'inherit' }) => (
   </Wrap>
 );
 Collections.propTypes = {
+  handlerClick: PropTypes.func,
   header: PropTypes.string,
   active: PropTypes.bool,
   color: PropTypes.string,
