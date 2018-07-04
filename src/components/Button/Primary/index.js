@@ -12,6 +12,7 @@ ButtonMain.propTypes = {
   handlerClick: PropTypes.func || PropTypes.bool,
   children: PropTypes.string,
   large: PropTypes.bool,
+  color: PropTypes.string,
   second: PropTypes.bool,
   danger: PropTypes.bool,
   small: PropTypes.bool,
@@ -68,6 +69,7 @@ const Main = styled.button`
   background-color: ${props => props.danger && '#ff5454'};
   background-color: ${props => props.second && '#aaa'};
   background-color: ${props => props.disable && '#e5e5e5'};
+  background-color: ${props => props.color};
   text-align: center;
   letter-spacing: 0.5px;
   transition: background-color 0.3s ease-out;

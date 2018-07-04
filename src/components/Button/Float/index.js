@@ -39,6 +39,7 @@ ButtonFloat.propTypes = {
   children: PropTypes.string,
   large: PropTypes.bool,
   second: PropTypes.bool,
+  color: PropTypes.string,
   danger: PropTypes.bool,
   pulse: PropTypes.bool,
   small: PropTypes.bool,
