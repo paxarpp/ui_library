@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Collections from './index';
-import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 import Icon from '../Icon';
 
@@ -20,31 +19,7 @@ const MockData2 = [
 ];
 
 storiesOf('Collections', module)
-  .add(
-    'Collections ',
-    withInfo({
-      header: false,
-      inline: true
-    })(() => <Collections data={MockData} />)
-  )
-  .add(
-    'Collections header',
-    withInfo({
-      header: false,
-      inline: true
-    })(() => <Collections data={MockData} header={MockData[2]} />)
-  )
-  .add(
-    'Collections active ',
-    withInfo({
-      header: false,
-      inline: true
-    })(() => <Collections data={MockData} active handlerClick={action('clicked')} />)
-  )
-  .add(
-    'Collections + icon ',
-    withInfo({
-      header: false,
-      inline: true
-    })(() => <Collections data={MockData2} />)
-  );
+  .add('Collections ', () => <Collections data={MockData} />)
+  .add('Collections header', () => <Collections data={MockData} header={MockData[2]} />)
+  .add('Collections active ', () => <Collections data={MockData} active handlerClick={action('clicked')} />)
+  .add('Collections + icon ', () => <Collections data={MockData2} />);
