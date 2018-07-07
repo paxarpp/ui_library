@@ -87,7 +87,6 @@ const Input = styled.div`
 const Wrapper = styled.div`
   cursor: pointer;
   position: relative;
-  margin: 50px auto;
   width: 250px;
 `;
 const isOpen = props =>
