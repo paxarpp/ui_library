@@ -76,6 +76,12 @@ const Input = styled.div`
     border-right: 5px solid transparent;
     top: calc(50% - 1px);
   }
+  :hover {
+    border-bottom: 1px solid #2bbbad;
+  }
+  :hover:before {
+    border-top: 5px solid #2bbbad;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -96,11 +102,10 @@ const SelectOptions = styled.div`
   width: 100%;
   border-radius: 3px;
   z-index: 100;
-  top: 0;
+  top: 36px;
   left: 0;
   transform: scaleY(0);
   transform-origin: top;
-  padding-top: 30px;
   overflow: hidden;
   transition: all 0.2s linear;
   ${isOpen};
