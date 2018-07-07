@@ -32,11 +32,11 @@ class Slider extends Component {
     this.runInterval();
   };
   render() {
-    const { images, horisontal } = this.props;
+    const { images, horisontal, width, height } = this.props;
     const { current } = this.state;
     return (
-      <WrapSlider>
-        <UlSliders>
+      <WrapSlider width={width} height={height}>
+        <UlSliders height={height}>
           {images.map((img, indx) => (
             <Li key={indx} active={current === indx}>
               <Img src={img.src} active={current === indx} />
@@ -65,20 +65,24 @@ Slider.propTypes = {
     })
   ).isRequired,
   duration: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  horisontal: PropTypes.bool
+  horisontal: PropTypes.bool,
+  width: PropTypes.PropTypes.string,
+  height: PropTypes.PropTypes.number
 };
 Slider.defaultProps = {
-  duration: 5000
+  duration: 5000,
+  width: '100%',
+  height: 400
 };
 const WrapSlider = styled.div`
-  height: 440px;
+  height: ${props => props.height + 40}px;
   position: relative;
-  width: 100%;
+  width: ${props => props.width};
 `;
 const UlSliders = styled.ul`
   background-color: #9e9e9e;
   margin: 0;
-  height: 400px;
+  height: ${props => props.height}px;
   :not(.browser-default) {
     padding-left: 0;
     list-style-type: none;
@@ -164,7 +168,7 @@ const H3 = styled.h3`
   font-weight: 400;
 `;
 const H5 = styled.h5`
-  color: #eee !important;
+  color: #eee;
   font-weight: 300;
 `;
 export default Slider;
