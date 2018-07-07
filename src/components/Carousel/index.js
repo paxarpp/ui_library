@@ -21,16 +21,15 @@ class Carousel extends Component {
   step = () => {
     const { current } = this.state;
     this.setState({
-      current: current.slice(-1, current.length).concat(current.slice(0, -1))
+      current: current.slice(-1).concat(current.slice(0, -1))
     });
   };
   render() {
-    const { duration } = this.props;
     const { current } = this.state;
     return (
       <Wrapper>
         {current.map((img, indx) => (
-          <Item key={indx} href={img.href} duration={duration}>
+          <Item key={indx} href={img.href}>
             <Img src={img.src} />
           </Item>
         ))}
