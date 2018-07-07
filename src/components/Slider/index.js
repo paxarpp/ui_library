@@ -10,14 +10,26 @@ class Slider extends Component {
     };
   }
   componentDidMount() {
-    const max = this.props.images.length;
-    setInterval(this.step(max), +this.props.duration);
+    this.runInterval();
   }
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+  runInterval = () => {
+    this.interval = setInterval(this.step(this.props.images.length), +this.props.duration);
+  };
   step = max => () => {
     const { current } = this.state;
     this.setState({
       current: current < max - 1 ? current + 1 : 0
     });
+  };
+  handler = indx => () => {
+    this.setState({
+      current: indx
+    });
+    clearInterval(this.interval);
+    this.runInterval();
   };
   render() {
     const { images, horisontal } = this.props;
@@ -37,11 +49,7 @@ class Slider extends Component {
         </UlSliders>
         <Indicators>
           {images.map((_, indx) => (
-            <Item
-              onClick={() => this.setState({ current: indx })}
-              key={`indicators${indx}`}
-              active={current === indx}
-            />
+            <Item onClick={this.handler(indx)} key={`indicators${indx}`} active={current === indx} />
           ))}
         </Indicators>
       </WrapSlider>
