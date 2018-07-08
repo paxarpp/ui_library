@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Carousel from './index';
+import { Carousel, CarouselSlider } from './index';
 
 const data = [
   {
@@ -27,4 +27,5 @@ const data = [
 
 storiesOf('Carousel', module)
   .add('Carousel', () => <Carousel images={data} />)
+  .add('CarouselSlider', () => <CarouselSlider />)
   .add('Carousel reverse', () => <Carousel images={data} reverse />);
