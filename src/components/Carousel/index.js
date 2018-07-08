@@ -20,8 +20,9 @@ class Carousel extends Component {
   };
   step = () => {
     const { current } = this.state;
+    const { revert } = this.props;
     this.setState({
-      current: current.slice(-1).concat(current.slice(0, -1))
+      current: revert ? current.slice(1).concat(current.slice(0, 1)) : current.slice(-1).concat(current.slice(0, -1))
     });
   };
   render() {
@@ -44,7 +45,8 @@ Carousel.propTypes = {
       href: PropTypes.string
     })
   ).isRequired,
-  duration: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  duration: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  revert: PropTypes.bool
 };
 Carousel.defaultProps = {
   duration: 1000,
