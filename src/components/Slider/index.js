@@ -64,25 +64,25 @@ Slider.propTypes = {
       text: PropTypes.string
     })
   ).isRequired,
-  duration: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  duration: PropTypes.PropTypes.number,
   horisontal: PropTypes.bool,
   width: PropTypes.PropTypes.string,
-  height: PropTypes.PropTypes.number
+  height: PropTypes.PropTypes.string
 };
 Slider.defaultProps = {
   duration: 5000,
   width: '100%',
-  height: 400
+  height: '400px'
 };
 const WrapSlider = styled.div`
-  height: ${props => props.height + 40}px;
+  height: ${props => props.height};
   position: relative;
   width: ${props => props.width};
 `;
 const UlSliders = styled.ul`
   background-color: #9e9e9e;
   margin: 0;
-  height: ${props => props.height}px;
+  height: ${props => props.height};
   :not(.browser-default) {
     padding-left: 0;
     list-style-type: none;
@@ -140,13 +140,15 @@ const Indicators = styled.ul`
   text-align: center;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 10px;
   margin: 0;
+  z-index: 9;
 `;
 const isActive = props =>
   props.active &&
   css`
     background-color: #4caf50;
+    transform: scale(1.2);
   `;
 const Item = styled.li`
   display: inline-block;
@@ -156,8 +158,7 @@ const Item = styled.li`
   width: 16px;
   margin: 0 12px;
   background-color: #e0e0e0;
-  -webkit-transition: background-color 0.3s;
-  transition: background-color 0.3s;
+  transition: all 0.3s;
   border-radius: 50%;
   ${isActive};
 `;
