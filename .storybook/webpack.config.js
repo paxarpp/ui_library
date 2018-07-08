@@ -10,15 +10,6 @@ module.exports = {
             options: {
               name: 'img/[name][hash].[ext]'
             }
-          },
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              mozjpeg: {
-                progressive: true,
-                quality: 70
-              }
-            }
           }
         ]
       }
