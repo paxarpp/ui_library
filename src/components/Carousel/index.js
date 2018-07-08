@@ -24,8 +24,9 @@ class Carousel extends Component {
   };
   step = () => {
     const { arrIndx } = this.state;
+    const { reverse } = this.props;
     this.setState({
-      arrIndx: arrIndx.slice(-1).concat(arrIndx.slice(0, -1))
+      arrIndx: reverse ? arrIndx.slice(1).concat(arrIndx.slice(0, 1)) : arrIndx.slice(-1).concat(arrIndx.slice(0, -1))
     });
   };
   handler = x => () => {
@@ -61,6 +62,7 @@ Carousel.propTypes = {
     })
   ).isRequired,
   duration: PropTypes.PropTypes.number,
+  reverse: PropTypes.PropTypes.bool,
   width: PropTypes.PropTypes.string,
   height: PropTypes.PropTypes.string
 };

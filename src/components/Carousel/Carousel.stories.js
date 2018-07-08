@@ -27,4 +27,4 @@ const data = [
 
 storiesOf('Carousel', module)
   .add('Carousel', () => <Carousel images={data} />)
-  .add('Carousel revert', () => <Carousel images={data} revert />);
+  .add('Carousel reverse', () => <Carousel images={data} reverse />);
