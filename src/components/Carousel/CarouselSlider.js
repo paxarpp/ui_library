@@ -2,31 +2,6 @@ import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
-const Page1 = () => (
-  <div style={{ background: 'red', height: '100%' }}>
-    <h2>Header page1</h2>
-    <p>Это ваша первая панель</p>
-  </div>
-);
-const Page2 = () => (
-  <div style={{ background: 'blue', height: '100%' }}>
-    <h2>Header page2</h2>
-    <p>Это ваша вторая панель</p>
-  </div>
-);
-const Page3 = () => (
-  <div style={{ background: 'green', height: '100%' }}>
-    <h2>Header page3</h2>
-    <p>Это ваша третья панель</p>
-  </div>
-);
-const Page4 = () => (
-  <div style={{ background: 'brown', height: '100%' }}>
-    <h2>Header page4</h2>
-    <p>Это ваша четвертая панель</p>
-  </div>
-);
-
 class CarouselSlider extends Component {
   constructor(props) {
     super(props);
@@ -34,44 +9,31 @@ class CarouselSlider extends Component {
       active: 0
     };
   }
-  handler = indx => () => {
-    this.setState({
-      active: indx
-    });
-  };
   render() {
+    const { children } = this.props;
     const { active } = this.state;
     return (
-      <div>
-        <Wrapper handler={this.handler} active={active}>
-          <Page1 />
-          <Page2 />
-          <Page3 />
-          <Page4 />
-        </Wrapper>
-      </div>
+      <Wrapper active={active}>
+        {children.map((el, indx) => (
+          <Div key={`div${indx}`} active={active === indx} indx={indx}>
+            {el}
+          </Div>
+        ))}
+        {
+          <Ul>
+            {children.map((el, indx) => (
+              <Li key={`li${indx}`} onClick={() => this.setState({ active: indx })} active={active === indx} />
+            ))}
+          </Ul>
+        }
+      </Wrapper>
     );
   }
 }
 CarouselSlider.propTypes = {
-  width: PropTypes.string
+  children: PropTypes.object
 };
-const Wrapper = styled(({ className, children, handler, active }) => (
-  <div className={className}>
-    {children.map((el, indx) => (
-      <Div key={`div${indx}`} active={active === indx} indx={indx}>
-        {el}
-      </Div>
-    ))}
-    {
-      <Ul>
-        {[...Array(children.length)]
-          .fill(0)
-          .map((el, indx) => <Li key={`li${indx}`} onClick={handler(indx)} active={active === indx} />)}
-      </Ul>
-    }
-  </div>
-))`
+const Wrapper = styled.div`
   height: 400px;
   top: 0;
   left: 0;
@@ -80,9 +42,6 @@ const Wrapper = styled(({ className, children, handler, active }) => (
   overflow: hidden;
   position: relative;
   width: 100%;
-  perspective: 500px;
-  transform-style: preserve-3d;
-  transform-origin: 0% 50%;
 `;
 const Ul = styled.ul`
   position: absolute;

@@ -24,8 +24,39 @@ const data = [
     href: '#'
   }
 ];
+const Page1 = () => (
+  <div style={{ background: 'red', height: '100%' }}>
+    <h2>Header page1</h2>
+    <p>Это ваша первая панель</p>
+  </div>
+);
+const Page2 = () => (
+  <div style={{ background: 'blue', height: '100%' }}>
+    <h2>Header page2</h2>
+    <p>Это ваша вторая панель</p>
+  </div>
+);
+const Page3 = () => (
+  <div style={{ background: 'green', height: '100%' }}>
+    <h2>Header page3</h2>
+    <p>Это ваша третья панель</p>
+  </div>
+);
+const Page4 = () => (
+  <div style={{ background: 'brown', height: '100%' }}>
+    <h2>Header page4</h2>
+    <p>Это ваша четвертая панель</p>
+  </div>
+);
 
 storiesOf('Carousel', module)
   .add('Carousel', () => <Carousel images={data} />)
-  .add('CarouselSlider', () => <CarouselSlider />)
+  .add('CarouselSlider', () => (
+    <CarouselSlider>
+      <Page1 />
+      <Page2 />
+      <Page3 />
+      <Page4 />
+    </CarouselSlider>
+  ))
   .add('Carousel reverse', () => <Carousel images={data} reverse />);
