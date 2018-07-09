@@ -10,15 +10,17 @@ class CarouselSlider extends Component {
     };
   }
   render() {
-    const { children } = this.props;
+    const { children, width } = this.props;
     const { active } = this.state;
     return (
-      <Wrapper active={active}>
-        {children.map((el, indx) => (
-          <Div key={`div${indx}`} active={active === indx} indx={indx}>
-            {el}
-          </Div>
-        ))}
+      <Main width={width}>
+        <Wrapper active={active} width={width}>
+          {children.map((el, indx) => (
+            <Div key={`div${indx}`} active={active} width={width}>
+              {el}
+            </Div>
+          ))}
+        </Wrapper>
         {
           <Ul>
             {children.map((el, indx) => (
@@ -26,22 +28,53 @@ class CarouselSlider extends Component {
             ))}
           </Ul>
         }
-      </Wrapper>
+      </Main>
     );
   }
 }
 CarouselSlider.propTypes = {
-  children: PropTypes.object
+  children: PropTypes.array,
+  width: PropTypes.number
 };
+CarouselSlider.defaultProps = {
+  width: 600
+};
+const Main = styled.div`
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+  width: ${({ width }) => width}px;
+`;
+const isFirst = props =>
+  props.active === 0 &&
+  css`
+    transform: translateX(0);
+  `;
+const isTwo = props =>
+  props.active === 1 &&
+  css`
+    transform: translateX(-${({ width }) => width}px);
+  `;
+const isThree = props =>
+  props.active === 2 &&
+  css`
+    transform: translateX(-${({ width }) => 2 * width}px);
+  `;
+const isFour = props =>
+  props.active === 3 &&
+  css`
+    transform: translateX(-${({ width }) => 3 * width}px);
+  `;
 const Wrapper = styled.div`
   height: 400px;
-  top: 0;
-  left: 0;
-  text-align: center;
-  vertical-align: middle;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
+  width: ${({ width }) => 4 * width}px;
+  display: flex;
+  flex-flow: row nowrap;
+  transition: all 1s cubic-bezier(0.4, 1.21, 1, 0.99);
+  ${isFirst};
+  ${isTwo};
+  ${isThree};
+  ${isFour};
 `;
 const Ul = styled.ul`
   position: absolute;
@@ -57,7 +90,7 @@ const Ul = styled.ul`
 const isActive = props =>
   props.active &&
   css`
-    background-color: #fef;
+    background-color: #fee;
     transform: scale(1.2);
   `;
 const Li = styled.li`
@@ -67,67 +100,14 @@ const Li = styled.li`
   height: 8px;
   width: 8px;
   margin: 24px 4px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 0, 0.5);
   border-radius: 50%;
   transition: all 0.3s linear;
   ${isActive};
 `;
-const isOpen = props =>
-  props.active &&
-  css`
-    transform: translateX(0px);
-    z-index: 1;
-    opacity: 1;
-    visibility: visible;
-  `;
-const isFirst = props =>
-  props.indx === 0 &&
-  css`
-    z-index: -1;
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-430px);
-  `;
-const isTwo = props =>
-  props.indx === 1 &&
-  css`
-    transform: translateX(-860px));
-    z-index: -2;
-    opacity: 1;
-    visibility: visible;
-  `;
-const isThree = props =>
-  props.indx === 2 &&
-  css`
-    transform: translateX(-1290px);
-    z-index: -1;
-    opacity: 1;
-    visibility: visible;
-  `;
-const isFour = props =>
-  props.indx === 3 &&
-  css`
-    transform: translateX(-1720px);
-    z-index: -1;
-    opacity: 1;
-    visibility: visible;
-  `;
+
 const Div = styled.div`
-  background-color: #eee;
-  width: 100%;
   height: 100%;
-  min-height: 400px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  opacity: 0;
-  visibility: visible;
-  transition: all 1s linear;
-  ${isFirst};
-  ${isTwo};
-  ${isThree};
-  ${isFour};
-  ${isOpen};
+  width: ${({ width }) => width}px;
 `;
 export default CarouselSlider;
