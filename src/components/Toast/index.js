@@ -71,13 +71,22 @@ const enter = keyframes`
 const leave = keyframes`
   0%{
     transform: translateY(0);
+    opacity: 1;
+  }
+  20%{
+    opacity: 0.4;
+  }
+  40%{
     opacity: 0.8;
   }
-  90%{
-    opacity: 0;
+  60%{
+    opacity: 0.2;
+  }
+  80%{
+    opacity: 0.8;
   }
   100%{
-    transform: translateY(-500px);
+    transform: translateY(-10px);
     opacity: 0;
   }
 `;
