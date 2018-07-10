@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Switches = ({ disabled, click }) => (
@@ -18,10 +18,6 @@ Switches.propTypes = {
   disabled: PropTypes.bool
 };
 const Wrapper = styled.div`
-  -webkit-tap-highlight-color: transparent;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   & * {
     user-select: none;
@@ -48,13 +44,11 @@ const Input = styled.input`
   }
   &:checked:not(:disabled) ~ span:active:before,
   &:checked:not(:disabled).tabbed:focus ~ span:before {
-    -webkit-transform: scale(2.4);
     transform: scale(2.4);
     background-color: rgba(38, 166, 154, 0.15);
   }
   &:not(:disabled) ~ span:active:before,
   &:not(:disabled).tabbed:focus ~ span:before {
-    -webkit-transform: scale(2.4);
     transform: scale(2.4);
     background-color: rgba(0, 0, 0, 0.08);
   }
@@ -63,7 +57,7 @@ const Input = styled.input`
     background-color: #949494;
   }
 `;
-const beforeAfter = `
+const beforeAfter = css`
   content: '';
   position: absolute;
   display: inline-block;
@@ -72,11 +66,7 @@ const beforeAfter = `
   border-radius: 50%;
   left: 0;
   top: -3px;
-  -webkit-transition: left 0.3s ease, background 0.3s ease, -webkit-box-shadow 0.1s ease, -webkit-transform 0.1s ease;
-  transition: left 0.3s ease, background 0.3s ease, -webkit-box-shadow 0.1s ease, -webkit-transform 0.1s ease;
   transition: left 0.3s ease, background 0.3s ease, box-shadow 0.1s ease, transform 0.1s ease;
-  transition: left 0.3s ease, background 0.3s ease, box-shadow 0.1s ease, transform 0.1s ease,
-    -webkit-box-shadow 0.1s ease, -webkit-transform 0.1s ease;
 `;
 const Span = styled.span`
   content: '';
@@ -87,7 +77,6 @@ const Span = styled.span`
   background-color: rgba(0, 0, 0, 0.38);
   border-radius: 15px;
   margin-right: 10px;
-  -webkit-transition: background 0.3s ease;
   transition: background 0.3s ease;
   vertical-align: middle;
   margin: 0 16px;
@@ -100,8 +89,6 @@ const Span = styled.span`
   &:after {
     ${beforeAfter};
     background-color: #f1f1f1;
-    -webkit-box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
-      0px 1px 5px 0px rgba(0, 0, 0, 0.12);
     box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
       0px 1px 5px 0px rgba(0, 0, 0, 0.12);
   }

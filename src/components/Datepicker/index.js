@@ -41,7 +41,7 @@ class DatePicker extends Component {
         <ModalContent>
           <DatepickerDateDisplay setupDate={setupDate} />
           <DatepickerCalendarContainer>
-            <DatepickerCalendar>
+            <div>
               <DatepickerControls
                 {...this.state}
                 decrimentMonth={this.decrimentMonth}
@@ -49,7 +49,7 @@ class DatePicker extends Component {
                 handlerMonth={month => this.setState({ month })}
                 handlerYear={year => this.setState({ year })}
               />
-              <DatepickerTableWrappeer>
+              <div>
                 <DatepickerTable
                   year={year}
                   month={month}
@@ -58,12 +58,12 @@ class DatePicker extends Component {
                   }}
                   setupDate={setupDate}
                 />
-              </DatepickerTableWrappeer>
+              </div>
               <DatepickerFooter
                 hadlerClose={this.props.hadlerClose}
                 hanlerComplite={this.props.hanlerComplite(this.state.setupDate)}
               />
-            </DatepickerCalendar>
+            </div>
           </DatepickerCalendarContainer>
         </ModalContent>
       </DatepickerModal>
@@ -92,8 +92,6 @@ const DatepickerModal = styled.div`
   opacity: 1;
   top: 10%;
   transform: scaleX(1) scaleY(1);
-  -webkit-box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12),
-    0 11px 15px -7px rgba(0, 0, 0, 0.2);
   box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12),
     0 11px 15px -7px rgba(0, 0, 0, 0.2);
   :focus {
@@ -105,27 +103,15 @@ const DatepickerModal = styled.div`
   }
 `;
 const ModalContent = styled.div`
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   @media only screen and (min-width: 601px) {
     flex-direction: row;
   }
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   padding: 0;
 `;
 const DatepickerCalendarContainer = styled.div`
-  -webkit-box-flex: 2.5;
-  -webkit-flex: 2.5 auto;
-  -ms-flex: 2.5 auto;
   flex: 2.5 auto;
 `;
-const DatepickerCalendar = styled.div``;
-const DatepickerTableWrappeer = styled.div``;
 
 export default DatePicker;

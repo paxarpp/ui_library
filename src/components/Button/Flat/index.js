@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 const ButtonMain = ({ children, handlerClick, disable, ...props }) => (
   <Main onClick={disable ? null : handlerClick} {...props} disable={disable}>
@@ -68,52 +68,53 @@ const rippleSec = keyframes`
   }
 }
 `;
-const large = `
-  height: 54px;
-  line-height: 54px;
-  font-size: 16px;
-  padding: 0 28px;
-`;
+const isLarge = props =>
+  props.large &&
+  css`
+    height: 54px;
+    line-height: 54px;
+    font-size: 16px;
+    padding: 0 28px;
+  `;
 
-const small = `
-  height: 32px;
-  line-height: 32px;
-  font-size: 13px;
-  padding: 0 14px;
-`;
-const norm = `
-  height: 36px;
-  line-height: 36px;
-  padding: 0 16px;
-  font-size: 14px;
-`;
-const disabledBtn = `
-  pointer-events: none;
-  background-color: #DFDFDF !important;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  color: #9F9F9F !important;
-  cursor: default;
-`;
+const isSmall = props =>
+  props.small &&
+  css`
+    height: 32px;
+    line-height: 32px;
+    font-size: 13px;
+    padding: 0 14px;
+  `;
+const isDisable = props =>
+  props.disable &&
+  css`
+    pointer-events: none;
+    background-color: #dfdfdf !important;
+    box-shadow: none;
+    color: #9f9f9f !important;
+    cursor: default;
+  `;
 const Main = styled.button`
   position: relative;
   overflow: hidden;
   border: none;
   border-radius: 2px;
   display: inline-block;
-  ${props => !props.large && !props.small && norm};
-  ${props => props.large && large};
-  ${props => props.small && small};
+  height: 36px;
+  line-height: 36px;
+  padding: 0 16px;
+  font-size: 14px;
+  ${isLarge};
+  ${isSmall};
   text-transform: uppercase;
   vertical-align: middle;
-  -webkit-tap-highlight-color: transparent;
   color: #343434;
   background-color: transparent;
   text-align: center;
   letter-spacing: 0.5px;
   cursor: ${props => !props.disable && 'pointer'};
   outline: none;
-  ${props => props.disable && disabledBtn};
+  ${isDisable};
   :after {
     content: '';
     position: absolute;
@@ -127,7 +128,7 @@ const Main = styled.button`
     transform: scale(1, 1) translate(-50%);
     transform-origin: 50% 50%;
   }
-  :focus:not(:active)::after {
+  :focus:not(:active):after {
     animation: ${props => (!props.disable && props.danger ? rippleRed : props.second ? rippleSec : ripple)} 1s ease-out;
   }
 `;

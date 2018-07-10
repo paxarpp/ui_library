@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 import Li from './Li';
@@ -39,13 +39,15 @@ Collapsible.propTypes = {
     })
   )
 };
-const border = `
-  border-top: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  border-left: 1px solid #ddd;
-`;
+const isBorder = props =>
+  !props.popout &&
+  css`
+    border-top: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+  `;
 const WrapperCollapsible = styled.ul`
-  ${props => !props.popout && border};
+  ${isBorder};
   margin: 0.5rem 0 1rem 0;
   padding-left: 0;
   list-style-type: none;

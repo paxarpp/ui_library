@@ -28,16 +28,9 @@ const Wrapper = styled.div`
   height: 11em;
   border-radius: 50%;
   background: ${props => props.color};
-  background: -moz-linear-gradient(left, ${props => props.color} 10%, rgba(255, 255, 255, 0) 42%);
-  background: -webkit-linear-gradient(left, ${props => props.color} 10%, rgba(255, 255, 255, 0) 42%);
-  background: -o-linear-gradient(left, ${props => props.color} 10%, rgba(255, 255, 255, 0) 42%);
-  background: -ms-linear-gradient(left, ${props => props.color} 10%, rgba(255, 255, 255, 0) 42%);
   background: linear-gradient(to right, ${props => props.color} 10%, rgba(255, 255, 255, 0) 42%);
   position: relative;
-  -webkit-animation: ${load3} 1.4s infinite linear;
   animation: ${load3} 1.4s infinite linear;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
   transform: translateZ(0);
   :before {
     width: 50%;

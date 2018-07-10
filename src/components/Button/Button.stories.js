@@ -61,8 +61,8 @@ storiesOf('Button', module)
   .add('Float second disable', () => <Float handlerClick={action('clicked')} large disable />)
   .add('Float danger small pulse', () => <Float handlerClick={action('clicked')} small danger pulse />)
   .add('Float danger small', () => <Float handlerClick={action('clicked')} small danger />)
-  .add('Float danger small with children', () => (
-    <Float handlerClick={action('clicked')} small danger>
+  .add('Float danger large with children', () => (
+    <Float handlerClick={action('clicked')} large danger>
       DEL
     </Float>
   ));

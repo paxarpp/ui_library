@@ -72,7 +72,7 @@ const Li = styled.li`
   padding: 5px 10px;
   border-radius: 2px;
   transition: background-color 0.3s linear;
-  &: hover {
+  :hover {
     background-color: #69b2ab;
   }
 `;

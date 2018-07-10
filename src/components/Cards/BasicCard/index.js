@@ -26,13 +26,8 @@ const Wrap = styled.div`
   background-color: ${props => props.bgColor};
   position: relative;
   margin: 0.5rem 0 1rem 0;
-  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12),
-    0 1px 5px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-  -webkit-transition: -webkit-box-shadow 0.25s;
-  transition: -webkit-box-shadow 0.25s;
   transition: box-shadow 0.25s;
-  transition: box-shadow 0.25s, -webkit-box-shadow 0.25s;
   border-radius: 2px;
 `;
 const Content = styled.div`
@@ -54,9 +49,9 @@ const CardAction = styled.div`
   a {
     color: #ffab40;
     margin-right: 24px;
-    -webkit-transition: color 0.3s ease;
     transition: color 0.3s ease;
     text-transform: uppercase;
+  }
 `;
 const Title = styled.span`
   color: ${props => props.color};

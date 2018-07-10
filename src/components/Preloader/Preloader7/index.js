@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Preloader7 = ({ size = '14px', color = 'grey' }) => <Wrapper size={size} color={color} />;
@@ -17,13 +17,11 @@ const load7 = keyframes`
     box-shadow: 0 2.5em 0 0;
   }
 `;
-const style = `
+const style = css`
   border-radius: 50%;
   width: 2.5em;
   height: 2.5em;
-  -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
-  -webkit-animation: ${load7} 1.8s infinite ease-in-out;
   animation: ${load7} 1.8s infinite ease-in-out;
 `;
 const Wrapper = styled.div`
@@ -33,10 +31,7 @@ const Wrapper = styled.div`
   margin: 80px auto;
   position: relative;
   text-indent: -9999em;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
   transform: translateZ(0);
-  -webkit-animation-delay: -0.16s;
   animation-delay: -0.16s;
   :before,
   :after {
@@ -47,7 +42,6 @@ const Wrapper = styled.div`
   }
   :before {
     left: -3.5em;
-    -webkit-animation-delay: -0.32s;
     animation-delay: -0.32s;
   }
   :after {

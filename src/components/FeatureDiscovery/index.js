@@ -65,8 +65,7 @@ const TapTargetWrapper = styled.div`
 const TapTarget = styled.div`
   transform: scale(1);
   opacity: 0.95;
-  transition: transform 0.3s cubic-bezier(0.42, 0, 0.58, 1), opacity 0.3s cubic-bezier(0.42, 0, 0.58, 1),
-    -webkit-transform 0.3s cubic-bezier(0.42, 0, 0.58, 1);
+  transition: transform 0.3s cubic-bezier(0.42, 0, 0.58, 1), opacity 0.3s cubic-bezier(0.42, 0, 0.58, 1);
   position: absolute;
   font-size: 1rem;
   border-radius: 50%;

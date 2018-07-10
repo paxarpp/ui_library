@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { Flat } from '../Button';
@@ -36,16 +36,19 @@ const animIsopen = keyframes`
       transform: scaleX(1) scaleY(1);
     }
 `;
-const OpenStyle = `
-  z-index: 1003;
-  display: block;
-  opacity: 1;
-  top: 10%;
-  transform: scaleX(1) scaleY(1);
-  box-sizing: border-box;
-  box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.2);
-  animation: ${animIsopen} 0.3s;
-`;
+const isOpen = props =>
+  props.isOpen &&
+  css`
+    z-index: 1003;
+    display: block;
+    opacity: 1;
+    top: 10%;
+    transform: scaleX(1) scaleY(1);
+    box-sizing: border-box;
+    box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12),
+      0 11px 15px -7px rgba(0, 0, 0, 0.2);
+    animation: ${animIsopen} 0.3s;
+  `;
 const WrapperModal = styled.div`
   display: none;
   transform: scaleX(0) scaleY(0);
@@ -69,7 +72,7 @@ const WrapperModal = styled.div`
   h4 {
     margin-top: 0;
   }
-  ${props => props.isOpen && OpenStyle};
+  ${isOpen};
 `;
 const ModalContent = styled.div`
   padding: 24px;

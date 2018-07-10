@@ -78,10 +78,10 @@ const Input = styled.input`
   margin: 15px 0;
   padding: 0;
   -webkit-appearance: none;
-  &:focus {
+  :focus {
     outline: none;
   }
-  &:hover + span {
+  :hover + span {
     display: block;
     position: absolute;
     top: -30px;
@@ -93,7 +93,7 @@ const Input = styled.input`
     border-radius: 50% 50% 50% 0;
     animation: ${showThumb} 0.3s linear;
   }
-  &:hover + span > span {
+  :hover + span > span {
     display: ${props => props.currentX && 'block'};
     width: 30px;
     text-align: center;

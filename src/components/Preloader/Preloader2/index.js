@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Preloader2 = ({ color = '#26a69a', size = '50px' }) => (
@@ -77,7 +77,7 @@ const Circle = styled.div`
   border-radius: 50%;
   box-sizing: inherit;
 `;
-const circle_clipper = `
+const circle_clipper = css`
   display: inline-block;
   position: relative;
   width: 50%;
@@ -94,7 +94,7 @@ const Right = styled.div`
   ${circle_clipper};
   float: right !important;
 `;
-const styleCircle = `
+const styleCircle = css`
   width: 200%;
   height: 100%;
   border-width: 3px;

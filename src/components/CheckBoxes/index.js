@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 class CheckBoxes extends Component {
@@ -33,13 +33,13 @@ const Label = styled.label`
   color: #9e9e9e;
   box-sizing: border-box;
 `;
-const beforeSpan1 = `
+const beforeSpan1 = css`
   :before {
     border: none;
     background-color: rgba(0, 0, 0, 0.42);
   }
 `;
-const beforeSpan2 = `
+const beforeSpan2 = css`
   :before {
     top: -4px;
     left: -5px;
@@ -54,13 +54,13 @@ const beforeSpan2 = `
     transform-origin: 100% 100%;
   }
 `;
-const beforeSpan3 = `
+const beforeSpan3 = css`
   :before {
     border-right: 2px solid rgba(0, 0, 0, 0.42);
     border-bottom: 2px solid rgba(0, 0, 0, 0.42);
   }
 `;
-const spanAftBef = `
+const spanAftBef = css`
   :after {
     border-radius: 2px;
     content: '';
@@ -77,7 +77,7 @@ const spanAftBef = `
     z-index: 1;
   }
 `;
-const spanAftBefNotCheck = `
+const spanAftBefNotCheck = css`
   :before {
     width: 0;
     height: 0;
@@ -96,7 +96,7 @@ const spanAftBefNotCheck = `
     z-index: 0;
   }
 `;
-const spanAftBefCheck = `
+const spanAftBefCheck = css`
   :before {
     top: 0;
     left: 1px;
@@ -118,7 +118,7 @@ const spanAftBefCheck = `
     z-index: 0;
   }
 `;
-const spanAftBefDisableNotCheck = `
+const spanAftBefDisableNotCheck = css`
   :before {
     background-color: transparent;
     border: 2px solid transparent;
@@ -128,7 +128,7 @@ const spanAftBefDisableNotCheck = `
     background-color: #949494;
   }
 `;
-const spanAftBefDisableCheck = `
+const spanAftBefDisableCheck = css`
   :before {
     background-color: transparent;
   }

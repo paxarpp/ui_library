@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 const ButtonMain = ({ children, handlerClick, disable, border, rounded, ...props }) => (
   <Main onClick={disable ? null : handlerClick} {...props} border={border} disable={disable} rounded={rounded}>
@@ -35,22 +35,21 @@ const ripple = keyframes`
   }
 }
 `;
-const large = `
-  height: 54px;
-  font-size: 16px;
-  padding: 0 28px;
-`;
+const isLarge = props =>
+  props.large &&
+  css`
+    height: 54px;
+    font-size: 16px;
+    padding: 0 28px;
+  `;
 
-const small = `
-  height: 32px;
-  font-size: 13px;
-  padding: 0 14px;
-`;
-const norm = `
-  height: 36px;
-  padding: 0 16px;
-  font-size: 14px;
-`;
+const isSmall = props =>
+  props.small &&
+  css`
+    height: 32px;
+    font-size: 13px;
+    padding: 0 14px;
+  `;
 const Main = styled.button`
   position: relative;
   overflow: hidden;
@@ -58,9 +57,11 @@ const Main = styled.button`
   box-sizing: border-box;
   border-radius: ${props => (props.rounded ? '25px' : '2px')};
   display: inline-block;
-  ${props => !props.large && !props.small && norm};
-  ${props => props.large && large};
-  ${props => props.small && small};
+  height: 36px;
+  padding: 0 16px;
+  font-size: 14px;
+  ${isLarge};
+  ${isSmall};
   text-transform: uppercase;
   vertical-align: middle;
   text-decoration: none;

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 const Add = ({ color = '#fff', size = 24 }) => (
   <svg
@@ -77,39 +77,41 @@ const ripple = keyframes`
   }
 }
 `;
-const large = `
-  height: 56px;
-  width: 56px;
-`;
-const small = `
-  height: 32px;
-  width: 32px;
-`;
-const norm = `
-  height: 40px;
-  width: 40px;
-`;
-const pulseStyle = `
-  overflow: visible;
-  position: relative;
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: inherit;
-    border-radius: inherit;
-    -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
-    transition: opacity 0.3s, -webkit-transform 0.3s;
-    transition: opacity 0.3s, transform 0.3s;
-    transition: opacity 0.3s, transform 0.3s, -webkit-transform 0.3s;
-    animation: ${pulseAnimation} 1s cubic-bezier(0.24, 0, 0.38, 1) infinite;
-    z-index: -1;
-  }
-`;
+const isLarge = props =>
+  props.large &&
+  css`
+    height: 56px;
+    width: 56px;
+  `;
+const isSmall = props =>
+  props.small &&
+  css`
+    height: 32px;
+    width: 32px;
+  `;
+const isPulse = props =>
+  props.pulse &&
+  css`
+    overflow: visible;
+    position: relative;
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: inherit;
+      border-radius: inherit;
+      -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+      transition: opacity 0.3s, -webkit-transform 0.3s;
+      transition: opacity 0.3s, transform 0.3s;
+      transition: opacity 0.3s, transform 0.3s, -webkit-transform 0.3s;
+      animation: ${pulseAnimation} 1s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+      z-index: -1;
+    }
+  `;
 const Main = styled.button`
   position: relative;
   overflow: hidden;
@@ -129,9 +131,10 @@ const Main = styled.button`
   vertical-align: middle;
   border: none;
   outline: none;
-  ${props => !props.large && !props.small && norm};
-  ${props => props.large && large};
-  ${props => props.small && small};
+  height: 40px;
+  width: 40px;
+  ${isLarge};
+  ${isSmall};
   ${props =>
     !props.disable &&
     'box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)'};
@@ -142,7 +145,7 @@ const Main = styled.button`
       !props.disable &&
       'box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2)'};
   }
-  ${props => props.pulse && pulseStyle};
+  ${isPulse};
   :after {
     content: '';
     position: absolute;

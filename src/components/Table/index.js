@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Table = ({ data, ...props }) => (
@@ -30,7 +30,7 @@ const TableWrap = styled.table`
 const Tr = styled.tr`
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 `;
-const tdth = `
+const tdth = css`
   padding: 15px 5px;
   display: table-cell;
   text-align: left;
