@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 
 class Toast extends Component {
@@ -11,13 +11,22 @@ class Toast extends Component {
   }
 
   addToast = () => {
+    setTimeout(this.deleteFirstToast, this.props.duration);
     this.setState({
-      toasts: this.state.toasts.concat(setTimeout(this.deleteFirstToast, this.props.duration))
+      toasts: this.state.toasts.concat('active')
     });
   };
   deleteFirstToast = () => {
+    const { toasts } = this.state;
     this.setState({
-      toasts: this.state.toasts.filter((el, indx) => indx !== 0 && el)
+      toasts: toasts.map((el, indx) => (indx === 0 ? 'end' : 'active'))
+    });
+    setTimeout(this.clearFirstToast, 300);
+  };
+  clearFirstToast = () => {
+    const { toasts } = this.state;
+    this.setState({
+      toasts: toasts.slice(1)
     });
   };
   render() {
@@ -27,7 +36,7 @@ class Toast extends Component {
       <div>
         <button onClick={this.addToast}>add</button>
         {toasts.map((el, indx) => (
-          <Div index={indx} key={indx} width={width} height={height}>
+          <Div end={el === 'end'} index={indx} key={indx} width={width} height={height}>
             {this.props.children}
           </Div>
         ))}
@@ -59,6 +68,24 @@ const enter = keyframes`
     opacity: 1;
   }
 `;
+const leave = keyframes`
+  0%{
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  90%{
+    opacity: 0;
+  }
+  100%{
+    transform: translateY(-500px);
+    opacity: 0;
+  }
+`;
+const isEnd = props =>
+  props.end &&
+  css`
+    animation: ${leave} 0.3s forwards;
+  `;
 const Div = styled.div`
   position: fixed;
   top: ${props => 50 + props.index * (props.height + 10)}px;
@@ -73,5 +100,6 @@ const Div = styled.div`
   align-items: center;
   overflow: hidden;
   animation: ${enter} 0.8s;
+  ${isEnd};
 `;
 export default Toast;
