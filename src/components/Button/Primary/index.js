@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
-const ButtonMain = ({ children, handlerClick, disable, ...props }) => (
-  <Main onClick={disable ? null : handlerClick} {...props} disable={disable}>
+const ButtonMain = ({ children, handlerClick, disable, border, rounded, ...props }) => (
+  <Main onClick={disable ? null : handlerClick} {...props} border={border} disable={disable} rounded={rounded}>
     {children}
   </Main>
 );
@@ -16,7 +16,9 @@ ButtonMain.propTypes = {
   second: PropTypes.bool,
   danger: PropTypes.bool,
   small: PropTypes.bool,
-  disable: PropTypes.bool
+  disable: PropTypes.bool,
+  border: PropTypes.bool,
+  rounded: PropTypes.bool
 };
 const ripple = keyframes`
   0% {
@@ -35,28 +37,26 @@ const ripple = keyframes`
 `;
 const large = `
   height: 54px;
-  line-height: 54px;
   font-size: 16px;
   padding: 0 28px;
 `;
 
 const small = `
   height: 32px;
-  line-height: 32px;
   font-size: 13px;
   padding: 0 14px;
 `;
 const norm = `
   height: 36px;
-  line-height: 36px;
   padding: 0 16px;
   font-size: 14px;
 `;
 const Main = styled.button`
   position: relative;
   overflow: hidden;
-  border: none;
-  border-radius: 2px;
+  border: ${props => (props.border ? '2px solid #aaa' : 'none')};
+  box-sizing: border-box;
+  border-radius: ${props => (props.rounded ? '25px' : '2px')};
   display: inline-block;
   ${props => !props.large && !props.small && norm};
   ${props => props.large && large};
@@ -64,12 +64,13 @@ const Main = styled.button`
   text-transform: uppercase;
   vertical-align: middle;
   text-decoration: none;
-  color: #fff;
+  color: ${props => (props.border ? 'inherit' : '#fff')};
   background-color: #26a69a;
   background-color: ${props => props.danger && '#ff5454'};
   background-color: ${props => props.second && '#aaa'};
   background-color: ${props => props.disable && '#e5e5e5'};
   background-color: ${props => props.color};
+  background-color: ${props => props.border && 'transparent'};
   text-align: center;
   letter-spacing: 0.5px;
   transition: background-color 0.3s ease-out;
@@ -77,13 +78,17 @@ const Main = styled.button`
   outline: none;
   ${props =>
     !props.disable &&
+    !props.border &&
     'box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)'};
   :hover {
-    ${props => !props.disable && 'background-color:'} ${props =>
+    ${props => !props.disable && !props.border && 'background-color:'} ${props =>
       (props.danger && 'red') || (props.second && '#aab') || '#2bbbad'};
     ${props =>
       !props.disable &&
+      !props.border &&
       'box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2)'};
+    ${props => !props.disable && props.border && 'border-color:'} ${props =>
+      (props.danger && 'red') || (props.second && '#aab') || props.color || '#2bbbad'};
   }
   :after {
     content: '';
@@ -99,7 +104,7 @@ const Main = styled.button`
     transform-origin: 50% 50%;
   }
   :focus:not(:active)::after {
-    animation: ${props => !props.disable && ripple} 1s ease-out;
+    animation: ${props => !props.disable && !props.border && ripple} 1s ease-out;
   }
 `;
 

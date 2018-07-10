@@ -36,6 +36,26 @@ storiesOf('Button', module)
       войти
     </Primary>
   ))
+  .add('button Primary danger large rounded', () => (
+    <Primary handlerClick={action('clicked')} large danger rounded>
+      rounded
+    </Primary>
+  ))
+  .add('button Primary small rounded', () => (
+    <Primary handlerClick={action('clicked')} small rounded>
+      rounded
+    </Primary>
+  ))
+  .add('button Primary large border', () => (
+    <Primary handlerClick={action('clicked')} border large>
+      border
+    </Primary>
+  ))
+  .add('button Primary rounded border color="pink"', () => (
+    <Primary handlerClick={action('clicked')} rounded border color="pink">
+      rounded
+    </Primary>
+  ))
   .add('Float', () => <Float handlerClick={action('clicked')} />)
   .add('Float second large', () => <Float handlerClick={action('clicked')} large second />)
   .add('Float second disable', () => <Float handlerClick={action('clicked')} large disable />)
