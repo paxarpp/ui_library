@@ -1,11 +1,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Dropdown from './index';
+import { boolean } from '@storybook/addon-knobs';
 
 import Divider from '../Divider';
 
 storiesOf('Dropdown', module).add('Dropdown ', () => (
-  <Dropdown skip={3}>
+  <Dropdown skip={3} active={boolean('active', false)}>
     <span>1</span>
     <span>2</span>
     <Divider max />
