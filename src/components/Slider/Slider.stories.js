@@ -28,5 +28,5 @@ const data = [
 storiesOf('Slider', module)
   .add('Slider', () => <Slider images={data} />)
   .add('Slider duration=3000 horisontal width=400px height=300px', () => (
-    <Slider images={data} horisontal duration="3000" width="400px" height="300px" />
+    <Slider images={data} horisontal duration={3000} width="400px" height="300px" />
   ));

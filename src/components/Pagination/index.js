@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { Flat } from '../Button';
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 
 class Pagination extends Component {
   constructor(props) {
@@ -41,7 +41,7 @@ class Pagination extends Component {
       <div>
         <Wrap>
           <Li>
-            <WrapIcon name="LeftArrow" onClick={this.decriment} disable={currentPage === 1} />
+            <WrapIcon name="leftArrow" onClick={this.decriment} disable={currentPage === 1} />
           </Li>
           {this.preparePaginat().map(el => (
             <Li key={el}>
@@ -54,7 +54,7 @@ class Pagination extends Component {
             </Li>
           ))}
           <Li>
-            <WrapIcon name="RightArrow" onClick={this.incriment} disable={currentPage === maxPages} />
+            <WrapIcon name="rightArrow" onClick={this.incriment} disable={currentPage === maxPages} />
           </Li>
         </Wrap>
       </div>

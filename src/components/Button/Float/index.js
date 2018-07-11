@@ -2,48 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css, keyframes } from 'styled-components';
 
-const Add = ({ color = '#fff', size = 24 }) => (
-  <svg
-    version="1.1"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlnsXlink="http://www.w3.org/1999/xlink"
-    x="0px"
-    y="0px"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill={color}
-  >
-    <g id="Bounding_Boxes">
-      <g id="ui_x5F_spec_x5F_header_copy_3" display="none" />
-      <path fill="none" d="M0,0h24v24H0V0z" />
-    </g>
-    <g id="Sharp">
-      <g id="ui_x5F_spec_x5F_header_copy_4" display="none" />
-      <path d="M19,13h-6v6h-2v-6H5v-2h6V5h2v6h6V13z" />
-    </g>
-  </svg>
-);
+import { Icon } from '../../Icon';
 
-const ButtonFloat = ({ children, handlerClick, disable, ...props }) => (
-  <Main onClick={disable ? null : handlerClick} {...props} disable={disable}>
-    {children ? children : <Add />}
+const ButtonFloat = ({ children, handlerClick, disable, className, ...props }) => (
+  <Main onClick={disable ? null : handlerClick} {...props} disable={disable} className={className}>
+    {children ? children : <Icon name="add" />}
   </Main>
 );
-Add.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
 ButtonFloat.propTypes = {
   handlerClick: PropTypes.func,
-  children: PropTypes.string,
+  children: PropTypes.any,
   large: PropTypes.bool,
   second: PropTypes.bool,
   color: PropTypes.string,
   danger: PropTypes.bool,
   pulse: PropTypes.bool,
   small: PropTypes.bool,
-  disable: PropTypes.bool
+  disable: PropTypes.bool,
+  /** для совместимости с обертками */
+  className: PropTypes.string
 };
 const pulseAnimation = keyframes`
   0% {
@@ -163,5 +140,4 @@ const Main = styled.button`
     animation: ${props => !props.disable && ripple} 1s ease-out;
   }
 `;
-
 export default ButtonFloat;

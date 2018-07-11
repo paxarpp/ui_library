@@ -3,7 +3,7 @@ import styled, { css, keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { Float } from '../Button';
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 
 class FeatureDiscovery extends Component {
   constructor(props) {
@@ -25,7 +25,7 @@ class FeatureDiscovery extends Component {
         </TapTarget>
         <TapTargetWave open={open}>
           <WrapFloat large color="cyan" handlerClick={() => this.setState({ open: !open })}>
-            <Icon name="Menu" />
+            <Icon name="menu" />
           </WrapFloat>
         </TapTargetWave>
       </TapTargetWrapper>
@@ -42,7 +42,6 @@ const WrapFloat = styled(Float)`
   bottom: 45px;
   right: 40px;
   position: fixed;
-  padding-top: 7px;
   margin-bottom: 0;
   z-index: 997;
 `;

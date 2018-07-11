@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 
-import Icon from '../../Icon';
+import { Icon } from '../../Icon';
 
 class CardReveal extends Component {
   constructor() {
@@ -16,20 +16,20 @@ class CardReveal extends Component {
     const { open } = this.state;
     return (
       <Wrapper bgColor={bgColor} textColor={textColor}>
-        <CardImage className="waves-effect waves-block waves-light">
+        <CardImage>
           <Img onClick={() => this.setState({ open: !open })} activator src={url} />
         </CardImage>
         <CardContent>
-          <CardTitle onClick={() => this.setState({ open: !open })} activator className="grey-text text-darken-4">
-            {header} <Icon name="UnfoldMore" />
+          <CardTitle onClick={() => this.setState({ open: !open })} activator>
+            {header} <Icon name="unfoldMore" />
           </CardTitle>
           <P>
             <a href="#">This is a link</a>
           </P>
         </CardContent>
         <CardRev open={open}>
-          <CardTitle className="grey-text text-darken-4">
-            {header} <Icon name="Clear" onClick={() => this.setState({ open: !open })} />
+          <CardTitle>
+            {header} <Icon name="clear" onClick={() => this.setState({ open: !open })} />
           </CardTitle>
           <p>{children}</p>
         </CardRev>

@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Collections from './index';
 import { action } from '@storybook/addon-actions';
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 
 const MockData = [
   'Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.',
@@ -10,12 +10,12 @@ const MockData = [
   'Lorem ipsum dolor sit amet'
 ];
 const MockData2 = [
-  ['Lorem ipsum dolor', <Icon key={'1'} name="Create" onClick={action('clicked')} />],
+  ['Lorem ipsum dolor', <Icon key={'1'} name="create" onClick={action('clicked')} />],
   [
     'Sit ametLorem ametLorem ipsum dolor sit amet',
-    <Icon key={'3'} name="Done" color="green" onClick={action('clicked')} />
+    <Icon key={'3'} name="done" color="green" onClick={action('clicked')} />
   ],
-  ['Ipsum dolor sit amet', <Icon key={'2'} name="Create" onClick={action('clicked')} />]
+  ['Ipsum dolor sit amet', <Icon key={'2'} name="create" onClick={action('clicked')} />]
 ];
 
 storiesOf('Collections', module)

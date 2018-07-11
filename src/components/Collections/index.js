@@ -17,7 +17,7 @@ const Collections = ({ data, active, header, color = 'inherit', handlerClick }) 
       ))}
     {active &&
       data.map((elem, indx) => (
-        <LiA active={active} key={indx}>
+        <LiA key={indx}>
           <Link href="#!" color={color} onClick={handlerClick}>
             {elem}
           </Link>
@@ -53,16 +53,17 @@ const Li = styled.li`
 `;
 const LiA = styled(Li)`
   width: 100%;
-`;
-const Link = styled.a`
-  text-decoration: none;
-  display: block;
   transition: 0.25s;
-  padding: 10px 20px;
-  color: ${props => props.color === 'inherit' && '#26a69a'};
   :hover {
     background-color: #ddd;
   }
+`;
+const Link = styled.a`
+  text-decoration: none;
+  width: 100%;
+  display: block;
+  padding: 10px 20px;
+  color: ${props => props.color === 'inherit' && '#26a69a'};
 `;
 const Head = styled.h4`
   font-size: 2.28rem;

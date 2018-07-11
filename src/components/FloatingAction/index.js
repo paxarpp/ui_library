@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 import { Float } from '../Button';
 
 class FloatingAction extends Component {
@@ -16,12 +16,12 @@ class FloatingAction extends Component {
     const { children, name, color, toggle, ...props } = this.props;
     const { open } = this.state;
     return (
-      <Wrapper {...props} onMouseLeave={!toggle && (() => this.setState({ open: false }))}>
+      <Wrapper {...props} onMouseLeave={!toggle ? () => this.setState({ open: false }) : undefined}>
         <MainFloat
           large
           color={color}
           {...props}
-          onMouseEnter={!toggle && (() => this.setState({ open: true }))}
+          onMouseEnter={!toggle ? () => this.setState({ open: true }) : undefined}
           handlerClick={toggle && (() => this.setState({ open: !open }))}
         >
           <Icon name={name} />
