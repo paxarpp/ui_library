@@ -2,10 +2,10 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
-const Dropdown = ({ children, skip, width = '100px', active = true, onClick }) => (
+const Dropdown = ({ children, width = '100px', active = true, onClick }) => (
   <Ul width={width} active={active} onClick={onClick}>
     {children.map((el, indx) => (
-      <Li skip={skip === indx + 1} key={indx}>
+      <Li skip={el.type.name === 'Divider'} key={indx}>
         {el}
       </Li>
     ))}
@@ -14,7 +14,6 @@ const Dropdown = ({ children, skip, width = '100px', active = true, onClick }) =
 Dropdown.propTypes = {
   onClick: PropTypes.func,
   children: PropTypes.array.isRequired,
-  skip: PropTypes.number,
   width: PropTypes.string,
   active: PropTypes.bool
 };

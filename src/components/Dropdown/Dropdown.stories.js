@@ -6,7 +6,7 @@ import { boolean } from '@storybook/addon-knobs';
 import Divider from '../Divider';
 
 storiesOf('Dropdown', module).add('Dropdown ', () => (
-  <Dropdown skip={3} active={boolean('active', false)}>
+  <Dropdown active={boolean('active', false)}>
     <span>1</span>
     <span>2</span>
     <Divider max />
