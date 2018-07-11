@@ -83,10 +83,8 @@ const UlSliders = styled.ul`
   background-color: #9e9e9e;
   margin: 0;
   height: ${props => props.height};
-  :not(.browser-default) {
-    padding-left: 0;
-    list-style-type: none;
-  }
+  padding-left: 0;
+  list-style-type: none;
 `;
 const isActiveLi = props =>
   props.active &&

@@ -83,7 +83,6 @@ const DatepickerModal = styled.div`
   width: 55%;
   margin: auto;
   border-radius: 2px;
-  will-change: top, opacity;
   max-width: 325px;
   min-width: 310px;
   max-height: none;

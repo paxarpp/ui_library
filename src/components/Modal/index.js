@@ -62,7 +62,6 @@ const WrapperModal = styled.div`
   margin: auto;
   overflow-y: auto;
   border-radius: 2px;
-  will-change: top, opacity;
   @media only screen and (max-width: 992px) {
     width: 80%;
   }
