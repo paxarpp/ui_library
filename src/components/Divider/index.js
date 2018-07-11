@@ -2,7 +2,11 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
-const Divider = ({ children, ...props }) => <Wrap {...props}>{children}</Wrap>;
+const Divider = ({ children, max, end, start }) => (
+  <Wrap max={max} end={end} start={start}>
+    {children}
+  </Wrap>
+);
 Divider.propTypes = {
   max: PropTypes.bool,
   children: PropTypes.any,
