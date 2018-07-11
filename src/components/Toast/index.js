@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
+import transition from 'styled-transition-group';
 
 class Toast extends Component {
   constructor(props) {
@@ -36,7 +37,7 @@ class Toast extends Component {
       <div>
         <button onClick={this.addToast}>add</button>
         {toasts.map((el, indx) => (
-          <Div end={el === 'end'} index={indx} key={indx} width={width} height={height}>
+          <Div end={el === 'end' ? true : undefined} index={indx} key={indx} width={width} height={height}>
             {this.props.children}
           </Div>
         ))}
