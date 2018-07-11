@@ -25,17 +25,14 @@ ButtonFloat.propTypes = {
 const pulseAnimation = keyframes`
   0% {
     opacity: 1;
-    -webkit-transform: scale(1);
             transform: scale(1);
   }
   50% {
     opacity: 0;
-    -webkit-transform: scale(1.5);
             transform: scale(1.5);
   }
   100% {
     opacity: 0;
-    -webkit-transform: scale(1.5);
             transform: scale(1.5);
   }
 `;
@@ -81,10 +78,7 @@ const isPulse = props =>
       left: 0;
       background-color: inherit;
       border-radius: inherit;
-      -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
-      transition: opacity 0.3s, -webkit-transform 0.3s;
       transition: opacity 0.3s, transform 0.3s;
-      transition: opacity 0.3s, transform 0.3s, -webkit-transform 0.3s;
       animation: ${pulseAnimation} 1s cubic-bezier(0.24, 0, 0.38, 1) infinite;
       z-index: -1;
     }

@@ -74,7 +74,6 @@ const CardAction = styled.div`
   a {
     color: #ffab40;
     margin-right: 24px;
-    -webkit-transition: color 0.3s ease;
     transition: color 0.3s ease;
     text-transform: uppercase;
   }

@@ -23,6 +23,7 @@ Icon.propTypes = {
   color: PropTypes.string,
   colorHover: PropTypes.string,
   style: PropTypes.object,
+  /** for best compatibility Wrapper SC */
   className: PropTypes.string,
   disable: PropTypes.bool
 };
