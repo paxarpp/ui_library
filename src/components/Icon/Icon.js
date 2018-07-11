@@ -8,10 +8,7 @@ import * as Icons from './assets';
 export default class Icon extends PureComponent {
   render() {
     const { name, className } = this.props;
-    let Icon = Icons[name];
-    if (!Icon) {
-      Icon = Icons['default'];
-    }
+    const Icon = Icons[name] ? Icons[name] : Icons['default'];
     return (
       <Wrapper {...this.props} className={className}>
         <SVGInline svg={Icon} />
