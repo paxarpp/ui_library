@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 
 class Tabs extends Component {
@@ -20,7 +20,7 @@ class Tabs extends Component {
   };
   render() {
     const { active, clientRect, delta } = this.state;
-    const { data, content } = this.props;
+    const { data, content, anim } = this.props;
     return (
       <div>
         <div>
@@ -34,8 +34,8 @@ class Tabs extends Component {
           </Ul>
         </div>
         {data.map((el, indx) => (
-          <Content active={active === indx} key={indx} content={content}>
-            {el.content}
+          <Content active={active === indx} key={indx} content={content} anim={anim}>
+            <span>{el.content}</span>
           </Content>
         ))}
       </div>
@@ -49,7 +49,8 @@ Tabs.propTypes = {
       content: PropTypes.string
     })
   ),
-  content: PropTypes.bool
+  content: PropTypes.bool,
+  anim: PropTypes.bool
 };
 const Ul = styled.ul`
   padding-left: 0;
@@ -110,10 +111,27 @@ const Indicator = styled.li`
   background-color: #f6b2b5;
   transition: left 0.3s linear, width 0.5s linear;
 `;
+const show = keyframes`
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+`;
+const isAnim = props =>
+  props.anim &&
+  css`
+    animation: ${show} 1s forwards cubic-bezier(0.19, 1.18, 1, 1);
+  `;
 const isActivContent = props =>
   props.active &&
   css`
     display: block;
+    span {
+      display: inline-block;
+      ${isAnim};
+    }
   `;
 const isContent = props =>
   props.content &&
@@ -122,6 +140,7 @@ const isContent = props =>
   `;
 const Content = styled.div`
   display: none;
+  overflow: hidden;
   padding: 20px;
   ${isActivContent};
   ${isContent};
