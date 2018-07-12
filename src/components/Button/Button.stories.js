@@ -31,6 +31,11 @@ storiesOf('Button', module)
       войти
     </Primary>
   ))
+  .add('button Primary bottom large', () => (
+    <Primary handlerClick={action('clicked')} large bottom>
+      войти
+    </Primary>
+  ))
   .add('button Primary danger small', () => (
     <Primary handlerClick={action('clicked')} small danger>
       войти

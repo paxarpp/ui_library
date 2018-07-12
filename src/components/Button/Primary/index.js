@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css, keyframes } from 'styled-components';
 
-const ButtonMain = ({ children, handlerClick, disable, border, rounded, ...props }) => (
-  <Main onClick={disable ? null : handlerClick} {...props} border={border} disable={disable} rounded={rounded}>
+const ButtonMain = ({ children, handlerClick, disable, className, ...props }) => (
+  <Main onClick={disable ? null : handlerClick} {...props} className={className}>
     {children}
   </Main>
 );
@@ -18,7 +18,10 @@ ButtonMain.propTypes = {
   small: PropTypes.bool,
   disable: PropTypes.bool,
   border: PropTypes.bool,
-  rounded: PropTypes.bool
+  rounded: PropTypes.bool,
+  bottom: PropTypes.bool,
+  /** для совместимости с обертками */
+  className: PropTypes.string
 };
 const ripple = keyframes`
   0% {
@@ -80,6 +83,7 @@ const Main = styled.button`
   ${props =>
     !props.disable &&
     !props.border &&
+    !props.bottom &&
     'box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)'};
   :hover {
     ${props => !props.disable && !props.border && 'background-color:'} ${props =>
@@ -87,6 +91,7 @@ const Main = styled.button`
     ${props =>
       !props.disable &&
       !props.border &&
+      !props.bottom &&
       'box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2)'};
     ${props => !props.disable && props.border && 'border-color:'} ${props =>
       (props.danger && 'red') || (props.second && '#aab') || props.color || '#2bbbad'};

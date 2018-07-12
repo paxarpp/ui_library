@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css, keyframes } from 'styled-components';
 
-const ButtonMain = ({ children, handlerClick, disable, ...props }) => (
-  <Main onClick={disable ? null : handlerClick} {...props} disable={disable}>
+const ButtonMain = ({ children, handlerClick, disable, className, ...props }) => (
+  <Main onClick={disable ? null : handlerClick} {...props} disable={disable} className={className}>
     {children}
   </Main>
 );
@@ -15,7 +15,9 @@ ButtonMain.propTypes = {
   second: PropTypes.bool,
   danger: PropTypes.bool,
   small: PropTypes.bool,
-  disable: PropTypes.bool
+  disable: PropTypes.bool,
+  /** для совместимости */
+  className: PropTypes.string
 };
 const ripple = keyframes`
   0% {
