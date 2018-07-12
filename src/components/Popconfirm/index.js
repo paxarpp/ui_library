@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { Primary } from '../Button';
@@ -11,19 +11,19 @@ class Popconfirm extends Component {
   }
 
   render() {
-    const { title } = this.props;
+    const { title, open, onClick } = this.props;
     return (
-      <Wrap>
+      <Wrap open={open}>
         <Arrow />
         <Inner>
           <Message>
             <Title>{title}</Title>
           </Message>
           <Buttons>
-            <WrapPrimary border small>
+            <WrapPrimary border small handlerClick={onClick}>
               NO
             </WrapPrimary>
-            <Primary small bottom>
+            <Primary small bottom handlerClick={onClick}>
               YES
             </Primary>
           </Buttons>
@@ -33,8 +33,15 @@ class Popconfirm extends Component {
   }
 }
 Popconfirm.propTypes = {
-  title: PropTypes.string
+  title: PropTypes.string,
+  open: PropTypes.bool,
+  onClick: PropTypes.func
 };
+const isOpen = props =>
+  !props.open &&
+  css`
+    display: none;
+  `;
 const Wrap = styled.div`
   padding-bottom: 10px;
   font-size: 14px;
@@ -51,6 +58,7 @@ const Wrap = styled.div`
   white-space: normal;
   font-weight: 400;
   text-align: left;
+  ${isOpen};
 `;
 const Arrow = styled.div`
   left: 50%;
