@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
+import { Icon } from '../Icon';
 class Select extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +25,10 @@ class Select extends Component {
     const { open, select, dis } = this.state;
     return (
       <Wrapper onClick={() => this.setState({ open: !open })}>
-        <Input>{select !== '' ? dis : placeholder}</Input>
+        <Input>
+          {select !== '' ? dis : placeholder}
+          <WrapIcon name="expandMore" size="16px" open={open} />
+        </Input>
         <SelectOptions open={open}>
           <Ul>
             {data.map((option, indx) => (
@@ -55,35 +59,19 @@ const Input = styled.div`
   font-weight: 300;
   font-size: 1rem;
   position: relative;
-  :after,
-  :before {
-    content: '';
-    position: absolute;
-    left: calc(100% - 20px);
-    transform: translateY(-50%);
-    width: 0;
-    height: 0;
-  }
-  :before {
-    border-top: 5px solid #999;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    top: 50%;
-  }
-  :after {
-    border-top: 5px solid #fff;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    top: calc(50% - 1px);
-  }
   :hover {
     border-bottom: 1px solid #2bbbad;
   }
-  :hover:before {
-    border-top: 5px solid #2bbbad;
+  :hover > div {
+    color: #2bbbad;
   }
 `;
-
+const WrapIcon = styled(Icon)`
+  position: absolute;
+  left: calc(100% - 20px);
+  top: 30%;
+  ${({ open }) => open && 'transform: rotate(180deg)'};
+`;
 const Wrapper = styled.div`
   cursor: pointer;
   position: relative;
