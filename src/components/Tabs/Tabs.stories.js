@@ -20,4 +20,6 @@ const MockData = [
   }
 ];
 
-storiesOf('Tabs', module).add('Tabs', () => <Tabs data={MockData} />);
+storiesOf('Tabs', module)
+  .add('Tabs', () => <Tabs data={MockData} />)
+  .add('Tabs content', () => <Tabs data={MockData} content />);

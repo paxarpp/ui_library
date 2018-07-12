@@ -20,11 +20,11 @@ class Tabs extends Component {
   };
   render() {
     const { active, clientRect, delta } = this.state;
-    const { data } = this.props;
+    const { data, content } = this.props;
     return (
       <div>
         <div>
-          <Ul>
+          <Ul content={content}>
             {data.map((el, indx) => (
               <Tab key={el.tab} value={indx} onClick={this.selectTab}>
                 <Link active={active === indx}>{el.tab}</Link>
@@ -34,7 +34,7 @@ class Tabs extends Component {
           </Ul>
         </div>
         {data.map((el, indx) => (
-          <Content active={active === indx} key={indx}>
+          <Content active={active === indx} key={indx} content={content}>
             {el.content}
           </Content>
         ))}
@@ -48,7 +48,8 @@ Tabs.propTypes = {
       tab: PropTypes.string.isRequired,
       content: PropTypes.string
     })
-  )
+  ),
+  content: PropTypes.bool
 };
 const Ul = styled.ul`
   padding-left: 0;
@@ -61,7 +62,11 @@ const Ul = styled.ul`
   background-color: #fff;
   margin: 0 auto;
   white-space: nowrap;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: ${props =>
+    props.content
+      ? '0px -1px 3px 0 rgba(0, 0, 0, 0.14), 0 -1px 1px -2px rgba(0, 0, 0, 0.12), 0 -1px 5px 0 rgba(0, 0, 0, 0.2)'
+      : '0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)'};
+
   box-sizing: inherit;
 `;
 const Tab = styled.li`
@@ -110,9 +115,15 @@ const isActivContent = props =>
   css`
     display: block;
   `;
+const isContent = props =>
+  props.content &&
+  css`
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  `;
 const Content = styled.div`
   display: none;
   padding: 20px;
   ${isActivContent};
+  ${isContent};
 `;
 export default Tabs;
