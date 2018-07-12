@@ -30,7 +30,7 @@ class Tabs extends Component {
                 <Link active={active === indx}>{el.tab}</Link>
               </Tab>
             ))}
-            <Indicator start={clientRect.left - delta} end={clientRect.right - delta} width={clientRect.width} />
+            <Indicator start={delta} width={clientRect.width} />
           </Ul>
         </div>
         {data.map((el, indx) => (
@@ -103,6 +103,7 @@ const Indicator = styled.li`
   left: ${({ start }) => start}px;
   width: ${({ width }) => width}px;
   background-color: #f6b2b5;
+  transition: left 0.3s linear, width 0.5s linear;
 `;
 const isActivContent = props =>
   props.active &&
