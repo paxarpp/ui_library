@@ -20,17 +20,19 @@ class Tabs extends Component {
   };
   render() {
     const { active, clientRect, delta } = this.state;
-    const { data, content, anim } = this.props;
+    const { data, content, anim, danger, second } = this.props;
     return (
       <div>
         <div>
           <Ul content={content}>
             {data.map((el, indx) => (
               <Tab key={el.tab} value={indx} onClick={this.selectTab}>
-                <Link active={active === indx}>{el.tab}</Link>
+                <Link active={active === indx} danger={danger} second={second}>
+                  {el.tab}
+                </Link>
               </Tab>
             ))}
-            <Indicator start={delta} width={clientRect.width} />
+            <Indicator start={delta} width={clientRect.width} danger={danger} second={second} />
           </Ul>
         </div>
         {data.map((el, indx) => (
@@ -50,7 +52,9 @@ Tabs.propTypes = {
     })
   ),
   content: PropTypes.bool,
-  anim: PropTypes.bool
+  anim: PropTypes.bool,
+  danger: PropTypes.bool,
+  second: PropTypes.bool
 };
 const Ul = styled.ul`
   padding-left: 0;
@@ -80,11 +84,17 @@ const Tab = styled.li`
 const isActive = props =>
   props.active &&
   css`
-    background-color: rgba(246, 178, 181, 0.2);
-    color: #ee6e73;
+    background-color: #a7ffeb;
+    background-color: ${({ danger }) => danger && 'rgba(246, 178, 181, 0.2)'};
+    background-color: ${({ second }) => second && '#e0e0e0'};
+    color: #26a69a;
+    color: ${({ danger }) => danger && '#ee6e73'};
+    color: ${({ second }) => second && '#757575'};
   `;
 const Link = styled.p`
-  color: rgba(238, 110, 115, 0.7);
+  color: #80cbc4;
+  color: ${({ danger }) => danger && 'rgba(238, 110, 115, 0.7)'};
+  color: ${({ second }) => second && '#bdbdbd'};
   display: block;
   box-sizing: border-box;
   width: 100%;
@@ -98,7 +108,9 @@ const Link = styled.p`
   text-decoration: none;
   ${isActive};
   :hover {
-    color: #ee6e73;
+    color: #26a69a;
+    color: ${({ danger }) => danger && '#ee6e73'};
+    color: ${({ second }) => second && '#757575'};
     cursor: pointer;
   }
 `;
@@ -108,7 +120,9 @@ const Indicator = styled.li`
   height: 2px;
   left: ${({ start }) => start}px;
   width: ${({ width }) => width}px;
-  background-color: #f6b2b5;
+  background-color: #009688;
+  background-color: ${({ danger }) => danger && '#f6b2b5'};
+  background-color: ${({ second }) => second && '#616161'};
   transition: left 0.3s linear, width 0.5s linear;
 `;
 const show = keyframes`

@@ -22,5 +22,5 @@ const MockData = [
 
 storiesOf('Tabs', module)
   .add('Tabs', () => <Tabs data={MockData} />)
-  .add('Tabs content', () => <Tabs data={MockData} content />)
-  .add('Tabs content anim', () => <Tabs data={MockData} content anim />);
+  .add('Tabs content danger', () => <Tabs data={MockData} content danger />)
+  .add('Tabs content anim second', () => <Tabs data={MockData} content anim second />);
