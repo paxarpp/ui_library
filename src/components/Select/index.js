@@ -33,7 +33,8 @@ class Select extends Component {
           <Ul>
             {data.map((option, indx) => (
               <Li key={indx} selected={select === indx} onClick={this.handler(option, indx)}>
-                <span>{option.val}</span> | <span>{option.dis}</span>
+                <SpanL>{option.val}</SpanL>
+                <SpanR>{option.dis}</SpanR>
               </Li>
             ))}
           </Ul>
@@ -139,5 +140,18 @@ const Li = styled.li`
   }
   ${isSelected};
 `;
-
+const SpanL = styled.span`
+  position: relative;
+  :after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    bottom: -7px;
+    right: -0.5rem;
+    border-right: 1px solid #ddd;
+  }
+`;
+const SpanR = styled.span`
+  margin-left: 1rem;
+`;
 export default Select;
