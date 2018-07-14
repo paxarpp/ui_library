@@ -50,7 +50,7 @@ const InpWrap = styled.input`
     color: #26a69a;
   }
   :focus {
-    border-bottom: 2px solid #26a69a;
+    border-bottom: 1px solid #26a69a;
   }
 `;
 const LabelWrap = styled.label`
