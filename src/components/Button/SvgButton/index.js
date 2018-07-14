@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import SVGInline from 'react-svg-inline';
 
 import * as Icons from './assets';
@@ -23,6 +23,8 @@ SVGButton.propTypes = {
   handlerClick: PropTypes.func,
   color: PropTypes.string,
   colorHover: PropTypes.string,
+  small: PropTypes.bool,
+  large: PropTypes.bool,
   /** for best compatibility Wrapper SC */
   className: PropTypes.string
 };
@@ -31,15 +33,30 @@ SVGButton.defaultProps = {
   color: 'currentColor',
   colorHover: '#2bbbad'
 };
-
+const isSmall = props =>
+  props.small &&
+  css`
+    width: 80px;
+    height: 40px;
+  `;
+const isLarge = props =>
+  props.large &&
+  css`
+    width: 120px;
+    height: 60px;
+  `;
 const Wrapper = styled.div`
   display: inline-block;
   position: relative;
   width: 100px;
   height: 50px;
+  ${isSmall};
+  ${isLarge};
   > span svg {
     width: 100px;
     height: 50px;
+    ${isSmall};
+    ${isLarge};
   }
   > span svg rect {
     transition: 1s;
@@ -49,8 +66,8 @@ const Wrapper = styled.div`
   }
   :hover span svg rect {
     cursor: pointer;
-    stroke-dasharray: 100, 400;
-    stroke-dashoffset: 350;
+    stroke-dasharray: ${({ small }) => (small ? '80, 400' : '100, 400')};
+    stroke-dashoffset: ${({ small, large }) => (small ? 360 : large ? 310 : 350)};
     stroke: ${({ colorHover }) => colorHover};
   }
 `;
@@ -61,6 +78,8 @@ const Div = styled.div`
   left: 0;
   height: 50px;
   width: 100px;
+  ${isSmall};
+  ${isLarge};
   display: flex;
   align-items: center;
   justify-content: center;

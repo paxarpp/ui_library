@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { Primary, Float, Flat } from './index';
+import { Primary, Float, Flat, SvgButton } from './index';
 
 storiesOf('Button', module)
   .add('button Flat', () => <Flat handlerClick={action('clicked')}>Agree</Flat>)
@@ -70,4 +70,15 @@ storiesOf('Button', module)
     <Float handlerClick={action('clicked')} large danger>
       DEL
     </Float>
+  ))
+  .add('SvgButton', () => <SvgButton handlerClick={action('click')}>button</SvgButton>)
+  .add('SvgButton small', () => (
+    <SvgButton small handlerClick={action('click')}>
+      small
+    </SvgButton>
+  ))
+  .add('SvgButton large', () => (
+    <SvgButton large handlerClick={action('click')}>
+      large
+    </SvgButton>
   ));
