@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 class Input extends Component {
@@ -9,19 +9,30 @@ class Input extends Component {
       value: ''
     };
   }
+  changeValue = e => {
+    this.setState({
+      value: e.target.value
+    });
+  };
   render() {
-    const { placeholder, ...props } = this.props;
+    const { placeholder, regexp, ...props } = this.props;
     const { value } = this.state;
+    const right = regexp !== '' && value !== '' ? this.props.regexp.test(value) : true;
     return (
       <Wrapper>
-        <InpWrap {...props} onChange={e => this.setState({ value: e.target.value })} value={value} />
+        <InpWrap {...props} onChange={this.changeValue} value={value} right={right} />
         <LabelWrap value={value}>{placeholder}</LabelWrap>
+        {regexp !== '' && value !== '' ? <Span right={right}>{right ? 'right' : 'error'}</Span> : null}
       </Wrapper>
     );
   }
 }
 Input.propTypes = {
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  regexp: PropTypes.string
+};
+Input.defaultProps = {
+  regexp: ''
 };
 
 const InpWrap = styled.input`
@@ -50,8 +61,8 @@ const InpWrap = styled.input`
     color: #26a69a;
   }
   :focus {
-    border-bottom: 1px solid #26a69a;
-    box-shadow: 0 1px 0 0 #26a69a;
+    border-bottom: 1px solid ${props => (props.right ? '#26a69a' : '#f44336')};
+    box-shadow: 0 1px 0 0 ${props => (props.right ? '#26a69a' : '#f44336')};
   }
 `;
 const LabelWrap = styled.label`
@@ -65,5 +76,19 @@ const LabelWrap = styled.label`
 const Wrapper = styled.div`
   position: relative;
 `;
-
+const isError = props =>
+  !props.right
+    ? css`
+        color: #f44336;
+      `
+    : css`
+        color: #26a69a;
+      `;
+const Span = styled.span`
+  opacity: 1;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  ${isError};
+`;
 export default Input;
