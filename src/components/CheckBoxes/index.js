@@ -14,7 +14,7 @@ class CheckBoxes extends Component {
     return (
       <p>
         <Label>
-          <Input type="checkbox" {...props} onClick={() => this.setState({ checked: !this.state.checked })} />
+          <Input type="checkbox" {...props} onChange={() => this.setState({ checked: !this.state.checked })} />
           <Span {...props} checked={this.state.checked}>
             {children}
           </Span>
