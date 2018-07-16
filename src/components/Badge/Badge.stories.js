@@ -7,4 +7,4 @@ storiesOf('Badge', module)
   .add('Badge block 10', () => <Badge count={10} block />)
   .add('Badge block red 8', () => <Badge count={8} block color="red" />)
   .add('BadgeFloat 9', () => <BadgeFloat count={9} />)
-  .add('BadgeFloat blue 16', () => <BadgeFloat count={16} color="blue" />);
+  .add('BadgeFloat blue pulse 16', () => <BadgeFloat count={16} pulse color="blue" />);
