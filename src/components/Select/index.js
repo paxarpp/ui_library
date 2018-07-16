@@ -13,7 +13,10 @@ class Select extends Component {
       select: ''
     };
   }
-  handler = (option, indx) => () => {
+  handler = (option, indx) => event => {
+    if (this.props.stop) {
+      event.stopPropagation();
+    }
     this.setState({
       value: option.val,
       dis: option.dis,
@@ -45,6 +48,7 @@ class Select extends Component {
 }
 Select.propTypes = {
   placeholder: PropTypes.string,
+  stop: PropTypes.bool,
   data: PropTypes.arrayOf(
     PropTypes.shape({
       val: PropTypes.any,

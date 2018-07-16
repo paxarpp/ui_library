@@ -16,4 +16,6 @@ const data = [
   }
 ];
 
-storiesOf('Select', module).add('Select', () => <Select data={data} placeholder={'Select something'} />);
+storiesOf('Select', module)
+  .add('Select', () => <Select data={data} placeholder={'Select something'} />)
+  .add('Select stop', () => <Select stop data={data} placeholder={'Select something'} />);
