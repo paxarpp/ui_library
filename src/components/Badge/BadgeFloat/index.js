@@ -36,7 +36,6 @@ const isPulse = props =>
       left: 0;
       background-color: inherit;
       border-radius: inherit;
-      transition: opacity 0.3s, transform 0.3s;
       animation: ${pulseAnimation} 1s cubic-bezier(0.24, 0, 0.38, 1) infinite;
       z-index: 0;
     }
