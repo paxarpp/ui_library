@@ -2,7 +2,11 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
-const Badge = ({ count, ...props }) => <Span {...props}>{count}</Span>;
+const Badge = ({ count, color = '#26a69a', ...props }) => (
+  <Span color={color} {...props}>
+    {count}
+  </Span>
+);
 Badge.propTypes = {
   count: PropTypes.number,
   block: PropTypes.bool,
@@ -16,6 +20,7 @@ const isBlock = props =>
     font-size: 0.8rem;
     color: #fff;
     border-radius: 2px;
+    background-color: ${({ color }) => color};
   `;
 const Span = styled.span`
   min-width: 3rem;
@@ -28,8 +33,8 @@ const Span = styled.span`
   color: #757575;
   float: right;
   box-sizing: border-box;
+  background-color: inherit;
   ${isBlock};
-  background-color: ${props => (props.red ? 'red' : props => (props.block ? '#26a69a' : 'inherit'))};
 `;
 
 export default Badge;

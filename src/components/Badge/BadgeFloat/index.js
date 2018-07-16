@@ -19,7 +19,8 @@ const Span = styled.span`
   font-size: 0.8rem;
   color: #fff;
   border-radius: 50%;
-  background-color: ${props => (props.red ? 'red' : '#26a69a')};
+  background-color: #26a69a;
+  background-color: ${({ color }) => color};
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 `;
 
