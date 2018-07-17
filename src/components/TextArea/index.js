@@ -6,15 +6,16 @@ class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      heightArea: 44,
+      heightArea: this.props.minH,
       value: ''
     };
     this.area = React.createRef();
   }
   changeValue = () => {
+    const { minH } = this.props;
     this.setState({
       value: this.area.current.value,
-      heightArea: this.area.current.scrollHeight < 44 ? 44 : this.area.current.scrollHeight
+      heightArea: this.area.current.scrollHeight < minH ? minH : this.area.current.scrollHeight
     });
   };
   render() {
@@ -29,7 +30,11 @@ class Form extends Component {
   }
 }
 Form.propTypes = {
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  minH: PropTypes.number
+};
+Form.defaultProps = {
+  minH: 44
 };
 const Wrapper = styled.div`
   position: relative;

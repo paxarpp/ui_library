@@ -5,10 +5,14 @@ import PropTypes from 'prop-types';
 class Form extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      heightArea: 44
+    };
+    this.area = React.createRef();
   }
 
   render() {
+    const { heightArea } = this.state;
     return (
       <Wrapper>
         <Head>
@@ -23,7 +27,17 @@ class Form extends Component {
               Your Full Name <input type="text" name="field1" />
             </Label>
             <Label>
-              Address <textarea name="field2" />
+              Address{' '}
+              <Textarea
+                name="field2"
+                onChange={() =>
+                  this.setState({
+                    heightArea: this.area.current.scrollHeight < 44 ? 44 : this.area.current.scrollHeight
+                  })
+                }
+                innerRef={this.area}
+                heightArea={heightArea}
+              />
             </Label>
           </InnerWrap>
           <Section>
@@ -127,8 +141,6 @@ const Section = styled.div`
     padding: 5px 10px 5px 10px;
     position: absolute;
     border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
     border: 4px solid #fff;
     font-size: 14px;
     margin-left: -45px;
@@ -163,5 +175,9 @@ const PrivacyPolicy = styled.span`
   margin-top: 10px;
   text-align: right;
 `;
-
+const Textarea = styled.textarea`
+  resize: none;
+  overflow: hidden;
+  height: ${({ heightArea }) => heightArea}px;
+`;
 export default Form;

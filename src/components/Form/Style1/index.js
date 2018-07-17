@@ -64,10 +64,6 @@ const Wrapper = styled.div`
     margin-bottom: 10px;
     font: 16px Arial, Helvetica, sans-serif;
   }
-  textarea {
-    resize: none;
-    overflow: hidden;
-  }
   input[type='button'],
   input[type='submit'] {
     box-shadow: inset 0px 1px 0px 0px #45d6d6;
@@ -99,6 +95,8 @@ const Head = styled.div`
   margin: -30px -30px 30px -30px;
 `;
 const Textarea = styled.textarea`
+  resize: none;
+  overflow: hidden;
   height: ${({ heightArea }) => heightArea}px;
 `;
 export default Form;
