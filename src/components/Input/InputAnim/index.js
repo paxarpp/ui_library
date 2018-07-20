@@ -9,11 +9,6 @@ class InputAnim extends Component {
       value: ''
     };
   }
-  changeValue = e => {
-    this.setState({
-      value: e.target.value
-    });
-  };
   render() {
     const { placeholder, width } = this.props;
     const { value } = this.state;
@@ -21,7 +16,13 @@ class InputAnim extends Component {
     return (
       <Wrapper>
         <Div>
-          <Input type="search" onChange={this.changeValue} value={value} disable={disable} width={width} />
+          <Input
+            type="search"
+            onChange={e => this.setState({ value: e.target.value })}
+            value={value}
+            disable={disable}
+            width={width}
+          />
           <Span disable={disable}>{placeholder}</Span>
         </Div>
       </Wrapper>
