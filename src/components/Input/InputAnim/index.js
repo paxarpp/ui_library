@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 class InputAnim extends Component {
@@ -15,19 +15,26 @@ class InputAnim extends Component {
     });
   };
   render() {
-    const { placeholder } = this.props;
+    const { placeholder, width } = this.props;
+    const { value } = this.state;
+    const disable = value !== '';
     return (
       <Wrapper>
         <Div>
-          <Input type="search" />
-          <Span>{placeholder}</Span>
+          <Input type="search" onChange={this.changeValue} value={value} disable={disable} width={width} />
+          <Span disable={disable}>{placeholder}</Span>
         </Div>
       </Wrapper>
     );
   }
 }
 InputAnim.propTypes = {
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  width: PropTypes.number
+};
+InputAnim.defaultProps = {
+  placeholder: 'search',
+  width: 10
 };
 const Div = styled.div`
   position: relative;
@@ -51,13 +58,19 @@ const Wrapper = styled.div`
     height: 0;
   }
 `;
+const isDisable = props =>
+  props.disable &&
+  css`
+    left: ${({ width }) => width + 5}rem;
+  `;
 const Span = styled.span`
   position: absolute;
   top: 0;
-  left: -2rem;
+  left: -3rem;
   font-size: 1rem;
   line-height: 2rem;
   transition: all 0.4s ease-in-out;
+  ${isDisable};
 `;
 const Input = styled.input`
   width: 2rem;
@@ -71,11 +84,12 @@ const Input = styled.input`
   box-sizing: border-box;
   transition: all 0.4s ease-in-out;
   :focus {
-    width: 100%;
+    width: ${({ width }) => width}rem;
     border: 1px solid #26a69a;
   }
   :focus + span {
     left: 1rem;
+    ${isDisable};
   }
 `;
 export default InputAnim;
