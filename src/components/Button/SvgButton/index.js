@@ -18,12 +18,19 @@ export default class SVGButton extends PureComponent {
   }
 }
 SVGButton.propTypes = {
+  /** title button*/
   children: PropTypes.any,
+  /** name of the button type */
   name: PropTypes.string,
+  /** function handler click*/
   handlerClick: PropTypes.func,
+  /** user color button */
   color: PropTypes.string,
+  /** user color button :hover */
   colorHover: PropTypes.string,
+  /** size button */
   small: PropTypes.bool,
+  /** size button */
   large: PropTypes.bool,
   /** for best compatibility Wrapper SC */
   className: PropTypes.string

@@ -10,17 +10,26 @@ const ButtonFloat = ({ children, handlerClick, disable, className, ...props }) =
   </Main>
 );
 ButtonFloat.propTypes = {
+  /** function handler click*/
   handlerClick: PropTypes.func,
+  /** title button*/
   children: PropTypes.any,
+  /** size button */
   large: PropTypes.bool,
+  /** color button */
   second: PropTypes.bool,
-  color: PropTypes.string,
+  /** color button */
   danger: PropTypes.bool,
-  pulse: PropTypes.bool,
+  /** user color button */
+  color: PropTypes.bool,
+  /** size button */
   small: PropTypes.bool,
+  /** disable button behavior */
   disable: PropTypes.bool,
-  /** для совместимости с обертками */
-  className: PropTypes.string
+  /** для совместимости */
+  className: PropTypes.string,
+  /** ripple effect */
+  pulse: PropTypes.bool
 };
 const pulseAnimation = keyframes`
   0% {

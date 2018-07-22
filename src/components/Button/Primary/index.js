@@ -9,19 +9,30 @@ const ButtonMain = ({ children, handlerClick, disable, className, ...props }) =>
 );
 
 ButtonMain.propTypes = {
-  handlerClick: PropTypes.func || PropTypes.bool,
+  /** function handler click*/
+  handlerClick: PropTypes.func,
+  /** title button*/
   children: PropTypes.any,
+  /** size button */
   large: PropTypes.bool,
-  color: PropTypes.string,
+  /** color button */
   second: PropTypes.bool,
+  /** color button */
   danger: PropTypes.bool,
+  /** size button */
   small: PropTypes.bool,
+  /** disable button behavior */
   disable: PropTypes.bool,
+  /** для совместимости */
+  className: PropTypes.string,
+  /** user color button */
+  color: PropTypes.string,
+  /** square button view */
   border: PropTypes.bool,
+  /** rounded button view */
   rounded: PropTypes.bool,
-  bottom: PropTypes.bool,
-  /** для совместимости с обертками */
-  className: PropTypes.string
+  /** the button is not raised above the surface */
+  bottom: PropTypes.bool
 };
 const ripple = keyframes`
   0% {

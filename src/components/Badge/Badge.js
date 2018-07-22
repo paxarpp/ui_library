@@ -8,8 +8,11 @@ const Badge = ({ count, color = '#26a69a', ...props }) => (
   </Span>
 );
 Badge.propTypes = {
+  /** value on the screen */
   count: PropTypes.number,
+  /** value in the block */
   block: PropTypes.bool,
+  /** color background */
   color: PropTypes.string
 };
 
