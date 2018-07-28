@@ -31,10 +31,14 @@ class Collapsible extends Component {
   }
 }
 Collapsible.propTypes = {
+  /** type of collapsible - popout */
   popout: PropTypes.bool,
+  /** array of objects */
   data: PropTypes.arrayOf(
     PropTypes.shape({
+      /** header */
       header: PropTypes.string,
+      /** content */
       content: PropTypes.string
     })
   )

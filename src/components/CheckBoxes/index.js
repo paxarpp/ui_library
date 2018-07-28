@@ -24,7 +24,9 @@ class CheckBoxes extends Component {
   }
 }
 CheckBoxes.propTypes = {
+  /** label checkbox*/
   children: PropTypes.string,
+  /** checked */
   checked: PropTypes.bool
 };
 
