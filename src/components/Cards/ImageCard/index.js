@@ -20,11 +20,17 @@ const ImageCard = ({ bgColor = 'white', textColor = 'black', horizontal, header,
 );
 
 ImageCard.propTypes = {
+  /** horizontal arrangement of map elements */
   horizontal: PropTypes.bool,
+  /** message on card */
   children: PropTypes.any,
+  /** header card */
   header: PropTypes.string,
+  /** path to image */
   url: PropTypes.string,
+  /** background color card */
   bgColor: PropTypes.string,
+  /** color text on card */
   textColor: PropTypes.string
 };
 const isHorizontal = props =>

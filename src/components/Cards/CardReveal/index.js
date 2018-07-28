@@ -38,10 +38,15 @@ class CardReveal extends Component {
   }
 }
 CardReveal.propTypes = {
+  /** message on card */
   children: PropTypes.any,
+  /** header card */
   header: PropTypes.string,
+  /** path to image */
   url: PropTypes.string,
+  /** background card color */
   bgColor: PropTypes.string,
+  /** color text on card */
   textColor: PropTypes.string
 };
 const Wrapper = styled.div`

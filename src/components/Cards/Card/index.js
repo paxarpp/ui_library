@@ -9,8 +9,11 @@ const Card = ({ bgColor = 'white', textColor = 'black', children }) => (
 );
 
 Card.propTypes = {
+  /** message on card */
   children: PropTypes.any,
+  /** background card color */
   bgColor: PropTypes.string,
+  /** color text on card */
   textColor: PropTypes.string
 };
 

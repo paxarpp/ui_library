@@ -56,14 +56,19 @@ class Carousel extends Component {
   }
 }
 Carousel.propTypes = {
+  /** array of path to images */
   images: PropTypes.arrayOf(
     PropTypes.shape({
       src: PropTypes.string.isRequired
     })
   ).isRequired,
+  /** time to change image */
   duration: PropTypes.PropTypes.number,
+  /** direction of travel image */
   reverse: PropTypes.PropTypes.bool,
+  /** width of slider */
   width: PropTypes.PropTypes.string,
+  /** height of slider */
   height: PropTypes.PropTypes.string
 };
 Carousel.defaultProps = {

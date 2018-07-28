@@ -16,9 +16,13 @@ const BasicCard = ({ bgColor = 'white', textColor = 'black', header, children })
 );
 
 BasicCard.propTypes = {
+  /** message on card */
   children: PropTypes.any,
+  /** header card */
   header: PropTypes.string,
+  /** background card color */
   bgColor: PropTypes.string,
+  /** color text on card */
   textColor: PropTypes.string
 };
 

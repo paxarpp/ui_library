@@ -33,7 +33,9 @@ class CarouselSlider extends Component {
   }
 }
 CarouselSlider.propTypes = {
+  /** array of Pages (components)*/
   children: PropTypes.array,
+  /** width of slider */
   width: PropTypes.number
 };
 CarouselSlider.defaultProps = {
