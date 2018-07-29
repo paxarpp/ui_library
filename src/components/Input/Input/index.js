@@ -6,33 +6,51 @@ class Input extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      value: '',
+      coincidence: ''
     };
   }
   changeValue = e => {
-    this.setState({
-      value: e.target.value
-    });
+    this.setState(
+      {
+        value: e.target.value
+      },
+      () => {
+        this.setState({
+          coincidence:
+            this.state.value &&
+            this.props.data.filter(elem => elem.toLowerCase().indexOf(this.state.value.toLowerCase()) !== -1)
+        });
+      }
+    );
   };
   render() {
     const { placeholder, regexp, ...props } = this.props;
-    const { value } = this.state;
+    const { value, coincidence } = this.state;
     const right = regexp !== '' && value !== '' ? this.props.regexp.test(value) : true;
+    const active = coincidence.length > 0;
     return (
       <Wrapper>
         <InpWrap {...props} onChange={this.changeValue} value={value} right={right} />
         <LabelWrap value={value}>{placeholder}</LabelWrap>
         {regexp !== '' && value !== '' ? <Span right={right}>{right ? 'right' : 'error'}</Span> : null}
+        {
+          <SpanAuto active={active} onClick={() => this.setState({ value: coincidence[0], coincidence: [] })}>
+            {coincidence}
+          </SpanAuto>
+        }
       </Wrapper>
     );
   }
 }
 Input.propTypes = {
   placeholder: PropTypes.string,
-  regexp: PropTypes.string
+  regexp: PropTypes.string,
+  data: PropTypes.arrayOf(PropTypes.string)
 };
 Input.defaultProps = {
-  regexp: ''
+  regexp: '',
+  data: []
 };
 
 const InpWrap = styled.input`
@@ -90,5 +108,30 @@ const Span = styled.span`
   bottom: -10px;
   left: 0;
   ${isError};
+`;
+const isActive = props =>
+  props.active &&
+  css`
+    padding: 5px;
+    box-shadow: 1px 2px 3px 2px #00000060;
+    opacity: 1;
+    transform: scaleX(1) scaleY(1);
+    :hover {
+      background-color: #80808060;
+      cursor: pointer;
+    }
+  `;
+const SpanAuto = styled.span`
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  transform-origin: 0px 0px 0px;
+  opacity: 0;
+  transform: scaleX(0.5) scaleY(0);
+  transition: all 0.2s linear;
+  ${isActive};
 `;
 export default Input;
