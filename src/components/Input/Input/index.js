@@ -35,9 +35,9 @@ class Input extends Component {
         <LabelWrap value={value}>{placeholder}</LabelWrap>
         {regexp !== '' && value !== '' ? <Span right={right}>{right ? 'right' : 'error'}</Span> : null}
         {
-          <SpanAuto active={active} onClick={() => this.setState({ value: coincidence[0], coincidence: [] })}>
-            {coincidence}
-          </SpanAuto>
+          <UlAuto active={active}>
+            {active && coincidence.map(elem => <Li onClick={() => this.setState({ value: elem, coincidence: [] })}>{elem}</Li> )}
+          </UlAuto>
         }
       </Wrapper>
     );
@@ -112,18 +112,16 @@ const Span = styled.span`
 const isActive = props =>
   props.active &&
   css`
-    padding: 5px;
     box-shadow: 1px 2px 3px 2px #00000060;
     opacity: 1;
     transform: scaleX(1) scaleY(1);
-    :hover {
-      background-color: #80808060;
-      cursor: pointer;
-    }
   `;
-const SpanAuto = styled.span`
+const UlAuto = styled.ul`
   position: absolute;
-  bottom: -20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  top: 3rem;
   left: 0;
   display: block;
   width: 100%;
@@ -133,5 +131,13 @@ const SpanAuto = styled.span`
   transform: scaleX(0.5) scaleY(0);
   transition: all 0.2s linear;
   ${isActive};
+`;
+const Li = styled.li`
+  padding: 5px;
+  outline: 1px solid #80808060;
+  :hover {
+    background-color: #80808060;
+    cursor: pointer;
+  }
 `;
 export default Input;

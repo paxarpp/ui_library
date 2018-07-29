@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Input, InputAnim } from './index';
 
-const MockData = ['Москва', 'Питербург', 'London', 'Paris'];
+const MockData = ['Москва', 'Москва нью васюки', 'Питербург', 'Санкт Питербург', 'London', 'Paris'];
 
 storiesOf('Input', module)
   .add('InputAnim width=20', () => <InputAnim type={'text'} width={20} />)
