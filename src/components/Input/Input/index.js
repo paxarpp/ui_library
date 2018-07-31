@@ -36,7 +36,12 @@ class Input extends Component {
         {regexp !== '' && value !== '' ? <Span right={right}>{right ? 'right' : 'error'}</Span> : null}
         {
           <UlAuto active={active}>
-            {active && coincidence.map(elem => <Li onClick={() => this.setState({ value: elem, coincidence: [] })}>{elem}</Li> )}
+            {active &&
+              coincidence.map((elem, indx) => (
+                <Li key={indx} onClick={() => this.setState({ value: elem, coincidence: [] })}>
+                  {elem}
+                </Li>
+              ))}
           </UlAuto>
         }
       </Wrapper>

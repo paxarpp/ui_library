@@ -71,7 +71,9 @@ class DatePicker extends Component {
   }
 }
 DatePicker.propTypes = {
+  /** func of handler close datepicker */
   hadlerClose: PropTypes.func.isRequired,
+  /** func of handler ok datepicker with date */
   hanlerComplite: PropTypes.func.isRequired
 };
 const DatepickerModal = styled.div`

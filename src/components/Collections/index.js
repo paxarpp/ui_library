@@ -26,10 +26,15 @@ const Collections = ({ data, active, header, color = 'inherit', handlerClick }) 
   </Wrap>
 );
 Collections.propTypes = {
+  /** handler click */
   handlerClick: PropTypes.func,
+  /** header collection row */
   header: PropTypes.string,
+  /** type of collection (active move on hover) */
   active: PropTypes.bool,
+  /** color text collection */
   color: PropTypes.string,
+  /** body of collection */
   data: PropTypes.arrayOf(PropTypes.any)
 };
 const Wrap = styled.ul`

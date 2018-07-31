@@ -8,9 +8,13 @@ const Divider = ({ children, max, end, start }) => (
   </Wrap>
 );
 Divider.propTypes = {
+  /** width = 100% */
   max: PropTypes.bool,
+  /** what render on divider (text etc) */
   children: PropTypes.any,
+  /** children located in the end divider */
   end: PropTypes.bool,
+  /** children located in the start divider */
   start: PropTypes.bool
 };
 const style = css`
