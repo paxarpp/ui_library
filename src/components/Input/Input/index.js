@@ -9,6 +9,7 @@ class Input extends Component {
       value: '',
       coincidence: ''
     };
+    this.input = React.createRef();
   }
   changeValue = e => {
     this.setState(
@@ -31,8 +32,10 @@ class Input extends Component {
     const active = coincidence.length > 0;
     return (
       <Wrapper>
-        <InpWrap {...props} onChange={this.changeValue} value={value} right={right} />
-        <LabelWrap value={value}>{placeholder}</LabelWrap>
+        <InpWrap {...props} onChange={this.changeValue} value={value} right={right} innerRef={this.input} />
+        <LabelWrap value={value} onClick={() => this.input.current.focus()}>
+          {placeholder}
+        </LabelWrap>
         {regexp !== '' && value !== '' ? <Span right={right}>{right ? 'right' : 'error'}</Span> : null}
         {
           <UlAuto active={active}>
@@ -95,6 +98,7 @@ const LabelWrap = styled.label`
   left: 0;
   color: #9e9e9e;
   transition: all 0.3s;
+  cursor: text;
 `;
 const Wrapper = styled.div`
   position: relative;

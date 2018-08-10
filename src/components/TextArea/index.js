@@ -18,13 +18,16 @@ class Form extends Component {
       heightArea: this.area.current.scrollHeight < minH ? minH : this.area.current.scrollHeight
     });
   };
+
   render() {
     const { heightArea, value } = this.state;
     const { placeholder } = this.props;
     return (
       <Wrapper>
         <Textarea onChange={this.changeValue} innerRef={this.area} heightArea={heightArea} />
-        <LabelWrap value={value}>{placeholder}</LabelWrap>
+        <LabelWrap value={value} onClick={() => this.area.current.focus()}>
+          {placeholder}
+        </LabelWrap>
       </Wrapper>
     );
   }
@@ -79,5 +82,6 @@ const LabelWrap = styled.label`
   left: 0;
   color: #9e9e9e;
   transition: all 0.3s;
+  cursor: text;
 `;
 export default Form;
