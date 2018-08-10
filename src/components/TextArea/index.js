@@ -11,30 +11,33 @@ class Form extends Component {
     };
     this.area = React.createRef();
   }
-  changeValue = () => {
-    const { minH } = this.props;
+  changeValue = e => {
+    const { minH, counterMax } = this.props;
+    const { value } = this.state;
     this.setState({
-      value: this.area.current.value,
+      value: !counterMax || e.target.value.length <= counterMax ? e.target.value : value,
       heightArea: this.area.current.scrollHeight < minH ? minH : this.area.current.scrollHeight
     });
   };
 
   render() {
     const { heightArea, value } = this.state;
-    const { placeholder } = this.props;
+    const { placeholder, counterMax } = this.props;
     return (
       <Wrapper>
-        <Textarea onChange={this.changeValue} innerRef={this.area} heightArea={heightArea} />
+        <Textarea onChange={this.changeValue} innerRef={this.area} heightArea={heightArea} value={value} />
         <LabelWrap value={value} onClick={() => this.area.current.focus()}>
           {placeholder}
         </LabelWrap>
+        {counterMax && <CharacterCounter>{`${value.length}/${counterMax}`}</CharacterCounter>}
       </Wrapper>
     );
   }
 }
 Form.propTypes = {
   placeholder: PropTypes.string,
-  minH: PropTypes.number
+  minH: PropTypes.number,
+  counterMax: PropTypes.number
 };
 Form.defaultProps = {
   minH: 44
@@ -83,5 +86,10 @@ const LabelWrap = styled.label`
   color: #9e9e9e;
   transition: all 0.3s;
   cursor: text;
+`;
+const CharacterCounter = styled.span`
+  position: absolute;
+  bottom: -20px;
+  right: 0;
 `;
 export default Form;

@@ -12,9 +12,11 @@ class Input extends Component {
     this.input = React.createRef();
   }
   changeValue = e => {
+    const { value } = this.state;
+    const { counterMax } = this.props;
     this.setState(
       {
-        value: e.target.value
+        value: !counterMax || e.target.value.length <= counterMax ? e.target.value : value
       },
       () => {
         this.setState({
@@ -26,7 +28,7 @@ class Input extends Component {
     );
   };
   render() {
-    const { placeholder, regexp, ...props } = this.props;
+    const { placeholder, regexp, counterMax, ...props } = this.props;
     const { value, coincidence } = this.state;
     const right = regexp !== '' && value !== '' ? this.props.regexp.test(value) : true;
     const active = coincidence.length > 0;
@@ -47,6 +49,7 @@ class Input extends Component {
               ))}
           </UlAuto>
         }
+        {counterMax && <CharacterCounter>{`${value.length}/${counterMax}`}</CharacterCounter>}
       </Wrapper>
     );
   }
@@ -54,7 +57,8 @@ class Input extends Component {
 Input.propTypes = {
   placeholder: PropTypes.string,
   regexp: PropTypes.string,
-  data: PropTypes.arrayOf(PropTypes.string)
+  data: PropTypes.arrayOf(PropTypes.string),
+  counterMax: PropTypes.number
 };
 Input.defaultProps = {
   regexp: '',
@@ -148,5 +152,10 @@ const Li = styled.li`
     background-color: #80808060;
     cursor: pointer;
   }
+`;
+const CharacterCounter = styled.span`
+  position: absolute;
+  bottom: -10px;
+  right: 0;
 `;
 export default Input;

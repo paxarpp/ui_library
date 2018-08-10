@@ -13,8 +13,14 @@ const Wrapper = styled.div`
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
 `;
 
-storiesOf('TextArea', module).add('TextArea ', () => (
-  <Wrapper>
-    <TextArea placeholder={'You message'} />
-  </Wrapper>
-));
+storiesOf('TextArea', module)
+  .add('TextArea ', () => (
+    <Wrapper>
+      <TextArea placeholder={'You message'} />
+    </Wrapper>
+  ))
+  .add('TextArea whith character counter counterMax=20', () => (
+    <Wrapper>
+      <TextArea placeholder={'You message'} counterMax={20} />
+    </Wrapper>
+  ));
