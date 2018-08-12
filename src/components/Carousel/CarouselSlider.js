@@ -9,6 +9,7 @@ class CarouselSlider extends Component {
       active: 0
     };
   }
+
   render() {
     const { children, width } = this.props;
     const { active } = this.state;
@@ -32,41 +33,49 @@ class CarouselSlider extends Component {
     );
   }
 }
+
 CarouselSlider.propTypes = {
   /** array of Pages (components)*/
   children: PropTypes.array,
   /** width of slider */
   width: PropTypes.number
 };
+
 CarouselSlider.defaultProps = {
   width: 600
 };
+
 const Main = styled.div`
   height: 400px;
   position: relative;
   overflow: hidden;
   width: ${({ width }) => width}px;
 `;
+
 const isFirst = props =>
   props.active === 0 &&
   css`
     transform: translateX(0);
   `;
+
 const isTwo = props =>
   props.active === 1 &&
   css`
     transform: translateX(-${({ width }) => width}px);
   `;
+
 const isThree = props =>
   props.active === 2 &&
   css`
     transform: translateX(-${({ width }) => 2 * width}px);
   `;
+
 const isFour = props =>
   props.active === 3 &&
   css`
     transform: translateX(-${({ width }) => 3 * width}px);
   `;
+
 const Wrapper = styled.div`
   height: 400px;
   width: ${({ width }) => 4 * width}px;
@@ -78,6 +87,7 @@ const Wrapper = styled.div`
   ${isThree};
   ${isFour};
 `;
+
 const Ul = styled.ul`
   position: absolute;
   text-align: center;
@@ -89,12 +99,14 @@ const Ul = styled.ul`
   list-style-type: none;
   z-index: 999;
 `;
+
 const isActive = props =>
   props.active &&
   css`
     background-color: #fee;
     transform: scale(1.2);
   `;
+
 const Li = styled.li`
   display: inline-block;
   position: relative;
@@ -112,4 +124,5 @@ const Div = styled.div`
   height: 100%;
   width: ${({ width }) => width}px;
 `;
+
 export default CarouselSlider;

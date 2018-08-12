@@ -11,6 +11,7 @@ class Form extends Component {
     };
     this.area = React.createRef();
   }
+
   changeValue = e => {
     const { minH, counterMax } = this.props;
     const { value } = this.state;
@@ -34,17 +35,21 @@ class Form extends Component {
     );
   }
 }
+
 Form.propTypes = {
   placeholder: PropTypes.string,
   minH: PropTypes.number,
   counterMax: PropTypes.number
 };
+
 Form.defaultProps = {
   minH: 44
 };
+
 const Wrapper = styled.div`
   position: relative;
 `;
+
 const Textarea = styled.textarea`
   height: ${({ heightArea }) => heightArea}px;
   box-sizing: border-box;
@@ -78,6 +83,7 @@ const Textarea = styled.textarea`
     box-shadow: 0 1px 0 0 #26a69a;
   }
 `;
+
 const LabelWrap = styled.label`
   position: absolute;
   top: ${props => (props.value ? '0' : '1rem')};
@@ -87,9 +93,11 @@ const LabelWrap = styled.label`
   transition: all 0.3s;
   cursor: text;
 `;
+
 const CharacterCounter = styled.span`
   position: absolute;
   bottom: -20px;
   right: 0;
 `;
+
 export default Form;

@@ -11,6 +11,7 @@ class Input extends Component {
     };
     this.input = React.createRef();
   }
+
   changeValue = e => {
     const { value } = this.state;
     const { counterMax } = this.props;
@@ -27,6 +28,7 @@ class Input extends Component {
       }
     );
   };
+
   render() {
     const { placeholder, regexp, counterMax, ...props } = this.props;
     const { value, coincidence } = this.state;
@@ -54,12 +56,14 @@ class Input extends Component {
     );
   }
 }
+
 Input.propTypes = {
   placeholder: PropTypes.string,
   regexp: PropTypes.string,
   data: PropTypes.arrayOf(PropTypes.string),
   counterMax: PropTypes.number
 };
+
 Input.defaultProps = {
   regexp: '',
   data: []
@@ -95,6 +99,7 @@ const InpWrap = styled.input`
     box-shadow: 0 1px 0 0 ${props => (props.right ? '#26a69a' : '#f44336')};
   }
 `;
+
 const LabelWrap = styled.label`
   position: absolute;
   top: ${props => (props.value ? '0' : '1rem')};
@@ -104,9 +109,11 @@ const LabelWrap = styled.label`
   transition: all 0.3s;
   cursor: text;
 `;
+
 const Wrapper = styled.div`
   position: relative;
 `;
+
 const isError = props =>
   !props.right
     ? css`
@@ -122,6 +129,7 @@ const Span = styled.span`
   left: 0;
   ${isError};
 `;
+
 const isActive = props =>
   props.active &&
   css`
@@ -129,6 +137,7 @@ const isActive = props =>
     opacity: 1;
     transform: scaleX(1) scaleY(1);
   `;
+
 const UlAuto = styled.ul`
   position: absolute;
   margin: 0;
@@ -145,6 +154,7 @@ const UlAuto = styled.ul`
   transition: all 0.2s linear;
   ${isActive};
 `;
+
 const Li = styled.li`
   padding: 5px;
   outline: 1px solid #80808060;
@@ -153,9 +163,11 @@ const Li = styled.li`
     cursor: pointer;
   }
 `;
+
 const CharacterCounter = styled.span`
   position: absolute;
   bottom: -10px;
   right: 0;
 `;
+
 export default Input;

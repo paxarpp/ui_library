@@ -26,6 +26,7 @@ ButtonMain.propTypes = {
   /** для совместимости */
   className: PropTypes.string
 };
+
 const ripple = keyframes`
   0% {
     background-color: #2bbbad;
@@ -43,6 +44,7 @@ const ripple = keyframes`
   }
 }
 `;
+
 const rippleRed = keyframes`
   0% {
     background-color: red;
@@ -60,6 +62,7 @@ const rippleRed = keyframes`
   }
 }
 `;
+
 const rippleSec = keyframes`
   0% {
     background-color: #aab;
@@ -77,6 +80,7 @@ const rippleSec = keyframes`
   }
 }
 `;
+
 const isLarge = props =>
   props.large &&
   css`
@@ -94,6 +98,7 @@ const isSmall = props =>
     font-size: 13px;
     padding: 0 14px;
   `;
+
 const isDisable = props =>
   props.disable &&
   css`
@@ -103,6 +108,7 @@ const isDisable = props =>
     color: #9f9f9f !important;
     cursor: default;
   `;
+
 const Main = styled.button`
   position: relative;
   overflow: hidden;

@@ -17,6 +17,7 @@ export default class SVGButton extends PureComponent {
     );
   }
 }
+
 SVGButton.propTypes = {
   /** title button*/
   children: PropTypes.any,
@@ -35,23 +36,27 @@ SVGButton.propTypes = {
   /** for best compatibility Wrapper SC */
   className: PropTypes.string
 };
+
 SVGButton.defaultProps = {
   name: 'button',
   color: 'currentColor',
   colorHover: '#2bbbad'
 };
+
 const isSmall = props =>
   props.small &&
   css`
     width: 80px;
     height: 40px;
   `;
+
 const isLarge = props =>
   props.large &&
   css`
     width: 120px;
     height: 60px;
   `;
+
 const Wrapper = styled.div`
   display: inline-block;
   position: relative;
@@ -78,6 +83,7 @@ const Wrapper = styled.div`
     stroke: ${({ colorHover }) => colorHover};
   }
 `;
+
 const Div = styled.div`
   overflow: hidden;
   position: absolute;

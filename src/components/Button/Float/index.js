@@ -9,6 +9,7 @@ const ButtonFloat = ({ children, handlerClick, disable, className, ...props }) =
     {children ? children : <Icon name="add" />}
   </Main>
 );
+
 ButtonFloat.propTypes = {
   /** function handler click*/
   handlerClick: PropTypes.func,
@@ -31,6 +32,7 @@ ButtonFloat.propTypes = {
   /** ripple effect */
   pulse: PropTypes.bool
 };
+
 const pulseAnimation = keyframes`
   0% {
     opacity: 1;
@@ -45,6 +47,7 @@ const pulseAnimation = keyframes`
     transform: scale(1.5);
   }
 `;
+
 const ripple = keyframes`
   0% {
     transform: scale(0, 0);
@@ -60,18 +63,21 @@ const ripple = keyframes`
   }
 }
 `;
+
 const isLarge = props =>
   props.large &&
   css`
     height: 56px;
     width: 56px;
   `;
+
 const isSmall = props =>
   props.small &&
   css`
     height: 32px;
     width: 32px;
   `;
+
 const isPulse = props =>
   props.pulse &&
   css`
@@ -92,6 +98,7 @@ const isPulse = props =>
       z-index: -1;
     }
   `;
+
 const Main = styled.button`
   position: relative;
   overflow: hidden;
@@ -143,4 +150,5 @@ const Main = styled.button`
     animation: ${props => !props.disable && ripple} 1s ease-out;
   }
 `;
+
 export default ButtonFloat;

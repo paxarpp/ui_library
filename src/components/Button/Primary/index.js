@@ -34,6 +34,7 @@ ButtonMain.propTypes = {
   /** the button is not raised above the surface */
   bottom: PropTypes.bool
 };
+
 const ripple = keyframes`
   0% {
     transform: scale(0, 0);
@@ -49,6 +50,7 @@ const ripple = keyframes`
   }
 }
 `;
+
 const isLarge = props =>
   props.large &&
   css`
@@ -64,6 +66,7 @@ const isSmall = props =>
     font-size: 13px;
     padding: 0 14px;
   `;
+
 const Main = styled.button`
   position: relative;
   overflow: hidden;

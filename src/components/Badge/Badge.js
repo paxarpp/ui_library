@@ -7,6 +7,7 @@ const Badge = ({ count, color = '#26a69a', ...props }) => (
     {count}
   </Span>
 );
+
 Badge.propTypes = {
   /** value on the screen */
   count: PropTypes.number,
@@ -25,6 +26,7 @@ const isBlock = props =>
     border-radius: 2px;
     background-color: ${({ color }) => color};
   `;
+
 const Span = styled.span`
   min-width: 3rem;
   padding: 0 6px;

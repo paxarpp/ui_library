@@ -11,6 +11,7 @@ class CardReveal extends Component {
       open: false
     };
   }
+
   render() {
     const { bgColor = 'white', textColor = 'grey', header, url, children } = this.props;
     const { open } = this.state;
@@ -37,6 +38,7 @@ class CardReveal extends Component {
     );
   }
 }
+
 CardReveal.propTypes = {
   /** message on card */
   children: PropTypes.any,
@@ -49,6 +51,7 @@ CardReveal.propTypes = {
   /** color text on card */
   textColor: PropTypes.string
 };
+
 const Wrapper = styled.div`
   overflow: hidden;
   position: relative;
@@ -59,6 +62,7 @@ const Wrapper = styled.div`
   border-radius: 2px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 `;
+
 const CardTitle = styled.span`
   font-size: 24px;
   font-weight: 300;
@@ -66,9 +70,11 @@ const CardTitle = styled.span`
   justify-content: space-between;
   cursor: ${props => props.activator && 'pointer'};
 `;
+
 const CardImage = styled.div`
   position: relative;
 `;
+
 const Img = styled.img`
   display: block;
   border-radius: 2px 2px 0 0;
@@ -80,6 +86,7 @@ const Img = styled.img`
   width: 100%;
   cursor: ${props => props.activator && 'pointer'};
 `;
+
 const CardContent = styled.div`
   padding: 24px;
   border-radius: 0 0 2px 2px;
@@ -88,9 +95,11 @@ const CardContent = styled.div`
     margin-bottom: 8px;
   }
 `;
+
 const P = styled.p`
   margin: 0;
 `;
+
 const slidU = keyframes`
  to{
   transform: translateY(0);
@@ -99,6 +108,7 @@ const slidU = keyframes`
   transform: translateY(100%);
  }
 `;
+
 const slidD = keyframes`
  to{
   transform: translateY(100%);
@@ -107,6 +117,7 @@ const slidD = keyframes`
   transform: translateY(0);
  }
 `;
+
 const isActiv = props =>
   props.open === true
     ? css`
@@ -119,6 +130,7 @@ const isActiv = props =>
         animation: ${slidD} 0.3s linear;
         transform: translateY(100%);
       `;
+
 const CardRev = styled.div`
   box-sizing: border-box;
   padding: 24px;
@@ -137,4 +149,5 @@ const CardRev = styled.div`
   }
   ${isActiv};
 `;
+
 export default CardReveal;

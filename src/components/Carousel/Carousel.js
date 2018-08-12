@@ -13,15 +13,19 @@ class Carousel extends Component {
       ]
     };
   }
+
   componentDidMount() {
     this.runInterval();
   }
+
   componentWillUnmount() {
     clearInterval(this.interval);
   }
+
   runInterval = () => {
     this.interval = setInterval(this.step, +this.props.duration);
   };
+
   step = () => {
     const { arrIndx } = this.state;
     const { reverse } = this.props;
@@ -29,6 +33,7 @@ class Carousel extends Component {
       arrIndx: reverse ? arrIndx.slice(1).concat(arrIndx.slice(0, 1)) : arrIndx.slice(-1).concat(arrIndx.slice(0, -1))
     });
   };
+
   handler = x => () => {
     const { arrIndx } = this.state;
     let arr = arrIndx.slice();
@@ -41,6 +46,7 @@ class Carousel extends Component {
     clearInterval(this.interval);
     this.runInterval();
   };
+
   render() {
     const { images, width, height } = this.props;
     const { arrIndx } = this.state;
@@ -55,6 +61,7 @@ class Carousel extends Component {
     );
   }
 }
+
 Carousel.propTypes = {
   /** array of path to images */
   images: PropTypes.arrayOf(
@@ -71,11 +78,13 @@ Carousel.propTypes = {
   /** height of slider */
   height: PropTypes.PropTypes.string
 };
+
 Carousel.defaultProps = {
   duration: 5000,
   width: '600px',
   height: '400px'
 };
+
 const Wrapper = styled.div`
   height: ${props => props.height};
   position: relative;
@@ -86,6 +95,7 @@ const Wrapper = styled.div`
   transform-origin: 0% 50%;
   box-sizing: border-box;
 `;
+
 const isNumber0 = props =>
   props.index === 0 &&
   css`
@@ -94,6 +104,7 @@ const isNumber0 = props =>
     opacity: 1;
     visibility: visible;
   `;
+
 const isNumber1 = props =>
   props.index === 1 &&
   css`
@@ -102,6 +113,7 @@ const isNumber1 = props =>
     visibility: visible;
     transform: translateX(205px) translateY(100px) translateX(200px) translateZ(-200px);
   `;
+
 const isNumber2 = props =>
   props.index === 2 &&
   css`
@@ -110,6 +122,7 @@ const isNumber2 = props =>
     opacity: 0.2;
     visibility: visible;
   `;
+
 const isNumber4 = props =>
   props.index === 4 &&
   css`
@@ -118,6 +131,7 @@ const isNumber4 = props =>
     opacity: 0.6;
     visibility: visible;
   `;
+
 const isNumber3 = props =>
   props.index === 3 &&
   css`
@@ -126,6 +140,7 @@ const isNumber3 = props =>
     opacity: 0.2;
     visibility: visible;
   `;
+
 const Link = styled.div`
   visibility: hidden;
   width: 200px;
@@ -143,9 +158,11 @@ const Link = styled.div`
     cursor: pointer;
   }
 `;
+
 const Img = styled.img`
   width: 200px;
   height: 200px;
   border-style: none;
 `;
+
 export default Carousel;

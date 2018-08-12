@@ -11,6 +11,7 @@ BadgeFloat.propTypes = {
   /** ripple effect */
   pulse: PropTypes.bool
 };
+
 const pulseAnimation = keyframes`
   0% {
     opacity: 1;
@@ -25,6 +26,7 @@ const pulseAnimation = keyframes`
     transform: scale(1.5);
   }
 `;
+
 const isPulse = props =>
   props.pulse &&
   css`
@@ -44,6 +46,7 @@ const isPulse = props =>
       z-index: 0;
     }
   `;
+
 const Span = styled.span`
   min-width: 2.1rem;
   padding: 6px;

@@ -34,6 +34,7 @@ const Wrap = styled.div`
   transition: box-shadow 0.25s;
   border-radius: 2px;
 `;
+
 const Content = styled.div`
   color: ${props => props.color};
   padding: 24px;
@@ -42,6 +43,7 @@ const Content = styled.div`
     margin: 0;
   }
 `;
+
 const CardAction = styled.div`
   background-color: inherit;
   border-top: 1px solid rgba(160, 160, 160, 0.2);
@@ -57,6 +59,7 @@ const CardAction = styled.div`
     text-transform: uppercase;
   }
 `;
+
 const Title = styled.span`
   color: ${props => props.color};
   font-size: 24px;

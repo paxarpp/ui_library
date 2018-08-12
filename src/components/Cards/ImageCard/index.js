@@ -33,12 +33,14 @@ ImageCard.propTypes = {
   /** color text on card */
   textColor: PropTypes.string
 };
+
 const isHorizontal = props =>
   props.horizontal &&
   css`
     display: flex;
     flex-flow: row nowrap;
   `;
+
 const Wrap = styled.div`
   background-color: ${props => props.bgColor};
   position: relative;
@@ -48,6 +50,7 @@ const Wrap = styled.div`
   border-radius: 2px;
   ${isHorizontal};
 `;
+
 const Content = styled.div`
   color: ${props => props.color};
   padding: 24px;
@@ -58,6 +61,7 @@ const Content = styled.div`
     margin: 0;
   }
 `;
+
 const Title = styled.span`
   color: #fff;
   font-size: 24px;
@@ -69,6 +73,7 @@ const Title = styled.span`
   padding: 24px;
   display: block;
 `;
+
 const CardAction = styled.div`
   background-color: inherit;
   border-top: 1px solid rgba(160, 160, 160, 0.2);
@@ -84,6 +89,7 @@ const CardAction = styled.div`
     text-transform: uppercase;
   }
 `;
+
 const CardImg = styled.div`
   overflow: hidden;
   position: relative;
@@ -98,6 +104,7 @@ const CardImg = styled.div`
     width: 100%;
   }
 `;
+
 const FlexDiv = styled.div`
   ${props =>
     props.horizontal &&
@@ -106,4 +113,5 @@ const FlexDiv = styled.div`
       flex-flow: column;
     `};
 `;
+
 export default ImageCard;
