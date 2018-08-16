@@ -8,7 +8,7 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-transition-group": "^2.4.0",
-    "styled-components": "^3.3.3",
+    "styled-components": "^3.4.2",
     "styled-transition-group": "^1.0.0"
   },
   "scripts": {
@@ -16,12 +16,12 @@
     "build-storybook": "build-storybook -s public"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^4.0.0-alpha.13",
-    "@storybook/addon-info": "^4.0.0-alpha.13",
+    "@storybook/addon-actions": "^4.0.0-alpha.16",
+    "@storybook/addon-info": "^4.0.0-alpha.16",
     "@storybook/addon-knobs": "^4.0.0-alpha.10",
-    "@storybook/addon-links": "^4.0.0-alpha.13",
-    "@storybook/addons": "^4.0.0-alpha.13",
-    "@storybook/react": "^4.0.0-alpha.14",
+    "@storybook/addon-links": "^4.0.0-alpha.16",
+    "@storybook/addons": "^4.0.0-alpha.16",
+    "@storybook/react": "^4.0.0-alpha.16",
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
