@@ -98,6 +98,15 @@ const InpWrap = styled.input`
     border-bottom: 1px solid ${props => (props.right ? '#26a69a' : '#f44336')};
     box-shadow: 0 1px 0 0 ${props => (props.right ? '#26a69a' : '#f44336')};
   }
+  :focus ~ span {
+    font-size: 0.8rem;
+    transition: font-size 0.3s;
+  }
+  :not(:focus) ~ span {
+    font-size: 0.5rem;
+    bottom: -5px;
+    transition: font-size 0.3s, bottom 0.3s;
+  }
 `;
 
 const LabelWrap = styled.label`
