@@ -7,17 +7,20 @@ class Input extends Component {
     super(props);
     this.state = {
       value: '',
-      coincidence: ''
+      coincidence: '',
+      correct: true
     };
     this.input = React.createRef();
   }
 
   changeValue = e => {
+    const nextValue = e.target.value;
     const { value } = this.state;
-    const { counterMax } = this.props;
+    const { counterMax, regexp } = this.props;
     this.setState(
       {
-        value: !counterMax || e.target.value.length <= counterMax ? e.target.value : value
+        value: !counterMax || nextValue.length <= counterMax ? nextValue : value,
+        correct: !regexp ? true : nextValue !== '' ? regexp.test(nextValue) : true
       },
       () => {
         this.setState({
@@ -31,16 +34,15 @@ class Input extends Component {
 
   render() {
     const { placeholder, regexp, counterMax, ...props } = this.props;
-    const { value, coincidence } = this.state;
-    const right = regexp !== '' && value !== '' ? this.props.regexp.test(value) : true;
+    const { value, coincidence, correct } = this.state;
     const active = coincidence.length > 0;
     return (
       <Wrapper>
-        <InpWrap {...props} onChange={this.changeValue} value={value} right={right} innerRef={this.input} />
+        <InpWrap {...props} onChange={this.changeValue} value={value} right={correct} innerRef={this.input} />
         <LabelWrap value={value} onClick={() => this.input.current.focus()}>
           {placeholder}
         </LabelWrap>
-        {regexp !== '' && value !== '' ? <Span right={right}>{right ? 'right' : 'error'}</Span> : null}
+        {regexp !== '' && value !== '' ? <Span right={correct}>{correct ? 'right' : 'error'}</Span> : null}
         {
           <UlAuto active={active}>
             {active &&
@@ -104,7 +106,7 @@ const InpWrap = styled.input`
   }
   :not(:focus) ~ span {
     font-size: 0.5rem;
-    bottom: -5px;
+    bottom: -1px;
     transition: font-size 0.3s, bottom 0.3s;
   }
 `;
