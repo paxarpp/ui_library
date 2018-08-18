@@ -17,12 +17,20 @@ class Input extends Component {
     const nextValue = e.target.value;
     const { value } = this.state;
     const { counterMax, regexp } = this.props;
+    const fieldName = e.currentTarget.dataset.fieldName;
     this.setState(
       {
         value: !counterMax || nextValue.length <= counterMax ? nextValue : value,
         correct: !regexp ? true : nextValue !== '' ? regexp.test(nextValue) : true
       },
       () => {
+        if (this.props.handler) {
+          this.props.handler({
+            value: this.state.value,
+            correct: this.state.correct,
+            fieldName
+          });
+        }
         this.setState({
           coincidence:
             this.state.value &&
@@ -61,9 +69,14 @@ class Input extends Component {
 
 Input.propTypes = {
   placeholder: PropTypes.string,
-  regexp: PropTypes.string,
+  regexp: (props, propName, componentName) => {
+    if (props[propName] && !/.+/.test(props[propName])) {
+      return new Error(`Invalid prop ${propName} supplied to ${componentName} Validation failed.`);
+    }
+  },
   data: PropTypes.arrayOf(PropTypes.string),
-  counterMax: PropTypes.number
+  counterMax: PropTypes.number,
+  handler: PropTypes.func
 };
 
 Input.defaultProps = {

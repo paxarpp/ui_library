@@ -15,18 +15,30 @@ class Form extends Component {
   changeValue = e => {
     const { minH, counterMax } = this.props;
     const { value } = this.state;
-    this.setState({
-      value: !counterMax || e.target.value.length <= counterMax ? e.target.value : value,
-      heightArea: this.area.current.scrollHeight < minH ? minH : this.area.current.scrollHeight
-    });
+    const fieldName = e.currentTarget.dataset.fieldName;
+    this.setState(
+      {
+        value: !counterMax || e.target.value.length <= counterMax ? e.target.value : value,
+        heightArea: this.area.current.scrollHeight < minH ? minH : this.area.current.scrollHeight
+      },
+      () => {
+        if (this.props.handler) {
+          this.props.handler({
+            value: this.state.value,
+            correct: this.state.correct,
+            fieldName
+          });
+        }
+      }
+    );
   };
 
   render() {
     const { heightArea, value } = this.state;
-    const { placeholder, counterMax } = this.props;
+    const { placeholder, counterMax, ...props } = this.props;
     return (
       <Wrapper>
-        <Textarea onChange={this.changeValue} innerRef={this.area} heightArea={heightArea} value={value} />
+        <Textarea onChange={this.changeValue} innerRef={this.area} heightArea={heightArea} value={value} {...props} />
         <LabelWrap value={value} onClick={() => this.area.current.focus()}>
           {placeholder}
         </LabelWrap>
@@ -39,7 +51,8 @@ class Form extends Component {
 Form.propTypes = {
   placeholder: PropTypes.string,
   minH: PropTypes.number,
-  counterMax: PropTypes.number
+  counterMax: PropTypes.number,
+  handler: PropTypes.func
 };
 
 Form.defaultProps = {
