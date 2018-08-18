@@ -18,8 +18,7 @@ class Form extends Component {
 
   valueState = data => {
     this.setState({
-      [data.fieldName]: data.value,
-      [`${data.fieldName}_correct`]: data.correct
+      [data.fieldName]: { value: data.value, correct: data.correct }
     });
   };
 
