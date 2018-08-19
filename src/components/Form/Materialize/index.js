@@ -22,34 +22,43 @@ class Form extends Component {
     });
   };
 
+  isDisable = () => {
+    let correct = true;
+    for (const key in this.state) {
+      if (this.state[key].correct === false) {
+        correct = false;
+      }
+    }
+    return !correct;
+  };
+
   render() {
+    const disable = this.isDisable();
     return (
       <Wrapper>
         <Head>Login to your account</Head>
         <form>
-          <Input
-            type="text"
-            placeholder="Full Name"
-            regexp={/^[а-яА-Я]{1,20} [а-яА-Я]{1,20}$/}
-            data-field-name={'full_Name'}
-            handler={this.valueState}
-          />
-          <Input
-            type="email"
-            placeholder="Email"
-            regexp={/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/}
-            data-field-name={'email'}
-            handler={this.valueState}
-          />
-          <Input
-            type="url"
-            placeholder="Website"
-            regexp={/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/}
-            data-field-name={'url'}
-            handler={this.valueState}
-          />
-          <TextArea placeholder="Message" type="message" data-field-name={'message'} handler={this.valueState} />
-          <Primary bottom handlerClick={this.handler}>
+          {this.props.field.map(
+            elem =>
+              elem.name === 'input' ? (
+                <Input
+                  type={elem.type}
+                  placeholder={elem.placeholder}
+                  regexp={elem.regexp || null}
+                  data-field-name={elem.data_field}
+                  handler={this.valueState}
+                />
+              ) : (
+                <TextArea
+                  type={elem.type}
+                  placeholder={elem.placeholder}
+                  regexp={elem.regexp || null}
+                  data-field-name={elem.data_field}
+                  handler={this.valueState}
+                />
+              )
+          )}
+          <Primary bottom handlerClick={this.handler} disable={disable}>
             Send Message
           </Primary>
         </form>
@@ -58,7 +67,20 @@ class Form extends Component {
   }
 }
 Form.propTypes = {
-  formValue: PropTypes.func.isRequired
+  formValue: PropTypes.func.isRequired,
+  field: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      placeholder: PropTypes.string.isRequired,
+      regexp: (props, propName, componentName) => {
+        if (props[propName] && !/.+/.test(props[propName])) {
+          return new Error(`Invalid prop ${propName} supplied to ${componentName} Validation failed.`);
+        }
+      },
+      data_field: PropTypes.string.isRequired
+    })
+  ).isRequired
 };
 
 const Wrapper = styled.div`

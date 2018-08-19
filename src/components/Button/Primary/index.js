@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { css, keyframes } from 'styled-components';
 
 const ButtonMain = ({ children, handlerClick, disable, className, ...props }) => (
-  <Main onClick={disable ? null : handlerClick} {...props} className={className}>
+  <Main onClick={disable ? null : handlerClick} disable={disable} {...props} className={className}>
     {children}
   </Main>
 );
