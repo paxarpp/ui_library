@@ -18,7 +18,9 @@ Link.propTypes = {
   /** the start point of the underscore animation */
   left: PropTypes.bool,
   right: PropTypes.bool,
-  center: PropTypes.bool
+  center: PropTypes.bool,
+  /** lowercase if exist, or default uppercase */
+  lowercase: PropTypes.bool
 };
 
 const style = css`
@@ -83,7 +85,7 @@ const isDefault = props =>
   `;
 
 const Wrapper = styled.a`
-  text-transform: uppercase;
+  text-transform: ${({ lowercase }) => (lowercase ? 'lowercase' : 'uppercase')};
   text-decoration: none;
   position: relative;
   color: ${({ color }) => color};

@@ -9,8 +9,8 @@ storiesOf('Link', module)
       ссылка
     </Link>
   ))
-  .add('Link right', () => (
-    <Link right url={'./'}>
+  .add('Link right lowercase', () => (
+    <Link right lowercase url={'./'}>
       ссылка
     </Link>
   ))
