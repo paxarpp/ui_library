@@ -9,27 +9,37 @@ const Link = ({ url, children, color = '#26a69a', ...props }) => (
 );
 
 Link.propTypes = {
+  /** url for Link */
   url: PropTypes.string.isRequired,
+  /** what see in Link */
   children: PropTypes.any,
-  color: PropTypes.string
+  /** color text , line and any output in Link */
+  color: PropTypes.string,
+  /** the start point of the underscore animation */
+  left: PropTypes.bool,
+  right: PropTypes.bool,
+  center: PropTypes.bool
 };
+
+const style = css`
+  content: '';
+  bottom: 0;
+  position: absolute;
+  height: 2px;
+  background-color: ${({ color }) => color};
+  transition: 0.2s;
+`;
 
 const isLeft = props =>
   props.left &&
   css`
     :before {
-      content: '';
-      bottom: 0;
-      right: 0;
-      position: absolute;
+      ${style};
+      left: 0;
       width: 0%;
-      height: 2px;
-      background-color: #26a69a;
-      transition: 0.2s;
     }
     :hover:before {
       width: 100%;
-      left: 0;
     }
   `;
 
@@ -37,14 +47,9 @@ const isRight = props =>
   props.right &&
   css`
     :before {
-      content: '';
-      bottom: 0;
+      ${style};
       right: 0;
-      position: absolute;
       width: 0%;
-      height: 2px;
-      background-color: #26a69a;
-      transition: 0.2s;
     }
     :hover:before {
       width: 100%;
@@ -55,18 +60,25 @@ const isCenter = props =>
   props.center &&
   css`
     :before {
-      content: '';
-      bottom: 0;
+      ${style};
       left: 0;
-      position: absolute;
       width: 100%;
-      height: 2px;
-      background-color: #26a69a;
-      transition: 0.2s;
       transform: scaleX(0);
     }
     :hover:before {
       transform: scaleX(1);
+    }
+  `;
+
+const isDefault = props =>
+  !props.center &&
+  !props.right &&
+  !props.left &&
+  css`
+    :before {
+      ${style};
+      left: 0;
+      width: 100%;
     }
   `;
 
@@ -75,6 +87,7 @@ const Wrapper = styled.a`
   text-decoration: none;
   position: relative;
   color: ${({ color }) => color};
+  ${isDefault};
   ${isLeft};
   ${isRight};
   ${isCenter};

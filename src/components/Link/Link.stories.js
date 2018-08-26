@@ -3,8 +3,9 @@ import { storiesOf } from '@storybook/react';
 import Link from './index';
 
 storiesOf('Link', module)
-  .add('Link left', () => (
-    <Link left url={'./'}>
+  .add('Link', () => <Link url={'./'}>ссылка</Link>)
+  .add('Link left color="red"', () => (
+    <Link left url={'./'} color="red">
       ссылка
     </Link>
   ))
@@ -13,8 +14,8 @@ storiesOf('Link', module)
       ссылка
     </Link>
   ))
-  .add('Link center', () => (
-    <Link center url={'./'}>
+  .add('Link center color="#aeeeee"', () => (
+    <Link center url={'./'} color="#aeeeee">
       ссылка
     </Link>
   ));
