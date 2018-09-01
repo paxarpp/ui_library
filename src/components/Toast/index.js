@@ -11,11 +11,13 @@ class Toast extends Component {
       items: []
     };
   }
+
   onRemove = i => () => {
     const items = this.state.items.slice();
     items.splice(i, 1);
     this.setState({ items });
   };
+
   onAdd = () => {
     const { items } = this.state;
     this.setState(
@@ -45,22 +47,26 @@ class Toast extends Component {
     );
   }
 }
+
 Toast.propTypes = {
   children: PropTypes.any,
   duration: PropTypes.number,
   width: PropTypes.number,
   height: PropTypes.number
 };
+
 Toast.defaultProps = {
   duration: 3000,
   width: 100,
   height: 50
 };
+
 const Wrapper = styled.div`
   position: fixed;
   top: 100px;
   right: 100px;
 `;
+
 const Div = transition.div.attrs({
   unmountOnExit: true,
   timeout: 800
