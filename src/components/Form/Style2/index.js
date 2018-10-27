@@ -35,7 +35,7 @@ class Form extends Component {
                     heightArea: this.area.current.scrollHeight < 44 ? 44 : this.area.current.scrollHeight
                   })
                 }
-                innerRef={this.area}
+                ref={this.area}
                 heightArea={heightArea}
               />
             </Label>

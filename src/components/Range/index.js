@@ -29,7 +29,7 @@ class Range extends Component {
     return (
       <RangeField>
         <Input
-          innerRef={comp => (this.input = comp)}
+          ref={comp => (this.input = comp)}
           coordX={coordX}
           type="range"
           {...this.props}

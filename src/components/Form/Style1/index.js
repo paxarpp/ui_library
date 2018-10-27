@@ -25,7 +25,7 @@ class Form extends Component {
             onChange={() =>
               this.setState({ heightArea: this.area.current.scrollHeight < 44 ? 44 : this.area.current.scrollHeight })
             }
-            innerRef={this.area}
+            ref={this.area}
             heightArea={heightArea}
           />
           <input type="button" value="Send Message" />

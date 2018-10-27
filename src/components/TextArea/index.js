@@ -38,7 +38,7 @@ class Form extends Component {
     const { placeholder, counterMax, ...props } = this.props;
     return (
       <Wrapper>
-        <Textarea onChange={this.changeValue} innerRef={this.area} heightArea={heightArea} value={value} {...props} />
+        <Textarea onChange={this.changeValue} ref={this.area} heightArea={heightArea} value={value} {...props} />
         <LabelWrap value={value} onClick={() => this.area.current.focus()}>
           {placeholder}
         </LabelWrap>

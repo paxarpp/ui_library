@@ -46,7 +46,7 @@ class Input extends Component {
     const active = coincidence.length > 0;
     return (
       <Wrapper>
-        <InpWrap {...props} onChange={this.changeValue} value={value} right={correct} innerRef={this.input} />
+        <InpWrap {...props} onChange={this.changeValue} value={value} right={correct} ref={this.input} />
         <LabelWrap value={value} onClick={() => this.input.current.focus()}>
           {placeholder}
         </LabelWrap>
