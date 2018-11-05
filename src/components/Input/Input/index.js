@@ -40,6 +40,10 @@ class Input extends Component {
     );
   };
 
+  setValue = elem => () => this.setState({ value: elem, coincidence: [] });
+
+  setFocus = () => this.input.current.focus();
+
   render() {
     const { placeholder, regexp, counterMax, ...props } = this.props;
     const { value, coincidence, correct } = this.state;
@@ -47,7 +51,7 @@ class Input extends Component {
     return (
       <Wrapper>
         <InpWrap {...props} onChange={this.changeValue} value={value} right={correct} ref={this.input} />
-        <LabelWrap value={value} onClick={() => this.input.current.focus()}>
+        <LabelWrap value={value} onClick={this.setFocus}>
           {placeholder}
         </LabelWrap>
         {regexp !== '' && value !== '' ? <Span right={correct}>{correct ? 'right' : 'error'}</Span> : null}
@@ -55,7 +59,7 @@ class Input extends Component {
           <UlAuto active={active}>
             {active &&
               coincidence.map((elem, indx) => (
-                <Li key={indx} onClick={() => this.setState({ value: elem, coincidence: [] })}>
+                <Li key={indx} onClick={this.setValue(elem)}>
                   {elem}
                 </Li>
               ))}

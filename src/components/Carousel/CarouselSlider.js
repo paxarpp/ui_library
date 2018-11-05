@@ -10,6 +10,8 @@ class CarouselSlider extends Component {
     };
   }
 
+  setActive = indx => () => this.setState({ active: indx });
+
   render() {
     const { children, width } = this.props;
     const { active } = this.state;
@@ -25,7 +27,7 @@ class CarouselSlider extends Component {
         {
           <Ul>
             {children.map((el, indx) => (
-              <Li key={`li${indx}`} onClick={() => this.setState({ active: indx })} active={active === indx} />
+              <Li key={`li${indx}`} onClick={this.setActive(indx)} active={active === indx} />
             ))}
           </Ul>
         }

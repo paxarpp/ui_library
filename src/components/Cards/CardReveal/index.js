@@ -5,12 +5,14 @@ import PropTypes from 'prop-types';
 import { Icon } from '../../Icon';
 
 class CardReveal extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       open: false
     };
   }
+
+  toggleOpen = () => this.setState({ open: !this.state.open });
 
   render() {
     const { bgColor = 'white', textColor = 'grey', header, url, children } = this.props;
@@ -18,10 +20,10 @@ class CardReveal extends Component {
     return (
       <Wrapper bgColor={bgColor} textColor={textColor}>
         <CardImage>
-          <Img onClick={() => this.setState({ open: !open })} activator src={url} />
+          <Img onClick={this.toggleOpen} activator src={url} />
         </CardImage>
         <CardContent>
-          <CardTitle onClick={() => this.setState({ open: !open })} activator>
+          <CardTitle onClick={this.toggleOpen} activator>
             {header} <Icon name="unfoldMore" />
           </CardTitle>
           <P>
@@ -30,7 +32,7 @@ class CardReveal extends Component {
         </CardContent>
         <CardRev open={open}>
           <CardTitle>
-            {header} <Icon name="clear" onClick={() => this.setState({ open: !open })} />
+            {header} <Icon name="clear" onClick={this.toggleOpen} />
           </CardTitle>
           <p>{children}</p>
         </CardRev>
