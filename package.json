@@ -37,12 +37,12 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.1.2",
-    "@storybook/addon-actions": "^4.0.0-alpha.25",
-    "@storybook/addon-info": "^4.0.0-alpha.25",
-    "@storybook/addon-knobs": "^4.0.0-alpha.25",
-    "@storybook/addon-links": "^4.0.0-alpha.25",
-    "@storybook/addons": "^4.0.0-alpha.25",
-    "@storybook/react": "^4.0.0-rc.6",
+    "@storybook/addon-actions": "^4.0.7",
+    "@storybook/addon-info": "^4.0.7",
+    "@storybook/addon-knobs": "^4.0.7",
+    "@storybook/addon-links": "^4.0.7",
+    "@storybook/addons": "^4.0.7",
+    "@storybook/react": "^4.0.7",
     "babel-loader": "^8.0.0",
     "babel-plugin-styled-components": "^1.5.1",
     "eslint": "^5.8.0",
@@ -61,6 +61,6 @@
     "stylelint-processor-styled-components": "^1.5.0",
     "webpack": "^4.23.1",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.1"
+    "webpack-dev-server": "^3.1.10"
   }
 }

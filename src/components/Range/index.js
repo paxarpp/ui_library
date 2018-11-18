@@ -8,22 +8,36 @@ class Range extends Component {
     this.state = {
       value: (this.props.min + this.props.max) / 2,
       coordX: 0,
-      target: false
+      target: false,
+      offsetLeft: 0
     };
+    this.input = React.createRef();
   }
   componentDidMount() {
+    const offsetLeft = this.input.getBoundingClientRect().left;
     this.setState({
-      coordX: this.input.clientWidth / 2 - 30
+      coordX: this.input.clientWidth / 2 - offsetLeft,
+      offsetLeft
     });
   }
-  coordX = e => {
-    const newLocal = this.state.coordX > e.pageX - 50 && this.state.coordX < e.pageX - 10;
+  setCoordX = e => {
+    const { offsetLeft, coordX } = this.state;
+    const newLocal = coordX > e.pageX - offsetLeft - 14 && coordX < e.pageX - (offsetLeft - 14);
     this.setState({
       currentX: newLocal,
-      coordX: newLocal ? e.pageX - 30 : this.state.coordX,
+      coordX: newLocal ? e.pageX - offsetLeft : coordX,
       value: e.target.value
     });
   };
+  setRange = e => {
+    const { offsetLeft } = this.state;
+    this.setState({
+      coordX: e.pageX - offsetLeft - 14,
+      currentX: true,
+      value: e.target.value
+    });
+  };
+
   render() {
     const { value, coordX, currentX } = this.state;
     return (
@@ -33,8 +47,8 @@ class Range extends Component {
           coordX={coordX}
           type="range"
           {...this.props}
-          onMouseMove={this.coordX}
-          onClick={e => this.setState({ coordX: e.pageX - 30, currentX: true, value: e.target.value })}
+          onMouseMove={this.setCoordX}
+          onClick={this.setRange}
           defaultValue={value}
           currentX={currentX}
         />
