@@ -9,18 +9,22 @@ class SelectYear extends Component {
       isOpen: false
     };
   }
+
   openSelectYear = select => () => {
     this.setState({
       isOpen: false
     });
     this.props.handlerYear(select);
   };
+
+  toggleOpen = () => this.setState({ isOpen: !this.state.isOpen });
+
   render() {
     const { year } = this.props;
     const { isOpen } = this.state;
     return (
       <Wrapper>
-        <Div onClick={() => this.setState({ isOpen: !isOpen })}>{year}</Div>
+        <Div onClick={this.toggleOpen}>{year}</Div>
         {isOpen && (
           <Selected>
             <Ul>

@@ -33,13 +33,15 @@ class Form extends Component {
     );
   };
 
+  setFocus = () => this.area.current.focus();
+
   render() {
     const { heightArea, value } = this.state;
     const { placeholder, counterMax, ...props } = this.props;
     return (
       <Wrapper>
         <Textarea onChange={this.changeValue} ref={this.area} heightArea={heightArea} value={value} {...props} />
-        <LabelWrap value={value} onClick={() => this.area.current.focus()}>
+        <LabelWrap value={value} onClick={this.setFocus}>
           {placeholder}
         </LabelWrap>
         {counterMax && <CharacterCounter>{`${value.length}/${counterMax}`}</CharacterCounter>}

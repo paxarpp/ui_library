@@ -11,19 +11,21 @@ class SelectMonth extends Component {
       isOpen: false
     };
   }
+
   openSelectMonth = indx => () => {
-    this.setState({
-      isOpen: false
-    });
+    this.setState({ isOpen: false });
     this.props.handlerMonth(indx);
   };
+
+  toggleOpen = () => this.setState({ isOpen: !this.state.isOpen });
+
   render() {
     const { month } = this.props;
     const { isOpen } = this.state;
     const name = names.month[month];
     return (
       <Wrapper>
-        <Div onClick={() => this.setState({ isOpen: !isOpen })}>{name}</Div>
+        <Div onClick={this.toggleOpen}>{name}</Div>
         {isOpen && (
           <Selected>
             <Ul>

@@ -3,18 +3,20 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 class Hamburger extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       active: false
     };
   }
 
+  toggleActive = () => this.setState({ active: !this.state.active });
+
   render() {
     const { active } = this.state;
     const { ...props } = this.props;
     return (
-      <Wrapper type="button" onClick={() => this.setState({ active: !active })}>
+      <Wrapper type="button" onClick={this.toggleActive}>
         <Box>
           <Inner active={active} {...props} />
         </Box>

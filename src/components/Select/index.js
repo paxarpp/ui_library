@@ -23,11 +23,14 @@ class Select extends Component {
       select: indx
     });
   };
+
+  toggleOpen = () => this.setState({ open: !this.state.open });
+
   render() {
     const { placeholder, data } = this.props;
     const { open, select, dis } = this.state;
     return (
-      <Wrapper onClick={() => this.setState({ open: !open })}>
+      <Wrapper onClick={this.toggleOpen}>
         <Input>
           {select !== '' ? dis : placeholder}
           <WrapIcon name="expandMore" size="16px" open={open} />
