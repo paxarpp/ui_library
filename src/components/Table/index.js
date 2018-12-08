@@ -5,11 +5,19 @@ import PropTypes from 'prop-types';
 const Table = ({ data, ...props }) => (
   <TableWrap>
     <Thead {...props}>
-      <Tr>{Object.values(data[0]).map((cell, indx) => <Th key={indx}>{cell}</Th>)}</Tr>
+      <Tr>
+        {Object.values(data[0]).map((cell, indx) => (
+          <Th key={indx}>{cell}</Th>
+        ))}
+      </Tr>
     </Thead>
     <Tbody {...props}>
       {data.map((elem, indx) => (
-        <Tr key={indx}>{Object.values(elem).map((cell, indx) => <Td key={indx}>{cell}</Td>)}</Tr>
+        <Tr key={indx}>
+          {Object.values(elem).map((cell, indx) => (
+            <Td key={indx}>{cell}</Td>
+          ))}
+        </Tr>
       ))}
     </Tbody>
   </TableWrap>

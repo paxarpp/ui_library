@@ -12,17 +12,21 @@ class FloatingAction extends Component {
     };
   }
 
+  togglerOpen = () => this.setState({ open: !this.state.open });
+  openTrue = () => this.setState({ open: true });
+  openFalse = () => this.setState({ open: false });
+
   render() {
     const { children, name, color, toggle, ...props } = this.props;
     const { open } = this.state;
     return (
-      <Wrapper {...props} onMouseLeave={!toggle ? () => this.setState({ open: false }) : undefined}>
+      <Wrapper {...props} onMouseLeave={!toggle ? this.openFalse : null}>
         <MainFloat
           large
           color={color}
           {...props}
-          onMouseEnter={!toggle ? () => this.setState({ open: true }) : undefined}
-          handlerClick={toggle && (() => this.setState({ open: !open }))}
+          onMouseEnter={!toggle ? this.openTrue : null}
+          handlerClick={toggle ? this.togglerOpen : null}
         >
           <Icon name={name} />
         </MainFloat>

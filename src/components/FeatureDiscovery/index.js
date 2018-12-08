@@ -12,6 +12,9 @@ class FeatureDiscovery extends Component {
       open: this.props.open
     };
   }
+
+  togglerOpen = () => this.setState({ open: !this.state.open });
+
   render() {
     const { header, children } = this.props;
     const { open } = this.state;
@@ -24,7 +27,7 @@ class FeatureDiscovery extends Component {
           </TapTargetContent>
         </TapTarget>
         <TapTargetWave open={open}>
-          <WrapFloat large color="cyan" handlerClick={() => this.setState({ open: !open })}>
+          <WrapFloat large color="cyan" handlerClick={this.togglerOpen}>
             <Icon name="menu" />
           </WrapFloat>
         </TapTargetWave>

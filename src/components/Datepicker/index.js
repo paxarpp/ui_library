@@ -20,6 +20,7 @@ class DatePicker extends Component {
       }
     };
   }
+
   decrimentMonth = () => {
     const { year, month } = this.state;
     this.setState({
@@ -27,6 +28,7 @@ class DatePicker extends Component {
       year: month === 0 ? year - 1 : year
     });
   };
+
   incrementMonth = () => {
     const { year, month } = this.state;
     this.setState({
@@ -34,6 +36,19 @@ class DatePicker extends Component {
       year: month === 11 ? year + 1 : year
     });
   };
+
+  setMonth = month => this.setState({ month });
+  setYear = year => this.setState({ year });
+  setSetupDate = day => () => {
+    this.setState({
+      setupDate: {
+        month: this.state.month,
+        year: this.state.year,
+        day
+      }
+    });
+  };
+
   render() {
     const { year, month, setupDate } = this.state;
     return (
@@ -46,18 +61,11 @@ class DatePicker extends Component {
                 {...this.state}
                 decrimentMonth={this.decrimentMonth}
                 incrementMonth={this.incrementMonth}
-                handlerMonth={month => this.setState({ month })}
-                handlerYear={year => this.setState({ year })}
+                handlerMonth={this.setMonth}
+                handlerYear={this.setYear}
               />
               <div>
-                <DatepickerTable
-                  year={year}
-                  month={month}
-                  handlerClick={day => () => {
-                    this.setState({ setupDate: { year, month, day } });
-                  }}
-                  setupDate={setupDate}
-                />
+                <DatepickerTable year={year} month={month} handlerClick={this.setSetupDate} setupDate={setupDate} />
               </div>
               <DatepickerFooter
                 hadlerClose={this.props.hadlerClose}

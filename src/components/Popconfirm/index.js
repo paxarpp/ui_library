@@ -1,37 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { Primary } from '../Button';
 
-class Popconfirm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const Popconfirm = ({ title, open, onClick }) => (
+  <Wrap open={open}>
+    <Arrow />
+    <Inner>
+      <Message>
+        <Title>{title}</Title>
+      </Message>
+      <Buttons>
+        <WrapPrimary border small handlerClick={onClick}>
+          NO
+        </WrapPrimary>
+        <Primary small bottom handlerClick={onClick}>
+          YES
+        </Primary>
+      </Buttons>
+    </Inner>
+  </Wrap>
+);
 
-  render() {
-    const { title, open, onClick } = this.props;
-    return (
-      <Wrap open={open}>
-        <Arrow />
-        <Inner>
-          <Message>
-            <Title>{title}</Title>
-          </Message>
-          <Buttons>
-            <WrapPrimary border small handlerClick={onClick}>
-              NO
-            </WrapPrimary>
-            <Primary small bottom handlerClick={onClick}>
-              YES
-            </Primary>
-          </Buttons>
-        </Inner>
-      </Wrap>
-    );
-  }
-}
 Popconfirm.propTypes = {
   title: PropTypes.string,
   open: PropTypes.bool,
