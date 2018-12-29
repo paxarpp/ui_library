@@ -12,12 +12,14 @@ class Pagination extends Component {
       currentPage: this.props.currentPage
     };
   }
+
   decriment = () => {
     const { currentPage } = this.state;
     this.setState({
       currentPage: currentPage === 1 ? currentPage : currentPage - 1
     });
   };
+
   incriment = () => {
     const { currentPage } = this.state;
     const { maxPages } = this.props;
@@ -25,6 +27,7 @@ class Pagination extends Component {
       currentPage: currentPage === maxPages ? currentPage : currentPage + 1
     });
   };
+
   preparePaginat = () => {
     const { length, maxPages } = this.props;
     const { currentPage } = this.state;
@@ -34,6 +37,9 @@ class Pagination extends Component {
       (el, indx) => (startPoint <= 0 ? indx : startPoint + length >= maxPages ? endPoint + indx : startPoint + indx)
     );
   };
+
+  handler = el => () => this.setState({ currentPage: el + 1 });
+
   render() {
     const { currentPage } = this.state;
     const { maxPages } = this.props;
@@ -45,10 +51,7 @@ class Pagination extends Component {
           </Li>
           {this.preparePaginat().map(el => (
             <Li key={el}>
-              <WrapFlat
-                currentPage={el + 1 === currentPage}
-                handlerClick={() => this.setState({ currentPage: el + 1 })}
-              >
+              <WrapFlat currentPage={el + 1 === currentPage} handlerClick={this.handler(el)}>
                 {el + 1}
               </WrapFlat>
             </Li>

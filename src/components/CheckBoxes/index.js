@@ -9,12 +9,15 @@ class CheckBoxes extends Component {
       checked: this.props.checked
     };
   }
+
+  handler = () => this.setState({ checked: !this.state.checked });
+
   render() {
     const { children, ...props } = this.props;
     return (
       <p>
         <Label>
-          <Input type="checkbox" {...props} onChange={() => this.setState({ checked: !this.state.checked })} />
+          <Input type="checkbox" {...props} onChange={this.handler} />
           <Span {...props} checked={this.state.checked}>
             {children}
           </Span>

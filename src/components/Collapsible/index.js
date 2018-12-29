@@ -12,6 +12,13 @@ class Collapsible extends Component {
       numberClick: -1
     };
   }
+
+  handler = indx => () =>
+    this.setState({
+      numberClick: indx,
+      isOpen: this.state.isOpen === indx ? -1 : indx
+    });
+
   render() {
     const { data, ...props } = this.props;
     const { numberClick, isOpen } = this.state;
@@ -22,7 +29,7 @@ class Collapsible extends Component {
             key={indx}
             data={elem}
             isOpen={numberClick === indx ? (isOpen === indx ? true : false) : false}
-            click={() => this.setState({ numberClick: indx, isOpen: this.state.isOpen === indx ? -1 : indx })}
+            click={this.handler(indx)}
             {...props}
           />
         ))}
