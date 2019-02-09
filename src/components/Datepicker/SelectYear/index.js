@@ -1,45 +1,36 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { toggleOpen } from '../../helpers';
 
-class SelectYear extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpen: false
-    };
-  }
+const YEAR_LINE = 21;
+const YEAR_LINE_HALF = (YEAR_LINE - 1) / 2;
 
-  openSelectYear = select => () => {
-    this.setState({
-      isOpen: false
-    });
-    this.props.handlerYear(select);
+const SelectYear = ({ year, handlerYear }) => {
+  const [open, toggler] = useState(false);
+
+  const openSelectYear = (select, action) => () => {
+    action();
+    handlerYear(select);
   };
 
-  toggleOpen = () => this.setState({ isOpen: !this.state.isOpen });
-
-  render() {
-    const { year } = this.props;
-    const { isOpen } = this.state;
-    return (
-      <Wrapper>
-        <Div onClick={this.toggleOpen}>{year}</Div>
-        {isOpen && (
-          <Selected>
-            <Ul>
-              {[...Array(21)].map((el, indx) => (
-                <Li key={indx} onClick={this.openSelectYear(year - 10 + indx)}>
-                  {year - 10 + indx}
-                </Li>
-              ))}
-            </Ul>
-          </Selected>
-        )}
-      </Wrapper>
-    );
-  }
-}
+  return (
+    <Wrapper>
+      <Div onClick={toggleOpen(toggler, open)}>{year}</Div>
+      {open && (
+        <Selected>
+          <Ul>
+            {[...Array(YEAR_LINE)].map((_, indx) => (
+              <Li key={indx} onClick={openSelectYear(year - YEAR_LINE_HALF + indx, toggleOpen(toggler, open))}>
+                {year - YEAR_LINE_HALF + indx}
+              </Li>
+            ))}
+          </Ul>
+        </Selected>
+      )}
+    </Wrapper>
+  );
+};
 
 SelectYear.propTypes = {
   year: PropTypes.number.isRequired,

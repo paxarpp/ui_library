@@ -1,45 +1,33 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
-
 import { Icon } from '../../Icon';
+import { toggleOpen } from '../../helpers';
 
-class CardReveal extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false
-    };
-  }
-
-  toggleOpen = () => this.setState({ open: !this.state.open });
-
-  render() {
-    const { bgColor = 'white', textColor = 'grey', header, url, children } = this.props;
-    const { open } = this.state;
-    return (
-      <Wrapper bgColor={bgColor} textColor={textColor}>
-        <CardImage>
-          <Img onClick={this.toggleOpen} activator src={url} />
-        </CardImage>
-        <CardContent>
-          <CardTitle onClick={this.toggleOpen} activator>
-            {header} <Icon name="unfoldMore" />
-          </CardTitle>
-          <P>
-            <a href="#">This is a link</a>
-          </P>
-        </CardContent>
-        <CardRev open={open}>
-          <CardTitle>
-            {header} <Icon name="clear" onClick={this.toggleOpen} />
-          </CardTitle>
-          <p>{children}</p>
-        </CardRev>
-      </Wrapper>
-    );
-  }
-}
+const CardReveal = ({ bgColor = 'white', textColor = 'grey', header, url, children }) => {
+  const [open, toggler] = useState(false);
+  return (
+    <Wrapper bgColor={bgColor} textColor={textColor}>
+      <CardImage>
+        <Img onClick={toggleOpen(toggler, open)} activator src={url} />
+      </CardImage>
+      <CardContent>
+        <CardTitle onClick={toggleOpen(toggler, open)} activator>
+          {header} <Icon name="unfoldMore" />
+        </CardTitle>
+        <P>
+          <a href="#">This is a link</a>
+        </P>
+      </CardContent>
+      <CardRev open={open}>
+        <CardTitle>
+          {header} <Icon name="clear" onClick={toggleOpen(toggler, open)} />
+        </CardTitle>
+        <p>{children}</p>
+      </CardRev>
+    </Wrapper>
+  );
+};
 
 CardReveal.propTypes = {
   /** message on card */
@@ -53,6 +41,11 @@ CardReveal.propTypes = {
   /** color text on card */
   textColor: PropTypes.string
 };
+
+const isActivate = ({ activator }) =>
+  css`
+    cursor: ${activator ? 'pointer' : 'default'};
+  `;
 
 const Wrapper = styled.div`
   overflow: hidden;
@@ -70,7 +63,7 @@ const CardTitle = styled.span`
   font-weight: 300;
   display: flex;
   justify-content: space-between;
-  cursor: ${props => props.activator && 'pointer'};
+  ${isActivate};
 `;
 
 const CardImage = styled.div`
@@ -86,7 +79,7 @@ const Img = styled.img`
   top: 0;
   bottom: 0;
   width: 100%;
-  cursor: ${props => props.activator && 'pointer'};
+  ${isActivate};
 `;
 
 const CardContent = styled.div`
@@ -103,21 +96,21 @@ const P = styled.p`
 `;
 
 const slidU = keyframes`
- to{
-  transform: translateY(0);
- }
- from{
-  transform: translateY(100%);
- }
+  to{
+    transform: translateY(0);
+  }
+  from{
+    transform: translateY(100%);
+  }
 `;
 
 const slidD = keyframes`
- to{
-  transform: translateY(100%);
- }
- from{
-  transform: translateY(0);
- }
+  to{
+    transform: translateY(100%);
+  }
+  from{
+    transform: translateY(0);
+  }
 `;
 
 const isActiv = props =>
@@ -146,7 +139,6 @@ const CardRev = styled.div`
   z-index: 3;
   opacity: 0;
   ${CardTitle} {
-    cursor: pointer;
     display: block;
   }
   ${isActiv};

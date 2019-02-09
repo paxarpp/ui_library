@@ -1,31 +1,22 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
+import { toggleOpen } from '../helpers';
 
-class CheckBoxes extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      checked: this.props.checked
-    };
-  }
+const CheckBoxes = ({ children, ...props }) => {
+  const [checked, toggler] = useState(props.checked);
+  return (
+    <p>
+      <Label>
+        <Input type="checkbox" {...props} onChange={toggleOpen(toggler, checked)} />
+        <Span {...props} checked={checked}>
+          {children}
+        </Span>
+      </Label>
+    </p>
+  );
+};
 
-  handler = () => this.setState({ checked: !this.state.checked });
-
-  render() {
-    const { children, ...props } = this.props;
-    return (
-      <p>
-        <Label>
-          <Input type="checkbox" {...props} onChange={this.handler} />
-          <Span {...props} checked={this.state.checked}>
-            {children}
-          </Span>
-        </Label>
-      </p>
-    );
-  }
-}
 CheckBoxes.propTypes = {
   /** label checkbox*/
   children: PropTypes.string,
