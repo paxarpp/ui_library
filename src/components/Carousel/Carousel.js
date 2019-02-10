@@ -6,11 +6,9 @@ class Carousel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      arrIndx: [
-        ...Array(5)
-          .fill(0)
-          .map((_, indx) => indx)
-      ]
+      arrIndx: Array(5)
+        .fill(0)
+        .map((_, indx) => indx)
     };
   }
 
