@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import transition from 'styled-transition-group';
 import styled from 'styled-components';
-import { TransitionGroup } from 'react-transition-group';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
+const animationID = 'transitiongroup';
 
 class Toast extends Component {
   constructor(props) {
@@ -12,10 +13,13 @@ class Toast extends Component {
     };
   }
 
-  onRemove = i => () => {
-    const items = this.state.items.slice();
-    items.splice(i, 1);
-    this.setState({ items });
+  onRemove = id => () => {
+    if (id) {
+      const { items } = this.state;
+      this.setState({
+        items: items.filter(itemId => itemId !== id)
+      });
+    }
   };
 
   onAdd = () => {
@@ -24,7 +28,10 @@ class Toast extends Component {
       {
         items: items.concat(items[0] ? Math.max(...items) + 1 : 1)
       },
-      () => setTimeout(this.onRemove(items[items.length]), this.props.duration)
+      () => {
+        const { items } = this.state;
+        setTimeout(this.onRemove(items[items.length - 1]), this.props.duration);
+      }
     );
   };
 
@@ -36,10 +43,12 @@ class Toast extends Component {
         <button onClick={this.onAdd}>add</button>
         <Wrapper>
           <TransitionGroup>
-            {items.map((id, i) => (
-              <Div key={id} width={width} height={height} timeout={800} onClick={this.onRemove(i)}>
-                {this.props.children}
-              </Div>
+            {items.map(id => (
+              <Animation key={id} className={animationID} timeout={800}>
+                <Div width={width} height={height} onClick={this.onRemove(id)}>
+                  {this.props.children}
+                </Div>
+              </Animation>
             ))}
           </TransitionGroup>
         </Wrapper>
@@ -47,6 +56,12 @@ class Toast extends Component {
     );
   }
 }
+
+const CSSTransitionComponent = ({ className, children, ...props }) => (
+  <CSSTransition classNames={className} className={className} {...props}>
+    {children}
+  </CSSTransition>
+);
 
 Toast.propTypes = {
   children: PropTypes.any,
@@ -67,10 +82,7 @@ const Wrapper = styled.div`
   right: 100px;
 `;
 
-const Div = transition.div.attrs({
-  unmountOnExit: true,
-  timeout: 800
-})`
+const Div = styled.div`
   margin-bottom: 10px;
   width: ${props => props.width}px;
   height: ${props => props.height}px;
@@ -81,23 +93,25 @@ const Div = transition.div.attrs({
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  &:enter { 
+`;
+const Animation = styled(CSSTransitionComponent)`
+  &-enter {
     transform: translateY(50px);
     opacity: 0.2;
   }
-  &:enter-active {
+  &-enter-active {
     transform: translateY(0);
     opacity: 1;
     transition: all 800ms ease-in;
   }
-  &:exit { 
-    transform: translateY(0);
+  &-exit {
+    transform: translateX(0);
     opacity: 1;
   }
-  &:exit-active {
-    transform: translateY(-50px);
-    opacity: 0;
-    transition: all 600ms ease-in;
+  &-exit-active {
+    transform: translateX(50px);
+    opacity: 0.01;
+    transition: all 400ms ease-in;
   }
 `;
 
