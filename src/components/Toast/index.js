@@ -3,14 +3,24 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-const animationID = 'transitiongroup';
-
 class Toast extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: []
+      items: [],
+      timers: []
     };
+  }
+
+  componentDidMount() {
+    this.props.handlerAddToast(this.onAdd);
+  }
+
+  componentWillUnmount() {
+    const { timers } = this.state;
+    timers.forEach(timer => {
+      clearTimeout(timer);
+    });
   }
 
   onRemove = id => () => {
@@ -30,29 +40,27 @@ class Toast extends Component {
       },
       () => {
         const { items } = this.state;
-        setTimeout(this.onRemove(items[items.length - 1]), this.props.duration);
+        const timer = setTimeout(this.onRemove(items[items.length - 1]), this.props.duration);
+        this.setState({ timers: this.state.timers.concat(timer) });
       }
     );
   };
 
   render() {
-    const { width, height } = this.props;
+    const { width, height, animationID } = this.props;
     const { items } = this.state;
     return (
-      <div>
-        <button onClick={this.onAdd}>add</button>
-        <Wrapper>
-          <TransitionGroup>
-            {items.map(id => (
-              <Animation key={id} className={animationID} timeout={800}>
-                <Div width={width} height={height} onClick={this.onRemove(id)}>
-                  {this.props.children}
-                </Div>
-              </Animation>
-            ))}
-          </TransitionGroup>
-        </Wrapper>
-      </div>
+      <Wrapper>
+        <TransitionGroup>
+          {items.map(id => (
+            <Animation key={id} className={animationID} timeout={800}>
+              <Div width={width} height={height} onClick={this.onRemove(id)}>
+                {this.props.children}
+              </Div>
+            </Animation>
+          ))}
+        </TransitionGroup>
+      </Wrapper>
     );
   }
 }
@@ -67,13 +75,16 @@ Toast.propTypes = {
   children: PropTypes.any,
   duration: PropTypes.number,
   width: PropTypes.number,
-  height: PropTypes.number
+  height: PropTypes.number,
+  animationID: PropTypes.string,
+  handlerAddToast: PropTypes.func.isRequired
 };
 
 Toast.defaultProps = {
   duration: 3000,
   width: 100,
-  height: 50
+  height: 50,
+  animationID: 'transitiongroup'
 };
 
 const Wrapper = styled.div`
