@@ -6,8 +6,10 @@ const Table = ({ data, ...props }) => (
   <TableWrap>
     <Thead {...props}>
       <Tr>
-        {Object.values(data[0]).map((cell, indx) => (
-          <Th key={indx}>{cell}</Th>
+        {Object.keys(data[0]).map((fieldName, indx) => (
+          <Th key={`${fieldName}-${indx}`} {...props}>
+            {fieldName}
+          </Th>
         ))}
       </Tr>
     </Thead>
@@ -22,12 +24,23 @@ const Table = ({ data, ...props }) => (
     </Tbody>
   </TableWrap>
 );
+
 Table.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
   striped: PropTypes.bool,
   centered: PropTypes.bool,
-  highlight: PropTypes.bool
+  highlight: PropTypes.bool,
+  sticked: PropTypes.bool
 };
+
+const isSticked = ({ sticked }) =>
+  sticked &&
+  css`
+    position: sticky;
+    top: 0;
+    background: white;
+    box-shadow: 1px 1px 5px 1px grey;
+  `;
 const TableWrap = styled.table`
   width: 100%;
   display: table;
@@ -48,6 +61,7 @@ const tdth = css`
 const Th = styled.th`
   ${tdth};
   border: none;
+  ${isSticked};
 `;
 const Td = styled.td`
   ${tdth};
