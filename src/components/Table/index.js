@@ -39,7 +39,6 @@ const isSticked = ({ sticked }) =>
     position: sticky;
     top: 0;
     background: white;
-    box-shadow: 1px 1px 5px 1px grey;
   `;
 const TableWrap = styled.table`
   width: 100%;
