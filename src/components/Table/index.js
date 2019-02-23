@@ -14,10 +14,10 @@ const Table = ({ data, ...props }) => (
       </Tr>
     </Thead>
     <Tbody {...props}>
-      {data.map((elem, indx) => (
-        <Tr key={indx}>
+      {data.map((elem, indexTr) => (
+        <Tr key={indexTr}>
           {Object.values(elem).map((cell, indx) => (
-            <Td key={indx}>{cell}</Td>
+            <Td key={`${indexTr}-${indx}`}>{cell}</Td>
           ))}
         </Tr>
       ))}
