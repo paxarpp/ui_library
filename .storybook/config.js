@@ -1,22 +1,16 @@
 import React from 'react';
-import {configure, addDecorator} from '@storybook/react';
+import { configure, addDecorator } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { withKnobs } from '@storybook/addon-knobs'
 
-const ctx = require.context('../src/', true, /.stories.js$/);
+const req = require.context('../src/components', true, /\.stories\.js$/);
 
-
-addDecorator(withInfo({
-  header: false,
-  inline: true
-}));
+addDecorator(withInfo);
 addDecorator(withKnobs);
-const wrapper = story => <div style={{padding: 10}}>{story()}</div>;
-addDecorator(wrapper);
-
+addDecorator(storyFn => <div style={{ textAlign: 'center' }}>{storyFn()}</div>);
 
 function loadStories() {
-    ctx.keys().forEach(filename => ctx(filename));
+  req.keys().forEach(filename => req(filename));
 }
 
 configure(loadStories, module);
