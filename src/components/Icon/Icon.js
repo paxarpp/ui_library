@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import SVGInline from 'react-svg-inline';
 
-import * as Icons from './assets';
+import * as Icons from '../../components/assets';
 
 export default class Icon extends PureComponent {
   render() {
@@ -11,7 +11,7 @@ export default class Icon extends PureComponent {
     const Icon = Icons[name] ? Icons[name] : Icons['default'];
     return (
       <Wrapper {...this.props} className={className}>
-        <SVGInline svg={Icon} />
+        {<SVGInline svg={Icon} />}
       </Wrapper>
     );
   }

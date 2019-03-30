@@ -36,4 +36,5 @@ export { default as unfoldMore } from './unfoldMore.svg';
 export { default as place } from './place.svg';
 export { default as remove } from './remove.svg';
 export { default as layers } from './layers.svg';
+export { default as button } from './button.svg';
 export { default } from './default.svg';

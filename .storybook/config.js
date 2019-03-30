@@ -7,7 +7,7 @@ const req = require.context('../src/components', true, /\.stories\.js$/);
 
 addDecorator(withInfo);
 addDecorator(withKnobs);
-addDecorator(storyFn => <div style={{ textAlign: 'center' }}>{storyFn()}</div>);
+addDecorator(storyFn => <div style={{ textAlign: 'center', marginRight: '90px' }}>{storyFn()}</div>);
 
 function loadStories() {
   req.keys().forEach(filename => req(filename));
