@@ -11,8 +11,10 @@ const Badge = ({ count, color = '#26a69a', ...props }) => (
 Badge.propTypes = {
   /** value on the screen */
   count: PropTypes.number,
-  /** value in the block */
+  /** view the block */
   block: PropTypes.bool,
+  /** view the badge */
+  badge: PropTypes.bool,
   /** color background */
   color: PropTypes.string
 };
@@ -24,6 +26,15 @@ const isBlock = props =>
     font-size: 0.8rem;
     color: #fff;
     border-radius: 2px;
+    background-color: ${({ color }) => color};
+  `;
+const isBadge = props =>
+  props.badge &&
+  css`
+    font-weight: 300;
+    font-size: 0.8rem;
+    color: #fff;
+    border-radius: 1rem;
     background-color: ${({ color }) => color};
   `;
 
@@ -40,6 +51,7 @@ const Span = styled.span`
   box-sizing: border-box;
   background-color: inherit;
   ${isBlock};
+  ${isBadge};
 `;
 
 export default Badge;

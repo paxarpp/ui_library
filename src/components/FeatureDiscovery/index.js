@@ -1,40 +1,29 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
-
+import { toggleOpen } from '../helpers';
 import { Float } from '../Button';
 import { Icon } from '../Icon';
 
-class FeatureDiscovery extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: this.props.open
-    };
-  }
+const FeatureDiscovery = ({ header, children, open }) => {
+  const [check, toggler] = useState(open);
+  return (
+    <TapTargetWrapper open={check}>
+      <TapTarget>
+        <TapTargetContent>
+          <H5>{header}</H5>
+          <p>{children}</p>
+        </TapTargetContent>
+      </TapTarget>
+      <TapTargetWave open={check}>
+        <WrapFloat large color="cyan" handlerClick={toggleOpen(toggler, check)}>
+          <Icon name="menu" />
+        </WrapFloat>
+      </TapTargetWave>
+    </TapTargetWrapper>
+  );
+};
 
-  togglerOpen = () => this.setState({ open: !this.state.open });
-
-  render() {
-    const { header, children } = this.props;
-    const { open } = this.state;
-    return (
-      <TapTargetWrapper open={open}>
-        <TapTarget>
-          <TapTargetContent>
-            <H5>{header}</H5>
-            <p>{children}</p>
-          </TapTargetContent>
-        </TapTarget>
-        <TapTargetWave open={open}>
-          <WrapFloat large color="cyan" handlerClick={this.togglerOpen}>
-            <Icon name="menu" />
-          </WrapFloat>
-        </TapTargetWave>
-      </TapTargetWrapper>
-    );
-  }
-}
 FeatureDiscovery.propTypes = {
   open: PropTypes.bool,
   header: PropTypes.string,
