@@ -1,20 +1,22 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
+import { Icon } from '../Icon';
 
-const Badge = ({ count, color = '#26a69a', ...props }) => (
-  <Span color={color} {...props}>
+const Badge = ({ count, handler, color = '#26a69a', ...props }) => (
+  <Span color={color} {...props} onClick={handler ? handler : null} badge={!!handler}>
     {count}
+    {handler ? <WrapperIcon name={'clear'} size={'11px'} /> : null}
   </Span>
 );
 
 Badge.propTypes = {
   /** value on the screen */
-  count: PropTypes.number,
+  count: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** view the block */
   block: PropTypes.bool,
-  /** view the badge */
-  badge: PropTypes.bool,
+  /** view the badge and callback click */
+  handler: PropTypes.func,
   /** color background */
   color: PropTypes.string
 };
@@ -39,6 +41,7 @@ const isBadge = props =>
   `;
 
 const Span = styled.span`
+  position: relative;
   min-width: 3rem;
   padding: 0 6px;
   margin-left: 14px;
@@ -52,6 +55,12 @@ const Span = styled.span`
   background-color: inherit;
   ${isBlock};
   ${isBadge};
+`;
+
+const WrapperIcon = styled(Icon)`
+  position: absolute;
+  top: 0.1rem;
+  right: 2px;
 `;
 
 export default Badge;
