@@ -1,22 +1,24 @@
 import styled, { css } from 'styled-components';
 import { Icon } from '../Icon';
 
-export const isBlock = ({ block }) =>
+export const commonStyle = () => css`
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: #fff;
+`;
+
+const isBlock = ({ block }) =>
   block &&
   css`
-    font-weight: 300;
-    font-size: 0.8rem;
-    color: #fff;
+    ${commonStyle}
     border-radius: 2px;
     background-color: ${({ color }) => color};
   `;
 
-export const isBadge = ({ badge }) =>
+const isBadge = ({ badge }) =>
   badge &&
   css`
-    font-weight: 300;
-    font-size: 0.8rem;
-    color: #fff;
+    ${commonStyle}
     border-radius: 1rem;
     background-color: ${({ color }) => color};
   `;
