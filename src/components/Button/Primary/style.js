@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
+import { BG_COLOR, BG_COLOR_HOVER } from '../constants';
 
 const ripple = keyframes`
 0% {
@@ -47,10 +48,49 @@ const isShadowHover = ({ disable, border, bottom }) =>
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
   `;
 
+const bgColor = ({ danger, second, disable, color, border }) => {
+  const clr = danger
+    ? BG_COLOR.danger
+    : second
+    ? BG_COLOR.second
+    : disable
+    ? BG_COLOR.disable
+    : color
+    ? color
+    : border
+    ? BG_COLOR.border
+    : BG_COLOR.primary;
+  return css`
+    background-color: ${clr};
+  `;
+};
+
+const bgColorHover = ({ danger, second, disable, border }) => {
+  const clr = danger ? BG_COLOR_HOVER.danger : second ? BG_COLOR_HOVER.second : BG_COLOR_HOVER.primary;
+  return (
+    !disable &&
+    !border &&
+    css`
+      background-color: ${clr};
+    `
+  );
+};
+
+const borderColorHover = ({ danger, second, disable, border }) => {
+  const clr = danger ? BG_COLOR_HOVER.danger : second ? BG_COLOR_HOVER.second : BG_COLOR_HOVER.primary;
+  return (
+    !disable &&
+    border &&
+    css`
+      border-color: ${clr};
+    `
+  );
+};
+
 export const Main = styled.button`
   position: relative;
   overflow: hidden;
-  border: ${({ border }) => (border ? '2px solid #aaa' : 'none')};
+  border: ${({ border }) => (border ? `2px solid ${BG_COLOR.second}` : 'none')};
   box-sizing: border-box;
   border-radius: ${({ rounded }) => (rounded ? '25px' : '2px')};
   display: inline-block;
@@ -63,12 +103,7 @@ export const Main = styled.button`
   vertical-align: middle;
   text-decoration: none;
   color: ${({ border }) => (border ? 'inherit' : '#fff')};
-  background-color: #26a69a;
-  background-color: ${({ danger }) => danger && '#ff5454'};
-  background-color: ${({ second }) => second && '#aaa'};
-  background-color: ${({ disable }) => disable && '#e5e5e5'};
-  background-color: ${({ color }) => color};
-  background-color: ${({ border }) => border && 'transparent'};
+  ${bgColor}
   text-align: center;
   letter-spacing: 0.5px;
   transition: background-color 0.3s ease-out;
@@ -76,11 +111,9 @@ export const Main = styled.button`
   outline: none;
   ${isShadow};
   :hover {
-    ${props => !props.disable && !props.border && 'background-color:'} ${props =>
-      (props.danger && 'red') || (props.second && '#aab') || '#2bbbad'};
+    ${bgColorHover};
     ${isShadowHover};
-    ${props => !props.disable && props.border && 'border-color:'} ${props =>
-      (props.danger && 'red') || (props.second && '#aab') || props.color || '#2bbbad'};
+    ${borderColorHover};
   }
   :after {
     content: '';
