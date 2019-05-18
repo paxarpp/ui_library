@@ -49,12 +49,12 @@ const isShadowHover = ({ disable, border, bottom }) =>
   `;
 
 const bgColor = ({ danger, second, disable, color, border }) => {
-  const clr = danger
-    ? BG_COLOR.danger
+  const clr = disable
+    ? BG_COLOR.disable
     : second
     ? BG_COLOR.second
-    : disable
-    ? BG_COLOR.disable
+    : danger
+    ? BG_COLOR.danger
     : color
     ? color
     : border

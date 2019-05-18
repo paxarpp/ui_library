@@ -57,6 +57,11 @@ storiesOf('Button/Primary', module)
       border
     </Primary>
   ))
+  .add('button Danger small border', () => (
+    <Primary handlerClick={action('clicked')} danger small border>
+      border
+    </Primary>
+  ))
   .add('button Primary rounded border color="pink"', () => (
     <Primary handlerClick={action('clicked')} rounded border color="pink">
       rounded

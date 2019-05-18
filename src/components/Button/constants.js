@@ -7,6 +7,6 @@ export const BG_COLOR = {
 };
 export const BG_COLOR_HOVER = {
   primary: '#2bbbad',
-  danger: '#red',
+  danger: 'red',
   second: '#aab'
 };
