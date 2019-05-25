@@ -1,29 +1,39 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import PropTypes from 'prop-types';
 
-const Link = ({ url, children, color = '#26a69a', ...props }) => (
+interface WrapperProps {
+  readonly lowercase: boolean;
+  readonly color: string;
+}
+interface PositionProps {
+  readonly center?: boolean;
+  readonly right?: boolean;
+  readonly left?: boolean;
+}
+
+interface IProps {
+  /** url for Link */
+  url: string;
+  /** what see in Link */
+  children?: any;
+  /** color text , line and any output in Link */
+  color?: string;
+  /** the start point of the underscore animation */
+  left?: boolean;
+  right?: boolean;
+  center?: boolean;
+  /** lowercase if exist, or default uppercase */
+  lowercase?: boolean;
+};
+
+const Link = ({ url, children, color = '#26a69a', ...props }: IProps) => (
   <Wrapper href={url} {...props} color={color}>
     {children}
   </Wrapper>
 );
 
-Link.propTypes = {
-  /** url for Link */
-  url: PropTypes.string.isRequired,
-  /** what see in Link */
-  children: PropTypes.any,
-  /** color text , line and any output in Link */
-  color: PropTypes.string,
-  /** the start point of the underscore animation */
-  left: PropTypes.bool,
-  right: PropTypes.bool,
-  center: PropTypes.bool,
-  /** lowercase if exist, or default uppercase */
-  lowercase: PropTypes.bool
-};
 
-const style = css`
+const style = css<{ color: string }>`
   content: '';
   bottom: 0;
   position: absolute;
@@ -32,8 +42,8 @@ const style = css`
   transition: 0.2s;
 `;
 
-const isLeft = props =>
-  props.left &&
+const isLeft = ({ left }: PositionProps) =>
+  left &&
   css`
     :before {
       ${style};
@@ -45,8 +55,8 @@ const isLeft = props =>
     }
   `;
 
-const isRight = props =>
-  props.right &&
+const isRight = ({ right }: PositionProps) =>
+  right &&
   css`
     :before {
       ${style};
@@ -58,8 +68,8 @@ const isRight = props =>
     }
   `;
 
-const isCenter = props =>
-  props.center &&
+const isCenter = ({ center }: PositionProps) =>
+  center &&
   css`
     :before {
       ${style};
@@ -72,10 +82,10 @@ const isCenter = props =>
     }
   `;
 
-const isDefault = props =>
-  !props.center &&
-  !props.right &&
-  !props.left &&
+const isDefault = ({ center, right, left }: PositionProps) =>
+  !center &&
+  !right &&
+  !left &&
   css`
     :before {
       ${style};
@@ -84,7 +94,7 @@ const isDefault = props =>
     }
   `;
 
-const Wrapper = styled.a`
+const Wrapper = styled.a<WrapperProps>`
   text-transform: ${({ lowercase }) => (lowercase ? 'lowercase' : 'uppercase')};
   text-decoration: none;
   position: relative;

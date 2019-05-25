@@ -8,7 +8,7 @@
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-transition-group": "^2.9.0",
-    "styled-components": "^4.0.2"
+    "styled-components": "^4.2.0"
   },
   "scripts": {
     "storybook": "start-storybook -p 9001 -c .storybook",
@@ -41,6 +41,9 @@
     "@storybook/addon-links": "^5.0.11",
     "@storybook/addons": "^5.0.11",
     "@storybook/react": "^5.0.11",
+    "@types/jest": "^24.0.13",
+    "@types/storybook__react": "^4.0.1",
+    "@types/styled-components": "^4.1.15",
     "babel-loader": "^8.0.6",
     "babel-plugin-styled-components": "^1.10.0",
     "eslint": "^5.8.0",
@@ -49,12 +52,16 @@
     "eslint-plugin-jest": "^21.15.1",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.13.0",
+    "jest": "^24.8.0",
     "prettier": "^1.17.1",
     "raw-loader": "^0.5.1",
+    "react-docgen-typescript-loader": "^3.1.0",
     "react-svg-inline": "^2.1.1",
     "stylelint": "^9.10.1",
     "stylelint-config-recommended": "^2.2.0",
     "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-processor-styled-components": "^1.7.0"
+    "stylelint-processor-styled-components": "^1.7.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.5"
   }
 }
