@@ -1,29 +1,27 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-interface WrapperProps {
-  readonly lowercase: boolean;
-  readonly color: string;
-}
 interface PositionProps {
   readonly center?: boolean;
   readonly right?: boolean;
   readonly left?: boolean;
 }
 
-interface IProps {
+interface IProps extends IWrapperProps {
   /** url for Link */
-  url: string;
+  readonly url: string;
+};
+interface IWrapperProps {
   /** what see in Link */
-  children?: any;
+  readonly children?: any;
   /** color text , line and any output in Link */
-  color?: string;
+  readonly color?: string;
   /** the start point of the underscore animation */
-  left?: boolean;
-  right?: boolean;
-  center?: boolean;
+  readonly left?: boolean;
+  readonly right?: boolean;
+  readonly center?: boolean;
   /** lowercase if exist, or default uppercase */
-  lowercase?: boolean;
+  readonly lowercase?: boolean;
 };
 
 const Link = ({ url, children, color = '#26a69a', ...props }: IProps) => (
@@ -94,7 +92,7 @@ const isDefault = ({ center, right, left }: PositionProps) =>
     }
   `;
 
-const Wrapper = styled.a<WrapperProps>`
+const Wrapper = styled.a<IWrapperProps>`
   text-transform: ${({ lowercase }) => (lowercase ? 'lowercase' : 'uppercase')};
   text-decoration: none;
   position: relative;
