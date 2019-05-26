@@ -7,7 +7,7 @@ import { action } from '@storybook/addon-actions';
 const stories = storiesOf('Badge', module);
 stories.addDecorator(withKnobs);
 
-stories.add('Badge', () => <Badge count={text('value')} color={text('color')} block={boolean('block', false)} />);
+stories.add('Badge', () => <Badge count={text('value', null)} color={text('color', null)} block={boolean('block', false)} />);
 storiesOf('Badge/badge', module).add('Badge', () => <Badge count={'text'} color={'green'} handler={action('click')} />);
 storiesOf('Badge/block', module)
   .add('Badge block 10', () => <Badge count={10} block />)

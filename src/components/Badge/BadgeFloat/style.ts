@@ -1,5 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
 import { commonStyle } from '../style';
+import { IProps } from './interfaces';
 
 const pulseAnimation = keyframes`
   0% {
@@ -16,7 +17,7 @@ const pulseAnimation = keyframes`
   }
 `;
 
-const isPulse = ({ pulse }) =>
+const isPulse = ({ pulse }: IProps) =>
   pulse &&
   css`
     overflow: visible;
@@ -36,7 +37,7 @@ const isPulse = ({ pulse }) =>
     }
   `;
 
-export const Span = styled.span`
+export const Span = styled.span<IProps>`
   margin-left: 14px;
   text-align: center;
   box-sizing: border-box;

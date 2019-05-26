@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
-import { Icon } from '../Icon';
+import { Icon } from '../Icon/index.js';
+import { ISpanProps } from './interface';
 
 export const commonStyle = () => css`
   font-weight: 300;
@@ -7,23 +8,23 @@ export const commonStyle = () => css`
   color: #fff;
 `;
 
-const isBlock = ({ block }) =>
+const isBlock = ({ block }: ISpanProps) =>
   block &&
-  css`
+  css<{ color: string }>`
     ${commonStyle}
     border-radius: 2px;
     background-color: ${({ color }) => color};
   `;
 
-const isBadge = ({ badge }) =>
+const isBadge = ({ badge }: ISpanProps) =>
   badge &&
-  css`
+  css<{ color: string }>`
     ${commonStyle}
     border-radius: 1rem;
     background-color: ${({ color }) => color};
   `;
 
-export const Span = styled.span`
+export const Span = styled.span<ISpanProps>`
   margin-left: 14px;
   text-align: center;
   box-sizing: border-box;
