@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Icon } from '../Icon/index.js';
+import { Icon } from '../Icon';
 import { ISpanProps } from './interface';
 
 export const commonStyle = () => css`
