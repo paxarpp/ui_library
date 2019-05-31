@@ -4,7 +4,7 @@ import Toast from './index';
 
 storiesOf('Toast', module)
   .add('Toast', () => {
-    let clickChild;
+    let clickChild: () => void | undefined;
     return (
       <div>
         <button onClick={() => clickChild()}>add</button>
@@ -15,7 +15,7 @@ storiesOf('Toast', module)
     );
   })
   .add('Toast duration=1200 height=200 width=500', () => {
-    let clickChild;
+    let clickChild: () => void | undefined;
     return (
       <div>
         <button onClick={() => clickChild()}>add</button>
