@@ -1,5 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
 import { BG_COLOR, BG_COLOR_HOVER } from '../constants';
+import { IMain } from './interface';
 
 const ripple = keyframes`
 0% {
@@ -16,7 +17,7 @@ const ripple = keyframes`
 }
 `;
 
-const isLarge = ({ large }) =>
+const isLarge = ({ large }: IMain) =>
   large &&
   css`
     height: 54px;
@@ -24,7 +25,7 @@ const isLarge = ({ large }) =>
     padding: 0 28px;
   `;
 
-const isSmall = ({ small }) =>
+const isSmall = ({ small }: IMain) =>
   small &&
   css`
     height: 32px;
@@ -32,7 +33,7 @@ const isSmall = ({ small }) =>
     padding: 0 14px;
   `;
 
-const isShadow = ({ disable, border, bottom }) =>
+const isShadow = ({ disable, border, bottom }: IMain) =>
   !disable &&
   !border &&
   !bottom &&
@@ -40,7 +41,7 @@ const isShadow = ({ disable, border, bottom }) =>
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
   `;
 
-const isShadowHover = ({ disable, border, bottom }) =>
+const isShadowHover = ({ disable, border, bottom }: IMain) =>
   !disable &&
   !border &&
   !bottom &&
@@ -48,7 +49,7 @@ const isShadowHover = ({ disable, border, bottom }) =>
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
   `;
 
-const bgColor = ({ danger, second, disable, color, border }) => {
+const bgColor = ({ danger, second, disable, color, border }: IMain) => {
   const clr = disable
     ? BG_COLOR.disable
     : second
@@ -65,7 +66,7 @@ const bgColor = ({ danger, second, disable, color, border }) => {
   `;
 };
 
-const bgColorHover = ({ danger, second, disable, border }) => {
+const bgColorHover = ({ danger, second, disable, border }: IMain) => {
   const clr = danger ? BG_COLOR_HOVER.danger : second ? BG_COLOR_HOVER.second : BG_COLOR_HOVER.primary;
   return (
     !disable &&
@@ -76,7 +77,7 @@ const bgColorHover = ({ danger, second, disable, border }) => {
   );
 };
 
-const borderColorHover = ({ danger, second, disable, border }) => {
+const borderColorHover = ({ danger, second, disable, border }: IMain) => {
   const clr = danger ? BG_COLOR_HOVER.danger : second ? BG_COLOR_HOVER.second : BG_COLOR_HOVER.primary;
   return (
     !disable &&
@@ -87,7 +88,7 @@ const borderColorHover = ({ danger, second, disable, border }) => {
   );
 };
 
-export const Main = styled.button`
+export const Main = styled.button<IMain>`
   position: relative;
   overflow: hidden;
   border: ${({ border }) => (border ? `2px solid ${BG_COLOR.second}` : 'none')};
