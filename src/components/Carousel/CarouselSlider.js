@@ -54,26 +54,26 @@ const Main = styled.div`
   width: ${({ width }) => width}px;
 `;
 
-const isFirst = props =>
-  props.active === 0 &&
+const isFirst = ({ active }) =>
+  active === 0 &&
   css`
     transform: translateX(0);
   `;
 
-const isTwo = props =>
-  props.active === 1 &&
+const isTwo = ({ active }) =>
+  active === 1 &&
   css`
     transform: translateX(-${({ width }) => width}px);
   `;
 
-const isThree = props =>
-  props.active === 2 &&
+const isThree = ({ active }) =>
+  active === 2 &&
   css`
     transform: translateX(-${({ width }) => 2 * width}px);
   `;
 
-const isFour = props =>
-  props.active === 3 &&
+const isFour = ({ active }) =>
+  active === 3 &&
   css`
     transform: translateX(-${({ width }) => 3 * width}px);
   `;
