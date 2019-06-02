@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled from '@reshadow/styled';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 class Toast extends Component {

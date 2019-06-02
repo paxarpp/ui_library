@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled from '@reshadow/styled';
 import PropTypes from 'prop-types';
 
 import { Primary } from '../../Button';

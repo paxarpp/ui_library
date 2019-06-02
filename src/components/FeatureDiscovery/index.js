@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css, keyframes } from '@reshadow/styled';
 import PropTypes from 'prop-types';
 import { toggleOpen } from '../helpers';
 import { Float } from '../Button';

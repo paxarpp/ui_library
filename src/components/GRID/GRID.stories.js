@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import GRID from './index';
-import styled from 'styled-components';
+import styled from '@reshadow/styled';
 
 const Div = ({ ...props }) => <Wrap {...props} />;
 const Wrap = styled.div`

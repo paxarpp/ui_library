@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from '@reshadow/styled';
 import PropTypes from 'prop-types';
 
 class Range extends Component {

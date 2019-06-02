@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css, keyframes } from '@reshadow/styled';
 import { commonStyle } from '../style';
 
 const pulseAnimation = keyframes`
@@ -21,7 +21,7 @@ const isPulse = ({ pulse }) =>
   css`
     overflow: visible;
     position: relative;
-    &:before {
+    :before {
       content: '';
       display: block;
       position: absolute;

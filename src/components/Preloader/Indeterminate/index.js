@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from '@reshadow/styled';
 import PropTypes from 'prop-types';
 
 const Indeterminate = ({ color = '#26a69a' }) => (

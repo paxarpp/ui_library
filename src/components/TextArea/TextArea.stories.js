@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import styled from 'styled-components';
+import styled from '@reshadow/styled';
 import TextArea from './index';
 
 const Wrapper = styled.div`

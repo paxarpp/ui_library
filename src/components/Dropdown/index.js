@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css } from '@reshadow/styled';
 import PropTypes from 'prop-types';
 
 const Dropdown = ({ children, width = '100px', active = true, onClick }) => (

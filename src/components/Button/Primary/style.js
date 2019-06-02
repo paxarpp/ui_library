@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css, keyframes } from '@reshadow/styled';
 import { BG_COLOR, BG_COLOR_HOVER } from '../constants';
 
 const ripple = keyframes`

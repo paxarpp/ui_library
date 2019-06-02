@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled, { css } from '@reshadow/styled';
 import SVGInline from 'react-svg-inline';
 
 import * as Icons from '../../../components/assets';

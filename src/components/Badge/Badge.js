@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const Badge = ({ count, handler, color = '#26a69a', ...props }) => (
   <Span color={color} {...props} onClick={handler ? handler : null} badge={!!handler}>
     {count}
-    {handler ? <WrapperIcon name={'clear'} size={'11px'} /> : null}
+    {handler ? <WrapperIcon name={'clear'} size={'11px'} {...props} /> : null}
   </Span>
 );
 

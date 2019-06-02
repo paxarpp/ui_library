@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css, keyframes } from '@reshadow/styled';
 import PropTypes from 'prop-types';
 
 const Preloader7 = ({ size = '14px', color = 'grey' }) => <Wrapper size={size} color={color} />;

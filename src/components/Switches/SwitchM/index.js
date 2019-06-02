@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from '@reshadow/styled';
 import PropTypes from 'prop-types';
 
 const SwitchM = ({ disabled, click }) => <Input type="checkbox" onChange={() => click} disabled={disabled} />;

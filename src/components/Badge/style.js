@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from '@reshadow/styled';
 import { Icon } from '../Icon';
 
 export const commonStyle = () => css`
