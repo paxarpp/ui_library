@@ -2,8 +2,8 @@ import React from 'react';
 import styled, { css } from '@reshadow/styled';
 import PropTypes from 'prop-types';
 
-const Divider = ({ children, max, end, start }) => (
-  <Wrap max={max} end={end} start={start}>
+const Divider = ({ children, max, end, start, ...props }) => (
+  <Wrap max={max} end={end} start={start} {...props}>
     {children}
   </Wrap>
 );
@@ -26,15 +26,15 @@ const style = css`
 const Wrap = styled.h4`
   display: flex;
   margin: 0 auto;
-  width: ${props => (props.max ? '100%' : '80%')};
+  width: ${({ max }) => (max ? '100%' : '80%')};
   align-items: center;
   :after {
     ${style};
-    flex: ${props => props.start && '20'};
+    flex: ${({ start }) => start && '20'};
   }
   :before {
     ${style};
-    flex: ${props => props.end && '20'};
+    flex: ${({ end }) => end && '20'};
   }
 `;
 export default Divider;
