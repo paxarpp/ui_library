@@ -63,19 +63,19 @@ const isFirst = ({ active }) =>
 const isTwo = ({ active }) =>
   active === 1 &&
   css`
-    transform: translateX(-${({ width }) => width}px);
+    transform: translateX(${({ width }) => -width});
   `;
 
 const isThree = ({ active }) =>
   active === 2 &&
   css`
-    transform: translateX(-${({ width }) => 2 * width}px);
+    transform: translateX(${({ width }) => 2 * -width});
   `;
 
 const isFour = ({ active }) =>
   active === 3 &&
   css`
-    transform: translateX(-${({ width }) => 3 * width}px);
+    transform: translateX(${({ width }) => 3 * -width});
   `;
 
 const Wrapper = styled.div`

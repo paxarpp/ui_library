@@ -23,6 +23,9 @@ const style = css`
   height: 1px;
   flex: 1;
 `;
+const isStart = ({ start }) => start && css`flex: 20}`;
+const isEnd = ({ end }) => end && css`flex: 20}`;
+
 const Wrap = styled.h4`
   display: flex;
   margin: 0 auto;
@@ -30,11 +33,11 @@ const Wrap = styled.h4`
   align-items: center;
   :after {
     ${style};
-    flex: ${({ start }) => start && '20'};
+    ${isStart}
   }
   :before {
     ${style};
-    flex: ${({ end }) => end && '20'};
+    ${isEnd}
   }
 `;
 export default Divider;
