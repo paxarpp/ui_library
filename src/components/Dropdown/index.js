@@ -2,8 +2,8 @@ import React from 'react';
 import styled, { css } from '@reshadow/styled';
 import PropTypes from 'prop-types';
 
-const Dropdown = ({ children, width = '100px', active = true, onClick }) => (
-  <Ul width={width} active={active} onClick={onClick}>
+const Dropdown = ({ children, width = '100px', active = true, onClick, ...props }) => (
+  <Ul width={width} active={active} onClick={onClick} {...props}>
     {children.map((el, indx) => (
       <Li skip={el.type.name === 'Divider'} key={indx}>
         {el}
