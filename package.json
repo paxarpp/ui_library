@@ -50,6 +50,10 @@
     "eslint-plugin-react": "^7.13.0",
     "prettier": "^1.17.1",
     "raw-loader": "^0.5.1",
-    "react-svg-inline": "^2.1.1"
+    "react-svg-inline": "^2.1.1",
+    "stylelint": "^10.0.1",
+    "stylelint-config-recommended": "^2.2.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.8.0"
   }
 }
