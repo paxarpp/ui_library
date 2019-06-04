@@ -2,18 +2,18 @@ import styled, { css, keyframes } from '@reshadow/styled';
 import { BG_COLOR, BG_COLOR_HOVER } from '../constants';
 
 const ripple = keyframes`
-0% {
-  transform: scale(0, 0);
-  opacity: 1;
-}
-20% {
-  transform: scale(25, 25);
-  opacity: 1;
-}
-100% {
-  opacity: 0;
-  transform: scale(40, 40);
-}
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
 `;
 
 const isLarge = ({ large }) =>
@@ -106,7 +106,7 @@ export const Main = styled.button`
   ${bgColor}
   text-align: center;
   letter-spacing: 0.5px;
-  transition: background-color 0.3s ease-out;
+  transition: background-color 0.3s;
   cursor: ${({ disable }) => !disable && 'pointer'};
   outline: none;
   ${isShadow};

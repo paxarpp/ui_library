@@ -23,8 +23,16 @@ const style = css`
   height: 1px;
   flex: 1;
 `;
-const isStart = ({ start }) => start && css`flex: 20}`;
-const isEnd = ({ end }) => end && css`flex: 20}`;
+const isStart = ({ start }) =>
+  start &&
+  css`
+    flex: 20;
+  `;
+const isEnd = ({ end }) =>
+  end &&
+  css`
+    flex: 20;
+  `;
 
 const Wrap = styled.h4`
   display: flex;

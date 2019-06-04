@@ -61,7 +61,6 @@ const ripple = keyframes`
     opacity: 0;
     transform: scale(40, 40);
   }
-}
 `;
 
 const isLarge = props =>
