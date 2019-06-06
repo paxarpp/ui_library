@@ -15,7 +15,9 @@ const SwitchW = ({ disabled, click, style, className }) => (
 SwitchW.propTypes = {
   click: PropTypes.func,
   checked: PropTypes.bool,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  style: PropTypes.any,
+  className: PropTypes.string
 };
 const Wrapper = styled.div`
   user-select: none;
