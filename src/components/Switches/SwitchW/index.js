@@ -2,11 +2,11 @@ import React from 'react';
 import styled, { css } from '@reshadow/styled';
 import PropTypes from 'prop-types';
 
-const SwitchW = ({ disabled, click }) => (
+const SwitchW = ({ disabled, click, style, className }) => (
   <Wrapper>
     <Label disabled={disabled}>
       Off
-      <Input type="checkbox" onChange={() => click} disabled={disabled} />
+      <Input type="checkbox" onChange={() => click} disabled={disabled} style={style} className={className} />
       <Span disabled={disabled} />
       On
     </Label>

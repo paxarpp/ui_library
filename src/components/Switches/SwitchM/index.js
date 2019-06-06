@@ -2,11 +2,15 @@ import React from 'react';
 import styled from '@reshadow/styled';
 import PropTypes from 'prop-types';
 
-const SwitchM = ({ disabled, click }) => <Input type="checkbox" onChange={() => click} disabled={disabled} />;
+const SwitchM = ({ disabled, click, style, className }) => (
+  <Input type="checkbox" onChange={() => click} disabled={disabled} style={style} className={className} />
+);
 SwitchM.propTypes = {
   click: PropTypes.func,
   checked: PropTypes.bool,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  style: PropTypes.any,
+  className: PropTypes.string
 };
 const Input = styled.input`
   appearance: none;
